@@ -1,4 +1,4 @@
-package com.example.Directory.model
+package com.example.directory.model
 
 data class Business(
     val id: Int,
