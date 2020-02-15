@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">directory</string>
+    <!-- botom nav-->
+    <string name="home">home</string>
+    <string name="me">m</string>
+    <string name="profile">profile</string>
+    <string name="inbox">inbox</string>
+    <string name="match">match</string>
+</resources>
