@@ -22,12 +22,9 @@ class ListingItemGroupAdapter(private val context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingItemGroupViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.layout_group, parent, false)
+        val view = LayoutInflater.from(context)
+            .inflate(R.layout.layout_group, parent, false)
         return ListingItemGroupViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return dataGroupList.size
     }
 
     override fun onBindViewHolder(viewHolder: ListingItemGroupViewHolder, position: Int) {
@@ -43,11 +40,15 @@ class ListingItemGroupAdapter(private val context: Context) :
         itemListAdapter.setData(items)
         listingItemGroupViewHolder.groupRecyclerView.setHasFixedSize(true)
         listingItemGroupViewHolder.groupRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         listingItemGroupViewHolder.groupRecyclerView.adapter = itemListAdapter
         listingItemGroupViewHolder.groupRecyclerView.isNestedScrollingEnabled = false
 
 
+    }
+
+    override fun getItemCount(): Int {
+        return dataGroupList.size
     }
 
 }

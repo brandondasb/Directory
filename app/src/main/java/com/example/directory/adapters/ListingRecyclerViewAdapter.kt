@@ -6,46 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.directory.R
 import com.example.directory.model.ListingItemData
-import com.example.directory.model.Social
 import com.example.directory.viewHolder.ListingViewHolder
 
 class ListingRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private lateinit var listingData: List<ListingItemData>
+    private var listingData: List<ListingItemData>? = listOf()
 
-    private var dummyData = listOf(
-        ListingItemData(
-            1,
-            "test1",
-            "",
-            "image.co.uk",
-            "logo.co.uk",
-            "food",
-            true,
-            "nope.co.uk",
-            "",
-            "m9",
-            listOf(Social("", ""))
-        ),
-        ListingItemData(
-            2,
-            "test2",
-            "about test well",
-            "image.co.uk",
-            "logo.co.uk",
-            "food",
-            false,
-            "nonyabusiness.co.uk",
-            "m8",
-            "m9",
-            listOf(Social("", ""))
-        )
-    )
-    //listingData
-
-    fun setData(listingData: List<ListingItemData>) {
-        this.listingData = dummyData
+    fun setData(listingData: List<ListingItemData>?) {
+        this.listingData = listingData
         notifyDataSetChanged()
 
     }
@@ -58,7 +27,7 @@ class ListingRecyclerViewAdapter(private val context: Context) :
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val listingViewHolder: ListingViewHolder = viewHolder as ListingViewHolder
-        val listing: ListingItemData = dummyData[position]
+        val listing: ListingItemData = this.listingData!![position]
 
         val name: String = listing.name
         val about: String = listing.about
@@ -72,7 +41,7 @@ class ListingRecyclerViewAdapter(private val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return listingData.size
+        return listingData!!.size
     }
 
 

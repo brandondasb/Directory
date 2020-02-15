@@ -13,7 +13,10 @@ data class ListingItemData(
     val postcode: String,
     val social: List<Social>
 // TBC
-)
+) {
+    constructor() : this(-1,"","","","","",false,"","","", emptyList())
+
+}
 
 data class Social(
     val name: String,

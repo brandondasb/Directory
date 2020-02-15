@@ -3,7 +3,6 @@ package com.example.directory.viewHolder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.directory.R
-import kotlinx.android.synthetic.main.home_fragment.view.*
 
 /*contains all XML widget visible on homeFragment class
 * keeping it away from the UI*/

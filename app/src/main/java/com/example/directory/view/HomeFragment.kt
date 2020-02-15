@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.directory.R
-import com.example.directory.interfaces.HomeFragmentPresenterListener
+import com.example.directory.interfaces.ListingCallback
 import com.example.directory.model.BottomNavState
-import com.example.directory.presenter.HomefragmentPresenter
+import com.example.directory.model.ListingItemData
+import com.example.directory.presenter.HomeFragmentPresenter
+import com.example.directory.repo.ListingRepo
 
 class HomeFragment : BaseNavFragment() {
 
@@ -23,15 +25,14 @@ class HomeFragment : BaseNavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bottomNavListener.updateBottomNav(BottomNavState.HOME)
-        val homeFragmentPresenter = HomefragmentPresenter(view)
-        homeFragmentPresenter.load(listOf())// change once real data comes in
+        val listingRepo = ListingRepo()
+        val homeFragmentPresenter = HomeFragmentPresenter(view)
 
+        val listingCallback: ListingCallback = object : ListingCallback {
+            override fun loadAllListingItemData(listingItemDataList: List<ListingItemData>) {
+                homeFragmentPresenter.loadAllListingItemData(listingItemDataList)
+            }
+        }
+        listingRepo.getAllListing(listingCallback)
     }
-
-    fun getData() {
-
-
-    }
-
-
 }
