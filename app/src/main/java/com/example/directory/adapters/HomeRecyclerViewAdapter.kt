@@ -24,11 +24,12 @@ class HomeRecyclerViewAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-      val homeDataViewholder = viewHolder as  HomeFragmentViewHolder
+        val homeDataViewholder = viewHolder as HomeFragmentViewHolder
         val listingItemData = itemGroups[position]
 
         listingItemData.headerTitle
         listingItemData.listItem
+        homeDataViewholder.homeRecyclerView
 
 
     }

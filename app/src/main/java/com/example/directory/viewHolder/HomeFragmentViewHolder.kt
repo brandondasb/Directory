@@ -8,10 +8,6 @@ import com.example.directory.R
 * keeping it away from the UI*/
 class HomeFragmentViewHolder(view:View) :RecyclerView.ViewHolder(view){
 
-      var homeRecyclerView :RecyclerView = view.findViewById(R.id.home_fragment_recyclerView)
-
-
-init {
-}
+      var homeRecyclerView :RecyclerView = view.findViewById(R.id.home_fragment_parent_recyclerView)
 
 }

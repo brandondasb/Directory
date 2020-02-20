@@ -2,7 +2,6 @@ package com.example.directory.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,36 +12,46 @@ import com.example.directory.viewHolder.ListingItemGroupViewHolder
 class ListingItemGroupAdapter(private val context: Context) :
     RecyclerView.Adapter<ListingItemGroupViewHolder>() {
 
-    private lateinit var dataGroupList: List<ItemGroup>
+    private var dataGroupList: List<ItemGroup> = listOf()
+    private val viewPool = RecyclerView.RecycledViewPool()
 
-    fun setData(listingData: List<ItemGroup>) {
+    fun setData(dataGroupList: List<ItemGroup>) {
         this.dataGroupList = dataGroupList
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingItemGroupViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.layout_group, parent, false)
+            .inflate(R.layout.layout_parent_recycler, parent, false)
         return ListingItemGroupViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ListingItemGroupViewHolder, position: Int) {
-        var listingItemGroupViewHolder = viewHolder
+    override fun onBindViewHolder(
+        listingItemGroupViewHolder: ListingItemGroupViewHolder,
+        position: Int
+    ) {
+        var parentViewHolder = listingItemGroupViewHolder
         var listingDataGroup = dataGroupList[position]
 
-        listingItemGroupViewHolder.itemTitle.text = listingDataGroup.headerTitle
-        var items = listingDataGroup.listItem
+        parentViewHolder.itemTitle.text = listingDataGroup.headerTitle
+        var itemData = listingDataGroup.listItem
+
 
         var itemListAdapter = ListingRecyclerViewAdapter(context)
 
-
-        itemListAdapter.setData(items)
-        listingItemGroupViewHolder.groupRecyclerView.setHasFixedSize(true)
-        listingItemGroupViewHolder.groupRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        listingItemGroupViewHolder.groupRecyclerView.adapter = itemListAdapter
-        listingItemGroupViewHolder.groupRecyclerView.isNestedScrollingEnabled = false
+        itemListAdapter.setData(itemData)
+        parentViewHolder.groupRecyclerView.setHasFixedSize(true)
+        parentViewHolder.groupRecyclerView.layoutManager =
+            LinearLayoutManager(
+                parentViewHolder.groupRecyclerView.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        parentViewHolder.groupRecyclerView.apply {
+            parentViewHolder.groupRecyclerView.adapter = itemListAdapter
+            parentViewHolder.groupRecyclerView.isNestedScrollingEnabled = false
+            setRecycledViewPool(viewPool)
+        }
 
 
     }

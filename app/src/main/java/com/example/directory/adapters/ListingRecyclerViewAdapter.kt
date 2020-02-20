@@ -21,7 +21,7 @@ class ListingRecyclerViewAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.list_item_home_card, viewGroup, false)
+            .inflate(R.layout.list_item_home_card_child_recycler, viewGroup, false)
         return ListingViewHolder(view)
     }
 
@@ -30,12 +30,12 @@ class ListingRecyclerViewAdapter(private val context: Context) :
         val listing: ListingItemData = this.listingData!![position]
 
         val name: String = listing.name
-        val about: String = listing.about
+        // val about: String = listing.about
         val postcode: String = listing.postcode
         //  val image: Drawable = listing.image
-        val category: String = listing.category
+        val category = listing.category
         listingViewHolder.name.text = name
-        listingViewHolder.category.text = category
+        listingViewHolder.category.text = category[0]//todo
         listingViewHolder.postcode.text = postcode
         // listingViewHolder.image.drawable = image
     }

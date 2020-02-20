@@ -2,6 +2,7 @@ package com.example.directory.repo
 
 import android.util.Log
 import com.example.directory.interfaces.ListingCallback
+import com.example.directory.model.ItemGroup
 import com.example.directory.model.ListingItemData
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -17,18 +18,30 @@ class ListingRepo() {
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###", "${document.data}")
+                        Log.d("###OIII", " anddddd ${document.data.values}")
+                        document.data
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    listingCallback.loadAllListingItemData(collection)
-//                    collection.forEach { document ->
-//                        val listingItemData = document.toObject(ListingItemData::class.java)
-//
-//                     //   listingCallback.loadAllListingItemData(listingItemData)
-//
-//                    }
+
+                    // listingCallback.loadAllListingItemData(collection)
+                    listingCallback.loadAllGroupItemdata(
+                        listOf(
+                            ItemGroup(
+                                "Header title", collection
+                            ), ItemGroup(
+                                "Heading2", collection
+
+                            ), ItemGroup(
+                                "Heading 3", collection
+
+                            ), ItemGroup(
+                                "heading 4", collection
+                            )
+                        )
+                    )
+
                 } else {
-                    Log.d("###", "Null, can't find any documents in collection =>$collection")
+                    Log.d("###", "Null, can't find any documents in collection => $collection")
                 }
 
 
@@ -39,17 +52,58 @@ class ListingRepo() {
 
     }
 
+    fun getListingPerCity(listingCallback: ListingCallback) {
+        BASE_COLLECTION.whereEqualTo("city", "london")
+
+            .get()
+            .addOnSuccessListener { collection ->
+
+                if (collection != null) {
+                    var collection = collection.toObjects(ListingItemData::class.java)
+                    listingCallback.loadLondon(listOf(ItemGroup("London", collection)))
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("###GETLISTING", "Error getting documents.", exception)
+
+            }
+    }
+
+    fun recentlyAdded(listingCallback: ListingCallback) {
+        BASE_COLLECTION.orderBy("dateAdded")
+
+            .get()
+            .addOnSuccessListener { collection ->
+
+                if (collection != null) {
+                    var collection = collection.toObjects(ListingItemData::class.java)
+                    listingCallback.loadLondon(listOf(ItemGroup("RecentlyAdded", collection)))
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("###GETLISTING", "Error getting documents.", exception)
+
+            }
+
+
+    }
+
+
     /*example on how to make changes write to server*/
-    fun addTestUser() {
+    fun addListing() {
         // Create a new user with a first and last name
-        val user = hashMapOf(
-            "first" to "don",
-            "last" to "lambo",
-            "born" to 1815
+        val listing = hashMapOf(
+            "about" to "don",
+            "city" to "london",
+            "name" to "test",
+            "postcode" to "lnaod2d",
+            "category" to "food"
         )
 // Add a new document with a generated ID
         DB.collection("listing")
-            .add(user)
+            .add(listing)
             .addOnSuccessListener { documentReference ->
                 Log.d("###DATA", "DocumentSnapshot added with ID: ${documentReference.id}")
             }
