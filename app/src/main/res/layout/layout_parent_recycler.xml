@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="11dp"
-            android:text="sample Title" />
+            android:text="sample Title"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/see_more_button"

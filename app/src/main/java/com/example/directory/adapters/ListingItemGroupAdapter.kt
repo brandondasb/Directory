@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.directory.R
 import com.example.directory.model.ItemGroup
+import com.example.directory.model.ListingItemData
 import com.example.directory.viewHolder.ListingItemGroupViewHolder
 
-class ListingItemGroupAdapter(private val context: Context) :
+class ListingItemGroupAdapter(
+    private val context: Context,
+    private val listener: ListItemListener
+) :
     RecyclerView.Adapter<ListingItemGroupViewHolder>() {
 
     private var dataGroupList: List<ItemGroup> = listOf()
@@ -37,7 +41,7 @@ class ListingItemGroupAdapter(private val context: Context) :
         var itemData = listingDataGroup.listItem
 
 
-        var itemListAdapter = ListingRecyclerViewAdapter(context)
+        var itemListAdapter = ListingRecyclerViewAdapter(context, itemListener = listener)
 
         itemListAdapter.setData(itemData)
         parentViewHolder.groupRecyclerView.setHasFixedSize(true)
@@ -59,5 +63,10 @@ class ListingItemGroupAdapter(private val context: Context) :
     override fun getItemCount(): Int {
         return dataGroupList.size
     }
+
+}
+
+interface ListItemListener {
+    fun launchFragment(itemData: ListingItemData)
 
 }

@@ -8,7 +8,10 @@ import com.example.directory.R
 import com.example.directory.model.ListingItemData
 import com.example.directory.viewHolder.ListingViewHolder
 
-class ListingRecyclerViewAdapter(private val context: Context) :
+class ListingRecyclerViewAdapter(
+    private val context: Context,
+    private val itemListener: ListItemListener
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var listingData: List<ListingItemData>? = listOf()
@@ -29,13 +32,17 @@ class ListingRecyclerViewAdapter(private val context: Context) :
         val listingViewHolder: ListingViewHolder = viewHolder as ListingViewHolder
         val listing: ListingItemData = this.listingData!![position]
 
+        listingViewHolder.homeRootLayout.setOnClickListener {
+            itemListener.launchFragment(listing)
+        }
+
         val name: String = listing.name
-        // val about: String = listing.about
+        val about: String = listing.about
         val postcode: String = listing.postcode
-        //  val image: Drawable = listing.image
+        // val image: Drawable = listing.image
         val category = listing.category
         listingViewHolder.name.text = name
-        listingViewHolder.category.text = category[0]//todo
+        listingViewHolder.category.text = category.toString()//todo
         listingViewHolder.postcode.text = postcode
         // listingViewHolder.image.drawable = image
     }

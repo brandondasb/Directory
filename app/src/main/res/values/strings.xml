@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">directory</string>
+    <string name="facebook_app_id">501394247451297</string>
+    <string name="fb_login_protocol_scheme">fb501394247451297</string>
     <!-- botom nav-->
     <string name="home">home</string>
     <string name="me">m</string>
     <string name="profile">profile</string>
     <string name="inbox">inbox</string>
     <string name="match">match</string>
+
+    <!--category -->
+    <string name="food">food</string>
+    <string name="health">health</string>
+    <string name="tech">tech</string>
+    <string name="events">events</string>
+
 </resources>

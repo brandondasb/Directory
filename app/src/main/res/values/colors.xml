@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#DAA520</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="white">#fff</color>
+    <!-- color test-->
+    <color name="blackish">#12100F</color>
+    <color name="brown_dark">#4C301E</color>
+    <color name="brown_wood">#615141</color>
+    <color name="brown_medium">#995F34</color>
+    <color name="green_cak">#929D88</color>
+    <color name="brown_light">#B78C62</color>
+
+
+
 </resources>

@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ListingRepo() {
     val DB = FirebaseFirestore.getInstance()
     private val BASE_COLLECTION = DB.collection("listing")
+    private val HOME_CONTAINER_COLLECTION = DB.collection("home_container")
     private val BASE_DOCUMENT = DB.document("")
 
 
@@ -18,12 +19,11 @@ class ListingRepo() {
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###OIII", " anddddd ${document.data.values}")
+                        Log.d("###OIII", " ${collection.query}->${document.data.values}")
                         document.data
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
 
-                    // listingCallback.loadAllListingItemData(collection)
                     listingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
@@ -39,6 +39,31 @@ class ListingRepo() {
                             )
                         )
                     )
+
+                } else {
+                    Log.d("###", "Null, can't find any documents in collection => $collection")
+                }
+
+
+            }
+            .addOnFailureListener { exception ->
+                Log.d("###GETLISTING", "Error getting documents.", exception)
+            }
+
+    }
+
+    fun getHomeData(listingCallback: ListingCallback) {
+        HOME_CONTAINER_COLLECTION
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###OMG", "${document.data}-> ${document.data.values}")
+                        document.data
+                    }
+                    var collection = collection.toObjects(ItemGroup::class.java)
+
+                    listingCallback.loadAllGroupItemdata(collection)
 
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
@@ -106,6 +131,27 @@ class ListingRepo() {
             .add(listing)
             .addOnSuccessListener { documentReference ->
                 Log.d("###DATA", "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("###NODATA", "Error adding document", e)
+            }
+    }
+
+    /*example on how to make changes write to server*/
+    fun addHomeContainerListing() {
+
+        val sampleData = ListingItemData(
+            1, "test", "about", "image.co.uk", "image.co.uk",
+            listOf("food", "gym"), false, "www.abc.co.uk", "3 road", "city", "md4o5e",
+            listOf()
+        )
+// Add a new document with a generated ID
+        DB.collection("home_container/near_me_list/near_me_coll/")
+            .document("sampleDoc1")
+            .set(sampleData)// using set to choose the doc ID with .document
+            // .add(sampleData)
+            .addOnSuccessListener { documentReference ->
+                Log.d("###DATA", "DocumentSnapshot added with ID: ${documentReference}")
             }
             .addOnFailureListener { e ->
                 Log.w("###NODATA", "Error adding document", e)
