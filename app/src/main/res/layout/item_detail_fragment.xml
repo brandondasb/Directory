@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/gradient_gold">
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,13 +25,191 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/fpaRatingTextView"
+        android:id="@+id/fpaVerifiedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="8dp"
-        android:text="rating"
+        android:layout_marginStart="8dp"
+        android:text="Verified"
+        app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <RatingBar
+        android:id="@+id/fpaRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+        android:layout_width="175dp"
+        android:layout_height="36dp"
+        android:isIndicator="false"
+        android:numStars="@android:integer/config_longAnimTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/fpaCategoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Verified"
+        app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
+    <!-- about section -->
+    <TextView
+        android:id="@+id/fpaAboutHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+
+        android:text="About"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
+
+    <TextView
+        android:id="@+id/fpaAboutTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fpaAboutHeading" />
+    <!--Social -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/fpaAboutTextView">
+
+        <TextView
+            android:id="@+id/fpaSocialHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="Social" />
+
+        <TextView
+            android:id="@+id/fpaWebsiteheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="website" />
+
+        <TextView
+            android:id="@+id/fpaWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="mybusiness.co.uk" />
+
+        <TextView
+            android:id="@+id/fpaIgHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:text="instagram"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/fpaIG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="sampleIG"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/fpatwitterHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="twitter"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/fpatwitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="twitter.co.uk/sdsds"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/fpaFacebookHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="facebook"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/fpaFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="facebook/asdasdas"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/fpaLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="Location" />
+
+        <TextView
+            android:id="@+id/fpaAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="address" />
+
+        <TextView
+            android:id="@+id/fpaCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="city -" />
+
+        <TextView
+            android:id="@+id/fpaPostcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="24dp"
+            android:text="postcode -"
+            android:textSize="13dp" />
+
+
+
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

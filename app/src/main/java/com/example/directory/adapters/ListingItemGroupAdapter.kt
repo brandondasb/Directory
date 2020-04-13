@@ -57,7 +57,6 @@ class ListingItemGroupAdapter(
             setRecycledViewPool(viewPool)
         }
 
-
     }
 
     override fun getItemCount(): Int {
