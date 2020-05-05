@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.directory.R
 import com.example.directory.model.ListingItemData
 import com.example.directory.viewHolder.ListingViewHolder
@@ -35,16 +36,18 @@ class ListingRecyclerViewAdapter(
         listingViewHolder.homeRootLayout.setOnClickListener {
             itemListener.launchFragment(listing)
         }
-
         val name: String = listing.name
         val about: String = listing.about
         val postcode: String = listing.postcode
-        // val image: Drawable = listing.image
+        val image = listing.image
         val category = listing.category
         listingViewHolder.name.text = name
         listingViewHolder.category.text = category.toString()//todo
         listingViewHolder.postcode.text = postcode
-        // listingViewHolder.image.drawable = image
+        Glide.with(context)
+            .load(image)
+            .fitCenter()
+            .into(listingViewHolder.image)
     }
 
     override fun getItemCount(): Int {

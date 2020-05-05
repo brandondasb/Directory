@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_gold">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fpaImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="business name"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/fpaImageView" />
 
     <TextView
         android:id="@+id/fpaVerifiedTextView"
@@ -32,8 +32,7 @@
         android:layout_marginStart="8dp"
         android:text="Verified"
         app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
+        app:layout_constraintTop_toBottomOf="@+id/fpaImageView" />
 
     <RatingBar
         android:id="@+id/fpaRatingBar"
@@ -43,7 +42,7 @@
         android:isIndicator="false"
         android:numStars="@android:integer/config_longAnimTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/fpaImageView" />
 
     <TextView
         android:id="@+id/fpaCategoryTextView"
@@ -51,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginStart="8dp"
-        android:text="Verified"
+        android:text="category"
         app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
     <!-- about section -->
@@ -60,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-
         android:text="About"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
 
@@ -77,11 +76,11 @@
     <!--Social -->
 
     <LinearLayout
+        android:id="@+id/socialLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/fpaAboutTextView">
 
         <TextView
@@ -91,7 +90,8 @@
             android:layout_margin="10dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="Social" />
+            android:text="Social"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/fpaWebsiteheading"
@@ -100,7 +100,8 @@
             android:layout_margin="4dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="website" />
+            android:text="website"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/fpaWebsite"
@@ -118,6 +119,7 @@
             android:layout_margin="4dp"
             android:layout_marginStart="24dp"
             android:text="instagram"
+            android:textColor="@color/colorPrimary"
             android:textSize="13dp" />
 
         <TextView
@@ -134,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:text="twitter"
+            android:textColor="@color/colorPrimary"
             android:textSize="13dp" />
 
         <TextView
@@ -150,6 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:text="facebook"
+            android:textColor="@color/colorPrimary"
             android:textSize="14dp" />
 
         <TextView
@@ -166,9 +170,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/socialLayout">
 
         <TextView
             android:id="@+id/fpaLocation"
@@ -177,7 +181,8 @@
             android:layout_margin="10dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="Location" />
+            android:text="Location"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/fpaAddress"
@@ -195,7 +200,8 @@
             android:layout_margin="4dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="city -" />
+            android:text="city -"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/fpaPostcode"
@@ -206,10 +212,6 @@
             android:text="postcode -"
             android:textSize="13dp" />
 
-
-
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,22 +4,29 @@ import android.util.Log
 import com.example.directory.interfaces.ListingCallback
 import com.example.directory.model.ItemGroup
 import com.example.directory.model.ListingItemData
+import com.example.directory.model.Social
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
-
-class ListingRepo() {
-    val DB = FirebaseFirestore.getInstance()
-    private val BASE_COLLECTION = DB.collection("listing")
-    private val HOME_CONTAINER_COLLECTION = DB.collection("home_container")
-    private val BASE_DOCUMENT = DB.document("")
-
+class ListingRepo {
+    private val FIRESTORE = FirebaseFirestore.getInstance()
+    private val BASE_COLLECTION = FIRESTORE.collection("listing")
+    private val HOME_CONTAINER_COLLECTION = FIRESTORE.collection("home_container")
+    private val BASE_DOCUMENT = FIRESTORE.document("")
+    //ref to storage service for file
+    private val STORAGE = FirebaseStorage.getInstance()
+    private val storageRef = STORAGE.reference
+    private val imagesRef = storageRef.child("images") // point to images folder
+    var rootRef: StorageReference = storageRef.root // point to root folder
+    var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
     fun getAllListing(listingCallback: ListingCallback) {
         BASE_COLLECTION.get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###OIII", " ${collection.query}->${document.data.values}")
+                        Log.d("###ALLLISTING", " ${collection.query}->${document.data.values}")
                         document.data
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
@@ -39,17 +46,13 @@ class ListingRepo() {
                             )
                         )
                     )
-
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
                 }
-
-
             }
             .addOnFailureListener { exception ->
                 Log.d("###GETLISTING", "Error getting documents.", exception)
             }
-
     }
 
     fun getHomeData(listingCallback: ListingCallback) {
@@ -64,12 +67,9 @@ class ListingRepo() {
                     var collection = collection.toObjects(ItemGroup::class.java)
 
                     listingCallback.loadAllGroupItemdata(collection)
-
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
                 }
-
-
             }
             .addOnFailureListener { exception ->
                 Log.d("###GETLISTING", "Error getting documents.", exception)
@@ -115,46 +115,25 @@ class ListingRepo() {
 
     }
 
-
     /*example on how to make changes write to server*/
     fun addListing() {
         // Create a new user with a first and last name
-        val listing = hashMapOf(
-            "about" to "don",
-            "city" to "london",
-            "name" to "test",
-            "postcode" to "lnaod2d",
-            "category" to "food"
+        val listing = ListingItemData(
+            1, "test the one com", "Ab",
+            "https://firebasestorage.googleapis.com/v0/b/directory-mila.appspot.com/o/images%2Ftestbusiness.jpg?alt=media&token=af43bceb-a63f-42ea-9715-33233bb308e4",
+            "image.co.uk",
+            listOf("food", "gym"), false, "www.test.co.uk", "16 road", "manchester", "m2o5e",
+            listOf(Social("twitter", "www.twitter/thetest"))
         )
 // Add a new document with a generated ID
-        DB.collection("listing")
-            .add(listing)
+        FIRESTORE.collection("listing")
+            .document("sampleDoc3")
+            .set(listing) // .add(sampleData)
             .addOnSuccessListener { documentReference ->
-                Log.d("###DATA", "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d("###cmonson", "DocumentSnapshot added with ID: ${documentReference}")
             }
             .addOnFailureListener { e ->
-                Log.w("###NODATA", "Error adding document", e)
-            }
-    }
-
-    /*example on how to make changes write to server*/
-    fun addHomeContainerListing() {
-
-        val sampleData = ListingItemData(
-            1, "test", "about", "image.co.uk", "image.co.uk",
-            listOf("food", "gym"), false, "www.abc.co.uk", "3 road", "city", "md4o5e",
-            listOf()
-        )
-// Add a new document with a generated ID
-        DB.collection("home_container/near_me_list/near_me_coll/")
-            .document("sampleDoc1")
-            .set(sampleData)// using set to choose the doc ID with .document
-            // .add(sampleData)
-            .addOnSuccessListener { documentReference ->
-                Log.d("###DATA", "DocumentSnapshot added with ID: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("###NODATA", "Error adding document", e)
+                Log.w("###cmoson", "Error adding document", e)
             }
     }
 

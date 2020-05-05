@@ -44,8 +44,8 @@ class HomeFragment : BaseNavFragment() {
             }
         }
         listingRepo.getAllListing(listingCallback)
-        // listingRepo.getHomeData(listingCallback)
-        //    listingRepo.addHomeContainerListing()// write test to DB function
+        //listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
+
 
     }
 }

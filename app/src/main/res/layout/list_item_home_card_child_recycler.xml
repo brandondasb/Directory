@@ -2,30 +2,26 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homeCardViewLayout"
-    android:layout_width="300dp"
+    android:layout_width="130dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:padding="4dp"
-    app:cardCornerRadius="12dp"
-    app:cardMaxElevation="6dp"
-    >
+    app:cardCornerRadius="4dp"
+    app:cardMaxElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_gold"
-
-        >
+        android:background="@color/brown_light">
 
         <ImageView
             android:id="@+id/homeImageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:padding="4dp"
-            android:src="@drawable/ic_launcher_background"
             android:scaleType="fitXY"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,18 +31,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_marginStart="8dp"
-            android:text="business name"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/homeImageView"
-            app:layout_constraintTop_toBottomOf="@+id/homeImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/homeImageView"
+            tools:text="business name" />
 
         <TextView
             android:id="@+id/categoryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:text="category"
+            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@id/nameTextView"
-            app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+            app:layout_constraintTop_toBottomOf="@id/nameTextView"
+            tools:text="category" />
 
         <TextView
             android:id="@+id/postcodeTextView"

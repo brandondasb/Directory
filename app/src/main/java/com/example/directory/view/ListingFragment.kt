@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.directory.R
 import com.example.directory.model.ListingItemData
 import kotlinx.android.synthetic.main.item_detail_fragment.*
@@ -39,6 +40,10 @@ class ListingFragment : Fragment() {
         fpaWebsite.text = data.website
         fpatwitter.text = data.social.toString()
         fpaVerifiedTextView.text = data.verified.toString()
+        Glide.with(this)
+            .load(data.image)
+            .fitCenter()
+            .into(fpaImageView)
 
     }
 

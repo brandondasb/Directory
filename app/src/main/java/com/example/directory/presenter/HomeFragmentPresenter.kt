@@ -52,8 +52,6 @@ class HomeFragmentPresenter(itemView: View, var fragmentManager: FragmentManager
             ?.replace(R.id.fragment_container, listingFragment)
             ?.addToBackStack(ListingFragment::class.java.simpleName)
             ?.commitAllowingStateLoss()
-
-
     }
 
 
