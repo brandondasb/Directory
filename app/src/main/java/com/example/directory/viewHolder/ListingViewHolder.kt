@@ -13,11 +13,11 @@ class ListingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val image: ImageView = itemView.findViewById(R.id.homeImageView)
     val category: TextView = itemView.findViewById(R.id.categoryTextView)//could be a list
     //val social: TextView/* could change in future*/
-    ///val website: TextView =
+    ///val website: TextView = TODO
     //val address: TextView=
     //var verified: TextView =
-  //  val city:TextView=
+    //  val city:TextView=
     val postcode: TextView = itemView.findViewById(R.id.postcodeTextView)
-    val homeRootLayout:View = itemView.findViewById(R.id.homeCardViewLayout)
+    val homeRootLayout: View = itemView.findViewById(R.id.homeCardViewLayout)
 
 }

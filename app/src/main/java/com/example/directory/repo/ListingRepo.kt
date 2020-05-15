@@ -17,7 +17,7 @@ class ListingRepo {
     //ref to storage service for file
     private val STORAGE = FirebaseStorage.getInstance()
     private val storageRef = STORAGE.reference
-    private val imagesRef = storageRef.child("images") // point to images folder
+    private val imagesRef = storageRef.child("images")
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
