@@ -1,6 +1,7 @@
 package com.example.directory.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.directory.R
 import com.example.directory.model.ListingItemData
 import com.example.directory.viewHolder.ListingViewHolder
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.lang.Exception
 
 class ListingRecyclerViewAdapter(
     private val context: Context,
