@@ -37,10 +37,6 @@ class HomeFragmentPresenter(itemView: View, var fragmentManager: FragmentManager
         listingItemGroupAdapter.setData(listingItemGroupData)
     }
 
-    override fun loadLondon(listingItemGroupData: List<ItemGroup>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun launchFragment(itemData: ListingItemData) {
         val bundle = Bundle()
         bundle.putSerializable("listingItemData", itemData)

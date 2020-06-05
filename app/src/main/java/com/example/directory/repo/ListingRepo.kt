@@ -85,7 +85,7 @@ class ListingRepo {
 
                 if (collection != null) {
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    listingCallback.loadLondon(listOf(ItemGroup("London", collection)))
+                    listingCallback.loadAllGroupItemdata(listOf(ItemGroup("London", collection)))
 
                 }
             }
@@ -103,7 +103,7 @@ class ListingRepo {
 
                 if (collection != null) {
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    listingCallback.loadLondon(listOf(ItemGroup("RecentlyAdded", collection)))
+                    listingCallback.loadAllGroupItemdata(listOf(ItemGroup("RecentlyAdded", collection)))
 
                 }
             }

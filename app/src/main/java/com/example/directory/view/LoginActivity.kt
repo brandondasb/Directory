@@ -31,5 +31,9 @@ class LoginActivity : AppCompatActivity() {
      fun updateUI(currentUser: FirebaseUser?) {
 
     }
+
+    fun signInIntent(){
+
+    }
 }
 
