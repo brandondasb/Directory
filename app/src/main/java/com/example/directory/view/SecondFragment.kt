@@ -14,11 +14,11 @@ class SecondFragment : BaseNavFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.second_fragment,container, false)
+        return inflater.inflate(R.layout.search_fragment,container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavListener.updateBottomNav(BottomNavState.SECOND)
+        bottomNavListener.updateBottomNav(BottomNavState.SEARCH)
     }
 }

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                 findViewById(R.id.bottom_navigation)
             when (currentState) {
                 BottomNavState.HOME -> bottomNavigationView.selectedItemId = R.id.nav_home
-                BottomNavState.SECOND -> bottomNavigationView.selectedItemId = R.id.nav_second
+                BottomNavState.SEARCH -> bottomNavigationView.selectedItemId = R.id.nav_search
                 BottomNavState.THIRD -> bottomNavigationView.selectedItemId = R.id.nav_inbox
                 BottomNavState.FOURTH -> bottomNavigationView.selectedItemId = R.id.nav_profile
 
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         HomeFragment() // I had to make the home class Open
                     }
-                    R.id.nav_second -> if (fragmentManager.findFragmentByTag(SecondFragment::class.java.name) != null) {
+                    R.id.nav_search -> if (fragmentManager.findFragmentByTag(SecondFragment::class.java.name) != null) {
                         fragmentManager.findFragmentByTag(SecondFragment::class.java.name) as? SecondFragment
                     } else {
                         SecondFragment()

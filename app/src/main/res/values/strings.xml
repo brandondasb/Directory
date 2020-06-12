@@ -7,7 +7,7 @@
     <string name="me">m</string>
     <string name="profile">profile</string>
     <string name="inbox">inbox</string>
-    <string name="match">match</string>
+    <string name="search">search</string>
 
     <!--category -->
     <string name="food">food</string>
