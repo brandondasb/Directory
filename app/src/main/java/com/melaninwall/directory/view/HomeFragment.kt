@@ -9,7 +9,7 @@ import com.melaninwall.directory.interfaces.ListingCallback
 import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
-import com.melaninwall.directory.repo.ListingRepo
+import com.melaninwall.directory.repo.Repo
 
 
 class HomeFragment : BaseNavFragment() {
@@ -26,7 +26,7 @@ class HomeFragment : BaseNavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bottomNavListener.updateBottomNav(BottomNavState.HOME)
-        val listingRepo = ListingRepo()
+        val listingRepo = Repo()
         val homeFragmentPresenter = HomeFragmentPresenter(view, fragmentManager)
 
 

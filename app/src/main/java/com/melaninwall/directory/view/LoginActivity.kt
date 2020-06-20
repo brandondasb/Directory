@@ -6,21 +6,24 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.melaninwall.directory.R
-import com.google.firebase.auth.FirebaseAuth
+import com.melaninwall.directory.interfaces.AuthenticationHandler
+import com.melaninwall.directory.interfaces.LoginAuthorisation
+import com.melaninwall.directory.repo.Auth
 import kotlinx.android.synthetic.main.activity_log_in.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private val auth = FirebaseAuth.getInstance()
+    lateinit var loginAuthorisation: LoginAuthorisation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loginAuthorisation = Auth()
         setContentView(R.layout.activity_log_in)
 
         val email = email_login.text.toString()
         val password = password_log_in.text.toString()
         Log.d("###mainactivity", "email is :$email")
-        Log.d("###mainactivity", "email is :$password")
+        Log.d("###mainactivity", "password is :$password")
 
         textView_sign_up.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -35,10 +38,9 @@ class LoginActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-
     }
 
-     fun performSignIn() {
+    private fun performSignIn() {
         val email = email_login.text.toString()
         val password = password_log_in.text.toString()
 
@@ -47,17 +49,24 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "please enter an email and a password.", Toast.LENGTH_SHORT).show()
             return
         }
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (!task.isSuccessful) return@addOnCompleteListener
-                Log.d("###", "Successfully logged in")
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)// clear stack
-                startActivity(intent)
-            }.addOnFailureListener {
-                Log.d("###LOGIN", "failed to login because ${it.message}")
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT)
+        loginAuthorisation.login(email, password, getAuthHandler())
+    }
+
+    private fun getAuthHandler(): AuthenticationHandler {
+        return object : AuthenticationHandler {
+            override fun onComplete(success: Boolean) {
+                if (success) {
+                    Log.d("###", "Successfully logged in")
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)// clear stack
+                    startActivity(intent)
+                }
             }
+            override fun onFailure(message: String?) {
+                Log.d("###LOGIN", "failed to login because $message")
+                Toast.makeText(this@LoginActivity, "Something went wrong", Toast.LENGTH_SHORT)}
+
+        }
     }
 }

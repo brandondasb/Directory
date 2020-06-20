@@ -6,16 +6,22 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.melaninwall.directory.R
-import com.melaninwall.directory.repo.ListingRepo
+import com.melaninwall.directory.repo.Repo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.melaninwall.directory.interfaces.AuthenticationHandler
+import com.melaninwall.directory.interfaces.SignupAuthorisation
+import com.melaninwall.directory.repo.Auth
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
-    private val repo = ListingRepo()
+    lateinit var signupAuthorisation: SignupAuthorisation
+    private val repo = Repo()
     private val auth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        signupAuthorisation = Auth()
         setContentView(R.layout.activity_sign_up)
 
         register_button.setOnClickListener {
@@ -52,19 +58,32 @@ class SignUpActivity : AppCompatActivity() {
                 "Please  fill in all the details username, email and pw", Toast.LENGTH_SHORT
             ).show()
             return
+        } else if (password.length < 6) {
+            Toast.makeText(
+                this,
+                "Password must be at least 6 characters long", Toast.LENGTH_SHORT
+            ).show()
         }
+
         Log.d("###SIGNUP", "Email is : $email")
-        Log.d("###SIGNUP", "pasword is : $password")
+        Log.d("###SIGNUP", "password is : $password")
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (!task.isSuccessful) return@addOnCompleteListener
-                // else if successful statement
-                Log.d("###SIGNUP", "Successfully created user with uid, ${task.result?.user?.uid} ")
+        signupAuthorisation.signup(email, password, getAuthHandler(username))
 
-                repo.saveUserToFireBaseDatabase(this, username)
+    }
+
+    private fun getAuthHandler(username: String): AuthenticationHandler {
+        return object : AuthenticationHandler {
+            override fun onComplete(success: Boolean) {
+                if (success) {
+                    repo.saveUserToFireBaseDatabase(this@SignUpActivity, username)
+                }
             }
-            .addOnFailureListener { Log.d("###SIGNUP", "Failed to create user: ${it.message}")
+
+            override fun onFailure(message: String?) {
+                Log.d("###LOGIN", "failed to login because $message")
+                Toast.makeText(this@SignUpActivity, "Something went wrong", Toast.LENGTH_SHORT)
             }
+        }
     }
 }

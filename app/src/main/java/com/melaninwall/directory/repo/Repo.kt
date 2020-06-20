@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class ListingRepo {
+class Repo {
     private val FIRESTORE = FirebaseFirestore.getInstance()
     private val BASE_COLLECTION = FIRESTORE.collection("listing")
     private val HOME_CONTAINER_COLLECTION = FIRESTORE.collection("home_container")
