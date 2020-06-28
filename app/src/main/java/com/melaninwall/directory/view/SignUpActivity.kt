@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.melaninwall.directory.interfaces.AuthenticationHandler
 import com.melaninwall.directory.interfaces.SignupAuthorisation
-import com.melaninwall.directory.repo.Auth
+import com.melaninwall.directory.repo.AuthEmailPassword
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        signupAuthorisation = Auth()
+        signupAuthorisation = AuthEmailPassword()
         setContentView(R.layout.activity_sign_up)
 
         register_button.setOnClickListener {

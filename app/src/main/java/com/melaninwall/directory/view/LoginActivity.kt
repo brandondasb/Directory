@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.AuthenticationHandler
 import com.melaninwall.directory.interfaces.LoginAuthorisation
-import com.melaninwall.directory.repo.Auth
+import com.melaninwall.directory.repo.AuthEmailPassword
 import kotlinx.android.synthetic.main.activity_log_in.*
 
 class LoginActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginAuthorisation = Auth()
+        loginAuthorisation = AuthEmailPassword()
         setContentView(R.layout.activity_log_in)
 
         val email = email_login.text.toString()

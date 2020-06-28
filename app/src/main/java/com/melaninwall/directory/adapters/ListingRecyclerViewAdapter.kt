@@ -42,7 +42,7 @@ class ListingRecyclerViewAdapter(
         val image = listing.image
         val category = listing.category
         listingViewHolder.name.text = name
-        listingViewHolder.category.text = category.toString()//todo
+        listingViewHolder.category.text = category.toString()//todo the could be a list of category
         listingViewHolder.postcode.text = postcode
         Glide.with(context)
             .load(image)

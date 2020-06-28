@@ -12,10 +12,13 @@ import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.UpdateBottomNavListener
 import com.melaninwall.directory.model.BottomNavState
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.melaninwall.directory.interfaces.LoginAuthorisation
+import com.melaninwall.directory.repo.AuthEmailPassword
 
 
 class MainActivity : AppCompatActivity() {
     private var fragmentManager: FragmentManager = supportFragmentManager
+    private lateinit var loginAuthorisation: LoginAuthorisation
 
     val bottomNavListener: UpdateBottomNavListener = object : UpdateBottomNavListener {
         override fun updateBottomNav(currentState: BottomNavState) {
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 BottomNavState.HOME -> bottomNavigationView.selectedItemId = R.id.nav_home
                 BottomNavState.SEARCH -> bottomNavigationView.selectedItemId = R.id.nav_search
                 BottomNavState.THIRD -> bottomNavigationView.selectedItemId = R.id.nav_inbox
-                BottomNavState.FOURTH -> bottomNavigationView.selectedItemId = R.id.nav_profile
+                BottomNavState.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
 
             }
         }
@@ -36,8 +39,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        loginAuthorisation = AuthEmailPassword()
+//        loginAuthorisation.updateUI()
+
+
         val actionBar = supportActionBar
-        actionBar?.hide()
+       // actionBar?.hide()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
@@ -67,20 +74,20 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         HomeFragment() // I had to make the home class Open
                     }
-                    R.id.nav_search -> if (fragmentManager.findFragmentByTag(SecondFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(SecondFragment::class.java.name) as? SecondFragment
+                    R.id.nav_search -> if (fragmentManager.findFragmentByTag(SearchFragment::class.java.name) != null) {
+                        fragmentManager.findFragmentByTag(SearchFragment::class.java.name) as? SearchFragment
                     } else {
-                        SecondFragment()
+                        SearchFragment()
                     }
                     R.id.nav_inbox -> if (fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) != null) {
                         fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) as? ThirdFragment
                     } else {
                         ThirdFragment()
                     }
-                    R.id.nav_profile -> if (fragmentManager.findFragmentByTag(FourthFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(FourthFragment::class.java.name) as? FourthFragment
+                    R.id.nav_profile -> if (fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) != null) {
+                        fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) as? ProfileFragment
                     } else {
-                        FourthFragment()
+                        ProfileFragment()
                     }
                     else -> {
                         null

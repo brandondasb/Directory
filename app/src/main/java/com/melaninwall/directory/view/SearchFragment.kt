@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import com.melaninwall.directory.R
 import com.melaninwall.directory.model.BottomNavState
 
-class FourthFragment : BaseNavFragment() {
+class SearchFragment : BaseNavFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fourth_fragment, container, false)
-
+        return inflater.inflate(R.layout.search_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavListener.updateBottomNav(BottomNavState.FOURTH)
+        bottomNavListener.updateBottomNav(BottomNavState.SEARCH)
     }
 }
