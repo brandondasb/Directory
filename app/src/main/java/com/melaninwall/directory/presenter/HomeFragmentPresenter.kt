@@ -6,16 +6,16 @@ import androidx.fragment.app.FragmentManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.melaninwall.directory.R
-import com.melaninwall.directory.adapters.ListItemListener
 import com.melaninwall.directory.adapters.ListingItemGroupAdapter
-import com.melaninwall.directory.interfaces.ListingCallback
+import com.melaninwall.directory.interfaces.ListItemListener
+import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.view.ListingFragment
 import com.melaninwall.directory.viewHolder.HomeFragmentViewHolder
 
 class HomeFragmentPresenter(itemView: View, var fragmentManager: FragmentManager?) :
-    ListingCallback,
+    HomeListingCallback,
     ListItemListener {
 
     private val context = itemView.context

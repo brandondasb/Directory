@@ -3,8 +3,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homeCardViewLayout"
-    android:layout_width="130dp"
+    android:id="@+id/searchCardViewLayout"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:padding="4dp"
@@ -17,43 +17,53 @@
         android:background="@color/brown_light">
 
         <ImageView
-            android:id="@+id/homeImageView"
+            android:id="@+id/imageSearchImageView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:padding="4dp"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nameTextView"
+            android:id="@+id/nameSearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:layout_marginStart="8dp"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/homeImageView"
-            app:layout_constraintTop_toBottomOf="@+id/homeImageView"
-            tools:text="business name" />
+            app:layout_constraintStart_toStartOf="@id/imageSearchImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageSearchImageView"
+            tools:text="business name"
+            />
+
+        <ImageView
+            android:id="@+id/verifiedImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/com_facebook_button_like_icon_selected"
+            android:tint="@color/tw__blue_default"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
 
         <TextView
-            android:id="@+id/categoryTextView"
+            android:id="@+id/categorySearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@id/nameTextView"
-            app:layout_constraintTop_toBottomOf="@id/nameTextView"
+            app:layout_constraintStart_toStartOf="@id/nameSearchTextView"
+            app:layout_constraintTop_toBottomOf="@id/nameSearchTextView"
             tools:text="category" />
 
         <TextView
-            android:id="@+id/cityTextView"
+            android:id="@+id/locationSearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_marginStart="24dp"
-            android:text="postcode"
-            app:layout_constraintStart_toEndOf="@id/categoryTextView"
-            app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+            android:layout_marginTop="4dp"
+            android:text="@string/distance"
+            app:layout_constraintStart_toStartOf="@id/categorySearchTextView"
+            app:layout_constraintTop_toBottomOf="@id/categorySearchTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

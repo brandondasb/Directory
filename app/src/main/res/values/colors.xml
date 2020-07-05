@@ -15,4 +15,17 @@
 
     <!--  Primary-->
 
+    <color name="colorLayerBack">#8a56ab</color>
+    <color name="colorBack">#241333</color>
+    <color name="colorTitle">#362742</color>
+    <color name="colorSubTitle">#c5c9cf</color>
+    <color name="colorTitleWhite">#fff</color>
+    <color name="colorSubTitleWhite">#b795ce</color>
+    <color name="colorHorizontalDivider">#898a56ab</color>
+    <color name="beige">#FAE6B1</color>
+    <color name="green_dark">#013328</color>
+
+    <color name="pink">#E2C2B3</color>
+    <color name="purple_dark">#403234</color>
+
 </resources>

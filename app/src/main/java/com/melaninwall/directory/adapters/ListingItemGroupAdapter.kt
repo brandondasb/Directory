@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.melaninwall.directory.R
+import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.ItemGroup
-import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.viewHolder.ListingItemGroupViewHolder
 
 class ListingItemGroupAdapter(
@@ -62,10 +62,5 @@ class ListingItemGroupAdapter(
     override fun getItemCount(): Int {
         return dataGroupList.size
     }
-
-}
-
-interface ListItemListener {
-    fun launchFragment(itemData: ListingItemData)
 
 }

@@ -3,20 +3,20 @@ package com.melaninwall.directory.repo
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.melaninwall.directory.interfaces.ListingCallback
-import com.melaninwall.directory.model.ItemGroup
-import com.melaninwall.directory.model.ListingItemData
-import com.melaninwall.directory.model.Social
-import com.melaninwall.directory.model.User
+import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.melaninwall.directory.interfaces.CategoryListingCallBack
+import com.melaninwall.directory.interfaces.SearchListingCallBack
+import com.melaninwall.directory.model.*
 
 class Repo {
     private val FIRESTORE = FirebaseFirestore.getInstance()
     private val BASE_COLLECTION = FIRESTORE.collection("listing")
+    private val CATEGORY_COLLECTION = FIRESTORE.collection("category")
     private val HOME_CONTAINER_COLLECTION = FIRESTORE.collection("home_container")
     private val USER_COLLECTION = FIRESTORE.collection("/users/")
     private val BASE_DOCUMENT = FIRESTORE.document("")
@@ -27,7 +27,7 @@ class Repo {
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
-    fun getAllListing(listingCallback: ListingCallback) {
+    fun getAllListing(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION.get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -37,7 +37,7 @@ class Repo {
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
 
-                    listingCallback.loadAllGroupItemdata(
+                    homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
                                 "Header title", collection
@@ -61,8 +61,8 @@ class Repo {
             }
     }
 
-    fun getHomeData(listingCallback: ListingCallback) {
-        HOME_CONTAINER_COLLECTION
+    fun getHomeData(searchListingCallback: SearchListingCallBack) {
+        BASE_COLLECTION
             .get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -70,9 +70,9 @@ class Repo {
                         Log.d("###OMG", "${document.data}-> ${document.data.values}")
                         document.data
                     }
-                    var collection = collection.toObjects(ItemGroup::class.java)
+                    var collection = collection.toObjects(ListingItemData::class.java)
 
-                    listingCallback.loadAllGroupItemdata(collection)
+                    searchListingCallback.loadItemData(collection)
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
                 }
@@ -80,10 +80,29 @@ class Repo {
             .addOnFailureListener { exception ->
                 Log.d("###GETLISTING", "Error getting documents.", exception)
             }
+    }
+    fun getCategoryData(categoryListingCallBack: CategoryListingCallBack) {
+        CATEGORY_COLLECTION
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###OMG", "${document.data}-> ${document.data.values}")
+                        document.data
+                    }
+                    var collection = collection.toObjects(Category::class.java)
 
+                    categoryListingCallBack.loadItemDataCategory(collection)
+                } else {
+                    Log.d("###", "Null, can't find any documents in collection => $collection")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("###GETCATEGORY", "Error getting documents.", exception)
+            }
     }
 
-    fun getListingPerCity(listingCallback: ListingCallback) {
+    fun getListingPerCity(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION.whereEqualTo("city", "london")
 
             .get()
@@ -91,7 +110,14 @@ class Repo {
 
                 if (collection != null) {
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    listingCallback.loadAllGroupItemdata(listOf(ItemGroup("London", collection)))
+                    homeListingCallback.loadAllGroupItemdata(
+                        listOf(
+                            ItemGroup(
+                                "London",
+                                collection
+                            )
+                        )
+                    )
 
                 }
             }
@@ -101,7 +127,7 @@ class Repo {
             }
     }
 
-    fun recentlyAdded(listingCallback: ListingCallback) {
+    fun recentlyAdded(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION.orderBy("dateAdded")
 
             .get()
@@ -109,7 +135,7 @@ class Repo {
 
                 if (collection != null) {
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    listingCallback.loadAllGroupItemdata(
+                    homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
                                 "RecentlyAdded",
@@ -117,7 +143,6 @@ class Repo {
                             )
                         )
                     )
-
                 }
             }
             .addOnFailureListener { exception ->
@@ -150,7 +175,7 @@ class Repo {
             }
     }
 
-     fun saveUserToFireBaseDatabase(context: Context, username: String) {
+    fun saveUserToFireBaseDatabase(context: Context, username: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = USER_COLLECTION.document(uid)
         val user = User(uid, username, "")
@@ -158,7 +183,8 @@ class Repo {
             .addOnSuccessListener {
                 Log.d("###SAVEUSER", "USER stored in db")
                 val intent = Intent(context, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)// clear stack
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)// clear stack
                 context.startActivity(intent)
             }.addOnFailureListener {
                 Log.d("###SAVEUSER", " user not saved: ${it.message} ")

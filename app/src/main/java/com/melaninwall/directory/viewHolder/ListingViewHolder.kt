@@ -17,7 +17,7 @@ class ListingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     //val address: TextView=
     //var verified: TextView =
     //  val city:TextView=
-    val postcode: TextView = itemView.findViewById(R.id.postcodeTextView)
+    val postcode: TextView = itemView.findViewById(R.id.cityTextView)
     val homeRootLayout: View = itemView.findViewById(R.id.homeCardViewLayout)
 
 }

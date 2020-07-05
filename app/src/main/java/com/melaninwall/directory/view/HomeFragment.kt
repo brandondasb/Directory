@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.melaninwall.directory.R
-import com.melaninwall.directory.interfaces.ListingCallback
+import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
@@ -30,13 +30,13 @@ class HomeFragment : BaseNavFragment() {
         val homeFragmentPresenter = HomeFragmentPresenter(view, fragmentManager)
 
 
-        val listingCallback: ListingCallback = object : ListingCallback {
+        val homeListingCallback: HomeListingCallback = object : HomeListingCallback {
 
             override fun loadAllGroupItemdata(listingItemGroupData: List<ItemGroup>) {
                 homeFragmentPresenter.loadAllGroupItemdata(listingItemGroupData)
             }
         }
-        listingRepo.getAllListing(listingCallback)
+        listingRepo.getAllListing(homeListingCallback)
         //listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
 
 
