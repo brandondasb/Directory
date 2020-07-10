@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#DAA520</color>
-    <color name="colorPrimaryDark">#929D88</color>
-    <color name="colorAccent">#D81B60</color>
+    <!--  Primary-->
+    <color name="primaryColor">#b78c62</color>
+    <color name="primaryLightColor">#ebbc90</color>
+    <color name="primaryDarkColor">#855f37</color>
+    <color name="primaryTextColor">#000000</color>
+
+    <color name="secondaryColor">#7020da</color>
+    <color name="secondaryLightColor">#a755ff</color>
+    <color name="secondaryDarkColor">#3400a7</color>
+    <color name="secondaryTextColor">#ffffff</color>
     <!-- color test-->
     <color name="blackish">#12100F</color>
     <color name="brown_dark">#4C301E</color>
     <color name="brown_wood">#615141</color>
     <color name="brown_medium">#995F34</color>
     <color name="green_cak">#929D88</color>
-    <color name="brown_light">#B78C62</color>
     <color name="gold">#DAA520</color>
     <color name="white">#fff</color>
 
-    <!--  Primary-->
+<!-- brown look -->
+    <color name="brown">#B78C62</color>
+    <color name="brownLight">#ebbc90</color>
+    <color name="brownDark">#855f37</color>
+    <!--  test-->
+
+
+    <color name="whitish">#f6f6f6</color>
+    <color name="color2">#3a432f</color>
+    <color name="color3">#b34e21</color>
+    <color name="color4">#d8a639</color>
+    <color name="greyish">#9fa29e</color>
+
 
     <color name="colorLayerBack">#8a56ab</color>
     <color name="colorBack">#241333</color>

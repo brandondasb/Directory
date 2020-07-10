@@ -17,28 +17,27 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="11dp"
             android:text="sample Title"
-            android:textColor="@color/white" />
+            android:textColor="@color/color2" />
 
-        <Button
+        <ImageView
             android:id="@+id/see_more_button"
-            android:layout_width="79dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignTop="@+id/itemTitle"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="237dp"
-            android:layout_marginTop="-11dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="253dp"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-14dp"
             android:layout_toEndOf="@+id/itemTitle"
-            android:text="more" />
+            android:src="@mipmap/ic_arrow_outline"
+            android:tint="@color/brown" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal"
-
-        />
+        android:orientation="horizontal" />
 
 </LinearLayout>

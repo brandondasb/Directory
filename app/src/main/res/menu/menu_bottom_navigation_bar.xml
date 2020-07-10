@@ -3,21 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_home"
-        android:icon="@mipmap/baseline_home_white_24dp"
+        android:icon="@mipmap/ic_home"
 
         android:title="@string/home" />
     <item
         android:id="@+id/nav_search"
-        android:icon="@mipmap/scoreboard"
+        android:icon="@mipmap/ic_search"
         android:title="@string/search" />
     <item
         android:id="@+id/nav_inbox"
-        android:icon="@mipmap/salah"
+        android:icon="@mipmap/ic_chat"
         android:title="@string/inbox" />
-
     <item
         android:id="@+id/nav_profile"
-        android:icon="@mipmap/baseline_android_white_24dp"
+        android:icon="@mipmap/ic_person"
         android:title="@string/profile" />
 
 </menu>

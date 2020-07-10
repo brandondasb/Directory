@@ -14,13 +14,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown_light">
+        android:background="@color/brown">
 
         <ImageView
             android:id="@+id/imageSearchImageView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:padding="4dp"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,10 +41,10 @@
             android:layout_height="25dp"
             android:padding="4dp"
             android:scaleType="fitXY"
-            android:src="@drawable/com_facebook_button_like_icon_selected"
+            android:src="@mipmap/ic_checkmark"
             android:tint="@color/tw__blue_default"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameSearchTextView"
             app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
 
         <TextView
