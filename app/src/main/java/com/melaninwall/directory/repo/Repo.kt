@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
-import com.melaninwall.directory.interfaces.SearchListingCallBack
+import com.melaninwall.directory.interfaces.DiscoverListingCallBack
 import com.melaninwall.directory.model.*
 
 class Repo {
@@ -61,7 +61,7 @@ class Repo {
             }
     }
 
-    fun getHomeData(searchListingCallback: SearchListingCallBack) {
+    fun getHomeData(discoverListingCallback: DiscoverListingCallBack) {
         BASE_COLLECTION
             .get()
             .addOnSuccessListener { collection ->
@@ -72,7 +72,7 @@ class Repo {
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
 
-                    searchListingCallback.loadItemData(collection)
+                    discoverListingCallback.loadItemData(collection)
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
                 }

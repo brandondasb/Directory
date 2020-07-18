@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.melaninwall.directory.R
 
-class SearchFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class DiscoverFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var searchRecyclerView: RecyclerView =
         view.findViewById(R.id.search_fragment_parent_recyclerView)
     var categoryRecyclerView: RecyclerView = view.findViewById(R.id.category_recyclerView)

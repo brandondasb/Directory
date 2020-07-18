@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
-import com.melaninwall.directory.interfaces.SearchListingCallBack
+import com.melaninwall.directory.interfaces.DiscoverListingCallBack
 import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ListingItemData
-import com.melaninwall.directory.presenter.SearchPresenter
+import com.melaninwall.directory.presenter.DiscoverPresenter
 import com.melaninwall.directory.repo.Repo
 
-class SearchFragment : BaseNavFragment() {
+class DiscoverFragment : BaseNavFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,20 +25,20 @@ class SearchFragment : BaseNavFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavListener.updateBottomNav(BottomNavState.SEARCH)
+        bottomNavListener.updateBottomNav(BottomNavState.DISCOVER)
         val listingRepo = Repo()
-        val searchFragmentPresenter = SearchPresenter(view, fragmentManager)
+        val searchFragmentPresenter = DiscoverPresenter(view, fragmentManager)
 
-        val searchListingCallback: SearchListingCallBack = object : SearchListingCallBack {
+        val discoverListingCallback: DiscoverListingCallBack = object : DiscoverListingCallBack {
             override fun loadItemData(listingItemData: List<ListingItemData>) {
                 searchFragmentPresenter.loadItemData(listingItemData)
             }
         }
-        listingRepo.getHomeData(searchListingCallback)
+        listingRepo.getHomeData(discoverListingCallback)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(listingItemData: List<Category>) {
-                searchFragmentPresenter.loadItemDataCategory(listingItemData)
+            override fun loadItemDataCategory(categoryItemData: List<Category>) {
+                searchFragmentPresenter.loadItemDataCategory(categoryItemData)
             }
         }
         listingRepo.getCategoryData(categoryListingCallBack)

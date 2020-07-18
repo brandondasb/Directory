@@ -22,7 +22,6 @@
                 android:id="@+id/section1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/greyish"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -57,13 +56,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/fpaImageView" />
 
-                    <TextView
-                        android:id="@+id/fpaVerifiedTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/fpaVerifiedListingImageView"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_margin="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Verified"
+                        android:padding="4dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_checkmark"
+                        android:tint="@color/tw__blue_default"
                         app:layout_constraintBottom_toBottomOf="@id/fpaNameTextView"
                         app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
                         app:layout_constraintTop_toTopOf="@id/fpaNameTextView" />
@@ -131,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="150"
-                    android:textColor="@color/colorTitleWhite"
+                    android:textColor="@color/blackish"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="following"
-                    android:textColor="@color/colorTitleWhite"
+                    android:textColor="@color/blackish"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="@+id/followingNumbers"
@@ -155,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10k"
-                    android:textColor="@color/colorTitleWhite"
+                    android:textColor="@color/blackish"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Followers"
-                    android:textColor="@color/colorTitleWhite"
+                    android:textColor="@color/blackish"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="@+id/followersNumbers"
@@ -261,7 +263,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpaIG"
+                    android:id="@+id/fpaInstagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"

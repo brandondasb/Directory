@@ -35,19 +35,20 @@ class CategoryRecyclerViewAdapter(
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val categoryViewHolder: CategoryViewHolder = viewHolder as CategoryViewHolder
-        val categoryList: Category = this.categoryList!![position] // TODO double bang again, cmon son
+        val categoryList: Category =
+            this.categoryList!![position] // TODO double bang again, cmon son
 
         categoryViewHolder.homeRootLayout.setOnClickListener {
             itemListener.launchCategoryFragment(categoryList)
         }
 
         val name = categoryList.name
-        val icon = categoryList.url
+        val imageUrl = categoryList.url
 
         categoryViewHolder.name.text = name
+
         Glide.with(context)
-            .load(icon)
+            .load(imageUrl)
             .into(categoryViewHolder.image)
     }
-
 }

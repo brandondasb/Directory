@@ -2,6 +2,7 @@ package com.melaninwall.directory.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -39,12 +40,18 @@ class ListingRecyclerViewAdapter(
         }
         val name: String = listing.name
         val about: String = listing.about
-        val postcode: String = listing.postcode
+        val city: String = listing.city
         val image = listing.image
         val category = listing.category
+        val verified = listing.verified
+        if (verified) {
+            listingViewHolder.verified.visibility = View.VISIBLE
+        } else {
+            listingViewHolder.verified.visibility = View.GONE
+        }
         listingViewHolder.name.text = name
-        listingViewHolder.category.text = category.toString()//todo the could be a list of category
-        listingViewHolder.postcode.text = postcode
+        listingViewHolder.category.text = category.joinToString(" | ")
+        listingViewHolder.city.text = city
         Glide.with(context)
             .load(image)
             .fitCenter()

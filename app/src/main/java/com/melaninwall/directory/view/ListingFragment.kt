@@ -31,13 +31,20 @@ class ListingFragment : Fragment() {
 
         fpaAboutTextView.text = data.about
         fpaNameTextView.text = data.name
-        fpaCategoryTextView.text = data.category.toString()
+        fpaCategoryTextView.text = data.category.joinToString(" | ")
         fpaAddress.text = data.address
         fpaCity.text = data.city
         fpaPostcode.text = data.postcode
         fpaWebsite.text = data.website
-        fpatwitter.text = data.social.toString()
-        fpaVerifiedTextView.text = data.verified.toString()
+        fpatwitter.text = data.social.firstOrNull { it.name == "twitter" }?.url
+        fpaFacebook.text = data.social.firstOrNull { it.name == "facebook" }?.url
+        fpaInstagram.text = data.social.firstOrNull { it.name == "instagram" }?.url
+
+        if (data.verified) {
+            fpaVerifiedListingImageView.visibility = View.VISIBLE
+        } else {
+            fpaVerifiedListingImageView.visibility = View.GONE
+        }
         Glide.with(this)
             .load(data.image)
             .fitCenter()

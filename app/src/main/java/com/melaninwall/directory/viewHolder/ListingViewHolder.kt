@@ -15,9 +15,9 @@ class ListingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     //val social: TextView/* could change in future*/
     ///val website: TextView = TODO
     //val address: TextView=
-    //var verified: TextView =
-    //  val city:TextView=
-    val postcode: TextView = itemView.findViewById(R.id.cityTextView)
+    var verified: ImageView = itemView.findViewById(R.id.verifiedHomeViewImageView)
+    val city: TextView = itemView.findViewById(R.id.cityTextView)
+   // val postcode: TextView =
     val homeRootLayout: View = itemView.findViewById(R.id.homeCardViewLayout)
 
 }

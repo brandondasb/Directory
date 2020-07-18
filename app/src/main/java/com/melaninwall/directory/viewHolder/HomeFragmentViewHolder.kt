@@ -9,5 +9,6 @@ import com.melaninwall.directory.R
 class HomeFragmentViewHolder(view:View) :RecyclerView.ViewHolder(view){
 
       var homeRecyclerView :RecyclerView = view.findViewById(R.id.home_fragment_parent_recyclerView)
+      var categoryRecyclerView: RecyclerView = view.findViewById(R.id.category_recyclerView)
 
 }

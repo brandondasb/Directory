@@ -8,32 +8,40 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:padding="4dp"
-    app:cardCornerRadius="4dp"
-    app:cardMaxElevation="2dp">
+    app:cardCornerRadius="10dp"
+    app:cardMaxElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown">
+        android:background="@color/white">
 
         <ImageView
-            android:id="@+id/imageSearchImageView"
+            android:id="@+id/imageDiscoverImageView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/likeDiscoverImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/ic_heart_curvy_outline"
+            android:tint="@color/brown"
+            app:layout_constraintEnd_toEndOf="@id/imageDiscoverImageView"
+            app:layout_constraintTop_toTopOf="@id/imageDiscoverImageView" />
+
         <TextView
-            android:id="@+id/nameSearchTextView"
+            android:id="@+id/nameDiscoverTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/imageSearchImageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageSearchImageView"
-            tools:text="business name"
-            />
+            app:layout_constraintStart_toStartOf="@id/imageDiscoverImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageDiscoverImageView"
+            tools:text="business name" />
 
         <ImageView
             android:id="@+id/verifiedImageView"
@@ -44,16 +52,16 @@
             android:src="@mipmap/ic_checkmark"
             android:tint="@color/tw__blue_default"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/nameSearchTextView"
-            app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
+            app:layout_constraintStart_toEndOf="@+id/nameDiscoverTextView"
+            app:layout_constraintTop_toTopOf="@id/nameDiscoverTextView" />
 
         <TextView
             android:id="@+id/categorySearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@id/nameSearchTextView"
-            app:layout_constraintTop_toBottomOf="@id/nameSearchTextView"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/nameDiscoverTextView"
+            app:layout_constraintTop_toBottomOf="@id/nameDiscoverTextView"
             tools:text="category" />
 
         <TextView
@@ -64,5 +72,18 @@
             android:text="@string/distance"
             app:layout_constraintStart_toStartOf="@id/categorySearchTextView"
             app:layout_constraintTop_toBottomOf="@id/categorySearchTextView" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginEnd="16dp"
+            android:numStars="5"
+            android:rating="3.0"
+            app:layout_constraintBottom_toBottomOf="@+id/nameDiscoverTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameDiscoverTextView"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.ListingItemData
-import com.melaninwall.directory.viewHolder.SearchListingViewHolder
+import com.melaninwall.directory.viewHolder.DiscoverListingViewHolder
 
-class SearchRecyclerViewAdapter(
+class DiscoverRecyclerViewAdapter(
     private val context: Context,
     private val itemListener: ListItemListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -25,9 +25,9 @@ class SearchRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.list_item_search_card_recycler, parent, false)
+            .inflate(R.layout.list_item_discover_card_recycler, parent, false)
 
-        return SearchListingViewHolder(view)
+        return DiscoverListingViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -35,7 +35,7 @@ class SearchRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        val searchFragmentViewHolder = viewHolder as SearchListingViewHolder
+        val searchFragmentViewHolder = viewHolder as DiscoverListingViewHolder
         val listingItemData = listItemData[position]
         searchFragmentViewHolder.homeRootLayout.setOnClickListener {
             itemListener.launchFragment(listingItemData)
@@ -48,8 +48,8 @@ class SearchRecyclerViewAdapter(
 
         searchFragmentViewHolder.name.text = name
         searchFragmentViewHolder.city.text = city
-        searchFragmentViewHolder.category.text =
-            category[0] //TODO find a way to return a list of categories as we can have multiple
+        searchFragmentViewHolder.category.text = category.joinToString(" | ")
+
         if (verified) {
             searchFragmentViewHolder.verified.visibility = View.VISIBLE
         } else {
@@ -57,7 +57,6 @@ class SearchRecyclerViewAdapter(
         }
         Glide.with(context)
             .load(image).centerCrop()
-            //.fitCenter()
             .into(searchFragmentViewHolder.image)
     }
 }

@@ -1,5 +1,5 @@
 package com.melaninwall.directory.model;
 
  enum class BottomNavState {
-     HOME,SEARCH,THIRD,PROFILE
+     HOME,DISCOVER,THIRD,PROFILE
 }

@@ -2,6 +2,6 @@ package com.melaninwall.directory.interfaces
 
 import com.melaninwall.directory.model.ListingItemData
 
-interface SearchListingCallBack {
+interface DiscoverListingCallBack {
     fun loadItemData(listingItemData:List<ListingItemData>)
 }
