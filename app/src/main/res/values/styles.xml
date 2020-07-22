@@ -9,4 +9,9 @@
         <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
+    <style name="Theme.App" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorSecondary">@color/whitish</item>
+        <item name="android:colorFocusedHighlight">@color/tw__blue_default</item>
+    </style>
 </resources>

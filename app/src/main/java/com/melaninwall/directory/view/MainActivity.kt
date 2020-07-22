@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflate: MenuInflater = menuInflater
         inflate.inflate(R.menu.menu_bottom_navigation_bar, menu)
-        return true
+        return return false
 
     }
 

@@ -8,9 +8,15 @@
         android:title="@string/home" />
     <item
         android:id="@+id/nav_discover"
-        android:icon="@mipmap/ic_search"
-        android:title="@string/discover"
-        app:showAsAction="collapseActionView|ifRoom"/>
+        android:icon="@mipmap/ic_location_pin_curvy_outline"
+        android:title="@string/discover" />
+    <!--    <item-->
+    <!--        android:id="@+id/nav_search"-->
+    <!--        android:icon="@mipmap/ic_search"-->
+    <!--        android:title="@string/discover"-->
+    <!--        app:showAsAction="collapseActionView|always"-->
+    <!--        app:actionViewClass="androidx.appcompat.widget.SearchView"/>-->
+
     <item
         android:id="@+id/nav_inbox"
         android:icon="@mipmap/ic_chat"

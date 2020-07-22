@@ -5,12 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
+import com.melaninwall.directory.StorageKey
 import com.melaninwall.directory.model.ListingItemData
-import kotlinx.android.synthetic.main.item_detail_fragment.*
+import com.melaninwall.directory.presenter.ListingFragmentPresenter
 
 class ListingFragment : Fragment() {
+    companion object {
+        fun create(listing: ListingItemData): ListingFragment {
+            val bundle = Bundle()
+            bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), listing)
+            val fragment = ListingFragment()
+            fragment.arguments = bundle
+
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,27 +39,7 @@ class ListingFragment : Fragment() {
         val data = bundle?.getSerializable("listingItemData")
         data as ListingItemData
 
-        fpaAboutTextView.text = data.about
-        fpaNameTextView.text = data.name
-        fpaCategoryTextView.text = data.category.joinToString(" | ")
-        fpaAddress.text = data.address
-        fpaCity.text = data.city
-        fpaPostcode.text = data.postcode
-        fpaWebsite.text = data.website
-        fpatwitter.text = data.social.firstOrNull { it.name == "twitter" }?.url
-        fpaFacebook.text = data.social.firstOrNull { it.name == "facebook" }?.url
-        fpaInstagram.text = data.social.firstOrNull { it.name == "instagram" }?.url
-
-        if (data.verified) {
-            fpaVerifiedListingImageView.visibility = View.VISIBLE
-        } else {
-            fpaVerifiedListingImageView.visibility = View.GONE
-        }
-        Glide.with(this)
-            .load(data.image)
-            .fitCenter()
-            .into(fpaImageView)
-
+        ListingFragmentPresenter(view).loadUi(data)
     }
 
 }
