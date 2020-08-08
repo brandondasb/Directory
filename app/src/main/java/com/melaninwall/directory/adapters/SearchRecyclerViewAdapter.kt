@@ -9,23 +9,22 @@ import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.ListingItemData
-import com.melaninwall.directory.viewHolder.ListingViewHolder
 import com.melaninwall.directory.viewHolder.LoadingSearchViewHolder
+import com.melaninwall.directory.viewHolder.SearchListingViewHolder
 
-class ListingRecyclerViewAdapter(
+class SearchRecyclerViewAdapter(
     private val context: Context,
     private val itemListener: ListItemListener
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listingData: List<ListingItemData>? = listOf()
+    private var listItemData: List<ListingItemData> = listOf()
     private var isLoading: Boolean = true
     private val LOADING_CELL_COUNT = 20
     private val LOADING_CELL_TYPE = 0
     private val LISTING_CELL = 1
 
-    fun setData(listingData: List<ListingItemData>?) {
-        this.listingData = listingData
+    fun setData(dataList: List<ListingItemData>) {
+        this.listItemData = dataList
         isLoading = false
         notifyDataSetChanged()
     }
@@ -34,12 +33,12 @@ class ListingRecyclerViewAdapter(
 
         return if (viewType == LOADING_CELL_TYPE) {
             val view: View = LayoutInflater.from(context)
-                .inflate(R.layout.list_item_home_card_child_recycler_placeholder, viewGroup, false)
+                .inflate(R.layout.list_item_search_card_recycler_placeholder, viewGroup, false)
             LoadingSearchViewHolder(view)
         } else {
             val view = LayoutInflater.from(context)
-                .inflate(R.layout.list_item_home_card_child_recycler, viewGroup, false)
-            ListingViewHolder(view)
+                .inflate(R.layout.list_item_search_card_recycler, viewGroup, false)
+            SearchListingViewHolder(view)
         }
     }
 
@@ -47,7 +46,7 @@ class ListingRecyclerViewAdapter(
         return if (isLoading) {
             LOADING_CELL_COUNT
         } else {
-            return listingData!!.size
+            listItemData.size
         }
     }
 
@@ -62,33 +61,29 @@ class ListingRecyclerViewAdapter(
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == LISTING_CELL) {
 
-            val listingViewHolder: ListingViewHolder = viewHolder as ListingViewHolder
-            val listing: ListingItemData = this.listingData!![position]
-
-            listingViewHolder.homeRootLayout.setOnClickListener {
-                itemListener.launchFragment(listing)
+            val searchFragmentViewHolder = viewHolder as SearchListingViewHolder
+            val listingItemData = listItemData[position]
+            searchFragmentViewHolder.homeRootLayout.setOnClickListener {
+                itemListener.launchFragment(listingItemData)
             }
+            val name = listingItemData.name
+            val image = listingItemData.image
+            val city = listingItemData.city
+            val category = listingItemData.category
+            val verified = listingItemData.verified
 
-            val name: String = listing.name
-            val about: String = listing.about
-            val city: String = listing.city
-            val image = listing.image
-            val category = listing.category
-            val verified = listing.verified
+            searchFragmentViewHolder.name.text = name
+            searchFragmentViewHolder.city.text = city
+            searchFragmentViewHolder.category.text = category.joinToString(" | ")
 
             if (verified) {
-                listingViewHolder.verified.visibility = View.VISIBLE
+                searchFragmentViewHolder.verified.visibility = View.VISIBLE
             } else {
-                listingViewHolder.verified.visibility = View.GONE
+                searchFragmentViewHolder.verified.visibility = View.GONE
             }
-
-            listingViewHolder.name.text = name
-            listingViewHolder.category.text = category.joinToString(" | ")
-            listingViewHolder.city.text = city
             Glide.with(context)
-                .load(image)
-                .fitCenter()
-                .into(listingViewHolder.image)
+                .load(image).centerCrop()
+                .into(searchFragmentViewHolder.image)
         }
     }
 }

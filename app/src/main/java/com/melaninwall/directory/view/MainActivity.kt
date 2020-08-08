@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 BottomNavState.DISCOVER -> bottomNavigationView.selectedItemId = R.id.nav_discover
                 BottomNavState.THIRD -> bottomNavigationView.selectedItemId = R.id.nav_inbox
                 BottomNavState.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
+                BottomNavState.SEARCH -> bottomNavigationView.selectedItemId = R.id.nav_search
 
             }
         }
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val actionBar = supportActionBar
-       // actionBar?.hide()
+        // actionBar?.hide()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
@@ -74,10 +75,10 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         HomeFragment() // I had to make the home class Open
                     }
-                    R.id.nav_discover -> if (fragmentManager.findFragmentByTag(DiscoverFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(DiscoverFragment::class.java.name) as? DiscoverFragment
+                    R.id.nav_search -> if (fragmentManager.findFragmentByTag(SearchFragment::class.java.name) != null) {
+                        fragmentManager.findFragmentByTag(SearchFragment::class.java.name) as? SearchFragment
                     } else {
-                        DiscoverFragment()
+                        SearchFragment()
                     }
                     R.id.nav_inbox -> if (fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) != null) {
                         fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) as? ThirdFragment

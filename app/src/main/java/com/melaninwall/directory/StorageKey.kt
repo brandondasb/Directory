@@ -1,5 +1,5 @@
 package com.melaninwall.directory
 
 enum class StorageKey {
-    LISTING_ITEM_DATA
+    LISTING_ITEM_DATA,FILTERED_LIST
 }

@@ -10,12 +10,12 @@ import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ItemGroup
+import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
 import com.melaninwall.directory.repo.Repo
 
 
 class HomeFragment : BaseNavFragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +31,6 @@ class HomeFragment : BaseNavFragment() {
         val listingRepo = Repo()
         val homeFragmentPresenter = HomeFragmentPresenter(view, fragmentManager)
 
-
         val homeListingCallback: HomeListingCallback = object : HomeListingCallback {
 
             override fun loadAllGroupItemdata(listingItemGroupData: List<ItemGroup>) {
@@ -40,14 +39,15 @@ class HomeFragment : BaseNavFragment() {
         }
         listingRepo.getAllListing(homeListingCallback)
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(categoryItemData: List<Category>) {
-                homeFragmentPresenter.loadItemDataCategory(categoryItemData)
+            override fun loadItemDataCategory(
+                listingItemData: List<ListingItemData>,
+                categoryItemData: List<Category>
+            ) {
+                homeFragmentPresenter.loadItemDataCategory(listingItemData, categoryItemData)
             }
         }
         listingRepo.getCategoryData(categoryListingCallBack)
     }
 
-
     //listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
-
 }

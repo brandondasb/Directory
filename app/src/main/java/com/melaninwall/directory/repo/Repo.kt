@@ -10,7 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
-import com.melaninwall.directory.interfaces.DiscoverListingCallBack
+import com.melaninwall.directory.interfaces.QuerySearchCallback
+import com.melaninwall.directory.interfaces.SearchListingCallBack
 import com.melaninwall.directory.model.*
 
 class Repo {
@@ -26,61 +27,84 @@ class Repo {
     private val imagesRef = storageRef.child("images")
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
+    var collecitonListingItem: MutableList<ListingItemData> = mutableListOf()
 
     fun getAllListing(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION.get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###ALLLISTING", " ${collection.query}->${document.data.values}")
+                        Log.d("###ALLLISTING", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                    var collection = collection.toObjects(ListingItemData::class.java)
+                    collecitonListingItem = collection.toObjects(ListingItemData::class.java)
 
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
-                                "Header title", collection
+                                "Header title", collecitonListingItem
                             ), ItemGroup(
-                                "Heading2", collection
+                                "Heading2", collecitonListingItem
 
                             ), ItemGroup(
-                                "Heading 3", collection
+                                "Heading 3", collecitonListingItem
 
                             ), ItemGroup(
-                                "heading 4", collection
+                                "heading 4", collecitonListingItem
                             )
                         )
                     )
                 } else {
-                    Log.d("###", "Null, can't find any documents in collection => $collection")
+                    Log.d(
+                        "###ALLLISTING",
+                        "Null, can't find any documents in collection => $collection"
+                    )
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d("###GETLISTING", "Error getting documents.", exception)
+                Log.d("###ALLLISTING", "Error getting documents.", exception)
             }
     }
 
-    fun getHomeData(discoverListingCallback: DiscoverListingCallBack) {
+    fun getSearchData(searchListingCallback: SearchListingCallBack) {
+
         BASE_COLLECTION
             .get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###OMG", "${document.data}-> ${document.data.values}")
+                        Log.d("###SEARCHDATA", "${document.data}-> ${document.data.values}")
                         document.data
                     }
                     var collection = collection.toObjects(ListingItemData::class.java)
 
-                    discoverListingCallback.loadItemData(collection)
+                    searchListingCallback.loadItemData(collection)
                 } else {
-                    Log.d("###", "Null, can't find any documents in collection => $collection")
+                    Log.d(
+                        "###SEARCHDATA",
+                        "Null, can't find any documents in collection => $collection"
+                    )
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d("###GETLISTING", "Error getting documents.", exception)
+                Log.d("###SEARCHDATA", "Error getting documents.", exception)
             }
     }
+
+    fun getQueryData(querySearchCallback: QuerySearchCallback, searchText: String) {
+        var nameListing = String
+        BASE_COLLECTION.whereIn("name", listOf(nameListing))
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###QueryData", "${document.data}-> ${document.data.values}")
+                    }
+                    var filterListingList = collection.toObjects(ListingItemData::class.java)
+                }
+            }
+    }
+
     fun getCategoryData(categoryListingCallBack: CategoryListingCallBack) {
         CATEGORY_COLLECTION
             .get()
@@ -92,7 +116,7 @@ class Repo {
                     }
                     var collection = collection.toObjects(Category::class.java)
 
-                    categoryListingCallBack.loadItemDataCategory(collection)
+                    categoryListingCallBack.loadItemDataCategory(collecitonListingItem, collection)
                 } else {
                     Log.d("###", "Null, can't find any documents in collection => $collection")
                 }
@@ -102,23 +126,18 @@ class Repo {
             }
     }
 
-    fun getListingPerCity(homeListingCallback: HomeListingCallback) {
-        BASE_COLLECTION.whereEqualTo("city", "london")
-
+    //TODO test
+    fun getListingPerCategory(
+        searchListingCallBack: SearchListingCallBack,
+        selectedCategory: String
+    ) {
+        BASE_COLLECTION.whereArrayContains("category", selectedCategory)
             .get()
             .addOnSuccessListener { collection ->
 
                 if (collection != null) {
                     var collection = collection.toObjects(ListingItemData::class.java)
-                    homeListingCallback.loadAllGroupItemdata(
-                        listOf(
-                            ItemGroup(
-                                "London",
-                                collection
-                            )
-                        )
-                    )
-
+                    searchListingCallBack.loadItemData(collection)
                 }
             }
             .addOnFailureListener { exception ->

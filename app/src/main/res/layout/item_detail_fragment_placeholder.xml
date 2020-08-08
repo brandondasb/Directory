@@ -38,18 +38,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:layout_marginBottom="@dimen/small_margin"
+                        android:background="@color/placeholder"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/imagesample"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/likeSearchImageView"
                         android:layout_width="@dimen/standard_icon_width"
                         android:layout_height="@dimen/standard_icon_height"
                         android:layout_margin="@dimen/standard_margin"
+                        android:background="@color/placeholder"
                         android:src="@mipmap/ic_heart_curvy_outline"
-                        android:tint="@color/brown"
+                        android:tint="@color/placeholder"
                         app:layout_constraintEnd_toEndOf="@id/fpaImageView"
                         app:layout_constraintTop_toTopOf="@id/fpaImageView" />
 
@@ -88,8 +88,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/large_margin"
+                            android:background="@color/placeholder"
                             android:text="business name"
-                            android:textColor="@color/colorTitle"
+                            android:textColor="@color/placeholder"
                             android:textSize="22sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -102,10 +103,11 @@
                             android:layout_height="@dimen/standard_icon_height"
                             android:layout_margin="@dimen/small_margin"
                             android:layout_marginStart="@dimen/small_margin"
+                            android:background="@color/placeholder"
                             android:padding="@dimen/small_padding"
                             android:scaleType="fitXY"
                             android:src="@mipmap/ic_checkmark"
-                            android:tint="@color/tw__blue_default"
+                            android:tint="@color/placeholder"
                             app:layout_constraintBottom_toBottomOf="@id/fpaNameTextView"
                             app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
                             app:layout_constraintTop_toTopOf="@id/fpaNameTextView" />
@@ -116,7 +118,9 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/small_margin"
                             android:layout_marginEnd="44dp"
+                            android:background="@color/placeholder"
                             android:text="category"
+                            android:textColor="@color/placeholder"
                             app:layout_constraintEnd_toEndOf="@+id/fpaNameTextView"
                             app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
                             app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
@@ -126,8 +130,9 @@
                             android:layout_width="@dimen/standard_icon_width"
                             android:layout_height="@dimen/small_icon_height"
                             android:layout_marginTop="16dp"
+                            android:background="@color/placeholder"
                             android:src="@mipmap/ic_star_curved_solid"
-                            android:tint="@color/gold"
+                            android:tint="@color/placeholder"
                             app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
                             app:layout_constraintTop_toBottomOf="@id/fpaCategoryTextView" />
 
@@ -135,7 +140,9 @@
                             android:id="@+id/ratingValueSearchTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@color/placeholder"
                             android:text="0.0"
+                            android:textColor="@color/placeholder"
                             android:textSize="@dimen/text_size_body"
                             app:layout_constraintBottom_toBottomOf="@id/fpaRatingIconDetailImageView"
                             app:layout_constraintStart_toEndOf="@+id/fpaRatingIconDetailImageView"
@@ -147,8 +154,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/small_margin"
+                            android:background="@color/placeholder"
                             android:text="(0 reviews)"
-                            android:textColor="@color/greyish"
+                            android:textColor="@color/placeholder"
                             android:textSize="@dimen/text_size_body"
                             app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
                             app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
@@ -174,8 +182,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/standard_margin"
+                                android:background="@color/placeholder"
                                 android:text="6k"
-                                android:textColor="@color/blackish"
+                                android:textColor="@color/placeholder"
                                 android:textSize="@dimen/text_size_title"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toStartOf="@id/followingNumbers"
@@ -198,8 +207,9 @@
                                 android:id="@+id/followingNumbers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:background="@color/placeholder"
                                 android:text="150"
-                                android:textColor="@color/blackish"
+                                android:textColor="@color/placeholder"
                                 android:textSize="@dimen/text_size_title"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -222,8 +232,9 @@
                                 android:id="@+id/followersNumbers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:background="@color/placeholder"
                                 android:text="10k"
-                                android:textColor="@color/blackish"
+                                android:textColor="@color/placeholder"
                                 android:textSize="@dimen/text_size_title"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -345,7 +356,8 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
                     android:text="mybusiness.co.uk"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
@@ -367,7 +379,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:text="sampleIG"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
@@ -387,7 +400,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:text="twitter.co.uk/sdsds"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
@@ -407,7 +421,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:text="facebook/asdasdas"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -441,7 +456,8 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
                     android:text="address"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
@@ -464,7 +480,8 @@
                     android:layout_margin="4dp"
                     android:layout_marginStart="24dp"
                     android:text="postcode -"
-                    android:textColor="@color/color2"
+                    android:background="@color/placeholder"
+                    android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 

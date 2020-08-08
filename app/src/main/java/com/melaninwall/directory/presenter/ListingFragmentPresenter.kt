@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_detail_fragment.*
 class ListingFragmentPresenter(itemView: View) {
     val view = itemView
     val viewHolder = ListingFragmentViewHolder(view)
-    fun loadUi(listingItemData: ListingItemData) {
+    fun loadUi(listingItemData: ListingItemData?) {
         val fragment = ListingFragment.create(listingItemData)
         val data = fragment.arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData

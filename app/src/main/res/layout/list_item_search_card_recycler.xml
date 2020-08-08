@@ -18,7 +18,7 @@
         android:paddingBottom="@dimen/standard_padding">
 
         <ImageView
-            android:id="@+id/imageDiscoverImageView"
+            android:id="@+id/imageSearchImageView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="fitXY"
@@ -26,16 +26,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/likeDiscoverImageView"
+            android:id="@+id/likeSearchImageView"
             android:layout_width="@dimen/standard_icon_width"
             android:layout_height="@dimen/standard_icon_height"
             android:src="@mipmap/ic_heart_curvy_outline"
             android:tint="@color/brown"
-            app:layout_constraintEnd_toEndOf="@id/imageDiscoverImageView"
-            app:layout_constraintTop_toTopOf="@id/imageDiscoverImageView" />
+            app:layout_constraintEnd_toEndOf="@id/imageSearchImageView"
+            app:layout_constraintTop_toTopOf="@id/imageSearchImageView" />
 
         <TextView
-            android:id="@+id/nameDiscoverTextView"
+            android:id="@+id/nameSearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
@@ -44,8 +44,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_title"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/imageDiscoverImageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageDiscoverImageView"
+            app:layout_constraintStart_toStartOf="@id/imageSearchImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageSearchImageView"
             tools:text="business name" />
 
         <ImageView
@@ -56,28 +56,42 @@
             android:scaleType="fitXY"
             android:src="@mipmap/ic_checkmark"
             android:tint="@color/tw__blue_default"
-            app:layout_constraintBottom_toBottomOf="@+id/nameDiscoverTextView"
-            app:layout_constraintStart_toEndOf="@+id/nameDiscoverTextView"
-            app:layout_constraintTop_toTopOf="@id/nameDiscoverTextView" />
+            app:layout_constraintBottom_toBottomOf="@+id/nameSearchTextView"
+            app:layout_constraintStart_toEndOf="@+id/nameSearchTextView"
+            app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
 
         <TextView
-            android:id="@+id/categoryDiscoverTextView"
+            android:id="@+id/shortDescriptionSearchTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:text="this is a sample short description about the listing, highlights what the business does and what it has to offereref"
+            android:textSize="@dimen/text_size_body"
+            app:layout_constraintStart_toStartOf="@+id/nameSearchTextView"
+            app:layout_constraintTop_toBottomOf="@id/nameSearchTextView" />
+
+        <TextView
+            android:id="@+id/categorySearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
             android:textSize="@dimen/text_size_body"
-            app:layout_constraintStart_toStartOf="@+id/nameDiscoverTextView"
-            app:layout_constraintTop_toBottomOf="@id/nameDiscoverTextView"
+            app:layout_constraintStart_toStartOf="@+id/nameSearchTextView"
+            app:layout_constraintTop_toBottomOf="@id/shortDescriptionSearchTextView"
             tools:text="category" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/locationIconDiscoverImageView"
+            android:id="@+id/locationIconSearchImageView"
             android:layout_width="@dimen/small_icon_width"
             android:layout_height="@dimen/small_icon_height"
             android:src="@mipmap/ic_location_pin_curvy_outline"
             android:tint="@color/gold"
             app:layout_constraintBottom_toBottomOf="@id/locationSearchTextView"
-            app:layout_constraintStart_toStartOf="@+id/categoryDiscoverTextView"
+            app:layout_constraintStart_toStartOf="@+id/categorySearchTextView"
             app:layout_constraintTop_toTopOf="@+id/locationSearchTextView" />
 
         <TextView
@@ -87,19 +101,19 @@
             android:layout_margin="@dimen/small_margin"
             android:text="@string/distance"
             android:textSize="@dimen/text_size_body"
-            app:layout_constraintStart_toEndOf="@+id/locationIconDiscoverImageView"
-            app:layout_constraintTop_toBottomOf="@id/categoryDiscoverTextView" />
+            app:layout_constraintStart_toEndOf="@+id/locationIconSearchImageView"
+            app:layout_constraintTop_toBottomOf="@id/categorySearchTextView" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ratingIconDiscoverImageView"
+            android:id="@+id/ratingIconSearchImageView"
             android:layout_width="@dimen/small_icon_width"
             android:layout_height="@dimen/small_icon_height"
             android:layout_marginTop="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:src="@mipmap/ic_star_curved_solid"
             android:tint="@color/gold"
-            app:layout_constraintStart_toStartOf="@+id/locationIconDiscoverImageView"
-            app:layout_constraintTop_toBottomOf="@+id/locationIconDiscoverImageView" />
+            app:layout_constraintStart_toStartOf="@+id/locationIconSearchImageView"
+            app:layout_constraintTop_toBottomOf="@+id/locationIconSearchImageView" />
 
         <TextView
             android:id="@+id/ratingValueSearchTextView"
@@ -108,7 +122,7 @@
             android:layout_marginTop="@dimen/small_margin"
             android:text="0.0"
             android:textSize="@dimen/text_size_body"
-            app:layout_constraintBottom_toBottomOf="@id/ratingIconDiscoverImageView"
+            app:layout_constraintBottom_toBottomOf="@id/ratingIconSearchImageView"
             app:layout_constraintStart_toStartOf="@+id/locationSearchTextView"
             app:layout_constraintTop_toBottomOf="@+id/locationSearchTextView" />
 

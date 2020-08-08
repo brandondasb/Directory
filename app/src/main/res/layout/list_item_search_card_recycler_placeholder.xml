@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchCardViewLayout"
+    android:layout_width="match_parent"
+
+    android:layout_height="@dimen/card_standard_height"
+    android:layout_margin="@dimen/standard_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardMaxElevation="@dimen/card_max_elevation">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_auto_start="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/standard_padding">
+
+            <ImageView
+                android:id="@+id/imageSearchImageView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/placeholder"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/likeSearchImageView"
+                android:layout_width="@dimen/standard_icon_width"
+                android:layout_height="@dimen/standard_icon_height"
+                android:background="@color/placeholder"
+                android:src="@mipmap/ic_heart_curvy_outline"
+                android:textColor="@color/placeholder"
+                android:tint="@color/placeholder"
+                app:layout_constraintEnd_toEndOf="@id/imageSearchImageView"
+                app:layout_constraintTop_toTopOf="@id/imageSearchImageView" />
+
+            <TextView
+                android:id="@+id/nameSearchTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_margin"
+                android:layout_marginStart="164dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/placeholder"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imageSearchImageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageSearchImageView"
+                tools:text="business name" />
+
+            <ImageView
+                android:id="@+id/verifiedImageView"
+                android:layout_width="@dimen/standard_icon_height"
+                android:layout_height="@dimen/standard_icon_height"
+                android:background="@color/placeholder"
+                android:padding="@dimen/small_padding"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_checkmark"
+                android:textColor="@color/placeholder"
+                android:tint="@color/placeholder"
+                app:layout_constraintBottom_toBottomOf="@+id/nameSearchTextView"
+                app:layout_constraintStart_toEndOf="@+id/nameSearchTextView"
+                app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
+
+            <TextView
+                android:id="@+id/shortDescriptionSearchTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@color/placeholder"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:singleLine="true"
+                android:text="this is a sample short description about the listing, highlights what the business does and what it has to offereref"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintStart_toStartOf="@+id/nameSearchTextView"
+                app:layout_constraintTop_toBottomOf="@id/nameSearchTextView" />
+
+            <TextView
+                android:id="@+id/categorySearchTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:background="@color/placeholder"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintStart_toStartOf="@+id/nameSearchTextView"
+                app:layout_constraintTop_toBottomOf="@id/shortDescriptionSearchTextView"
+                tools:text="category" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/locationIconSearchImageView"
+                android:layout_width="@dimen/small_icon_width"
+                android:layout_height="@dimen/small_icon_height"
+                android:background="@color/placeholder"
+                android:src="@mipmap/ic_location_pin_curvy_outline"
+                android:textColor="@color/placeholder"
+                android:tint="@color/placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/locationSearchTextView"
+                app:layout_constraintStart_toStartOf="@+id/categorySearchTextView"
+                app:layout_constraintTop_toTopOf="@+id/locationSearchTextView" />
+
+            <TextView
+                android:id="@+id/locationSearchTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:background="@color/placeholder"
+                android:text="@string/distance"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintStart_toEndOf="@+id/locationIconSearchImageView"
+                app:layout_constraintTop_toBottomOf="@id/categorySearchTextView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ratingIconSearchImageView"
+                android:layout_width="@dimen/small_icon_width"
+                android:layout_height="@dimen/small_icon_height"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:background="@color/placeholder"
+                android:src="@mipmap/ic_star_curved_solid"
+                android:textColor="@color/placeholder"
+                android:tint="@color/placeholder"
+                app:layout_constraintStart_toStartOf="@+id/locationIconSearchImageView"
+                app:layout_constraintTop_toBottomOf="@+id/locationIconSearchImageView" />
+
+            <TextView
+                android:id="@+id/ratingValueSearchTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:background="@color/placeholder"
+                android:text="0.0"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintBottom_toBottomOf="@id/ratingIconSearchImageView"
+                app:layout_constraintStart_toStartOf="@+id/locationSearchTextView"
+                app:layout_constraintTop_toBottomOf="@+id/locationSearchTextView" />
+
+            <TextView
+                android:id="@+id/numberOfReviewsSearchTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/small_margin"
+                android:background="@color/placeholder"
+                android:text="(0 reviews)"
+                android:textColor="@color/placeholder"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
+                app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
+                app:layout_constraintTop_toTopOf="@+id/ratingValueSearchTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.cardview.widget.CardView>

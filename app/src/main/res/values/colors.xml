@@ -5,6 +5,7 @@
     <color name="primaryLightColor">#ebbc90</color>
     <color name="primaryDarkColor">#855f37</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="placeholder">#C0C0C0</color>
 
     <color name="secondaryColor">#7020da</color>
     <color name="secondaryLightColor">#a755ff</color>
