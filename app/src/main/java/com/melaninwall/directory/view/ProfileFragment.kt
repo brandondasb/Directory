@@ -3,12 +3,24 @@ package com.melaninwall.directory.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.melaninwall.directory.R
-import com.melaninwall.directory.model.BottomNavState
 
-class ProfileFragment : BaseNavFragment() {
+class ProfileFragment : Fragment() {
+    companion object {
+
+        fun create(): ProfileFragment {
+
+            val fragment = ProfileFragment()
+
+            fragment
+
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,7 +32,6 @@ class ProfileFragment : BaseNavFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavListener.updateBottomNav(BottomNavState.PROFILE)
 
         setHasOptionsMenu(true)
 

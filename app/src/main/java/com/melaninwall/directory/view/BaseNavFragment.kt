@@ -4,10 +4,11 @@ import androidx.fragment.app.Fragment
 import com.melaninwall.directory.interfaces.UpdateBottomNavListener
 
 abstract class BaseNavFragment : Fragment() {
-    lateinit var bottomNavListener: UpdateBottomNavListener
+    companion object {
+        fun create(updateBottomNavListener: UpdateBottomNavListener) {
+      //      this.bottomNavListener = updateBottomNavListener
+        }
 
-    fun setUpdateBottomNavListener(updateBottomNavListener: UpdateBottomNavListener) {
-        this.bottomNavListener = updateBottomNavListener
-
+//        lateinit var bottomNavListener: UpdateBottomNavListener
     }
 }

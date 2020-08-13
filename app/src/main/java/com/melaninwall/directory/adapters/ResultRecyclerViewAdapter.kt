@@ -12,7 +12,8 @@ import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.viewHolder.LoadingSearchViewHolder
 import com.melaninwall.directory.viewHolder.SearchListingViewHolder
 
-class SearchRecyclerViewAdapter(
+// using same view holder as search
+class ResultRecyclerViewAdapter(
     private val context: Context,
     private val itemListener: ListItemListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,6 +30,7 @@ class SearchRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return if (viewType == LOADING_CELL_TYPE) {
@@ -38,7 +40,8 @@ class SearchRecyclerViewAdapter(
         } else {
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.list_item_search_card_recycler, viewGroup, false)
-            SearchListingViewHolder(view)
+            SearchListingViewHolder(view) // could have it own in the future if data need to be different
+
         }
     }
 
@@ -50,22 +53,15 @@ class SearchRecyclerViewAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (isLoading) {
-            LOADING_CELL_TYPE
-        } else {
-            LISTING_CELL
-        }
-    }
-
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == LISTING_CELL) {
-
             val searchFragmentViewHolder = viewHolder as SearchListingViewHolder
             val listingItemData = itemDataList[position]
+
             searchFragmentViewHolder.homeRootLayout.setOnClickListener {
                 itemListener.launchFragment(listingItemData)
             }
+
             val name = listingItemData.name
             val image = listingItemData.image
             val city = listingItemData.city
@@ -84,6 +80,10 @@ class SearchRecyclerViewAdapter(
             Glide.with(context)
                 .load(image).centerCrop()
                 .into(searchFragmentViewHolder.image)
+
         }
     }
+
+
 }
+

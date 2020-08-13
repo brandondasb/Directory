@@ -4,10 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.melaninwall.directory.R
-import com.melaninwall.directory.model.BottomNavState
 
-class ThirdFragment : BaseNavFragment() {
+
+class ThirdFragment : Fragment() {
+    companion object {
+
+        fun create(): ThirdFragment {
+            val bundle = Bundle()
+            val fragment = ThirdFragment()
+            fragment.arguments = bundle
+            fragment
+
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,7 +30,6 @@ class ThirdFragment : BaseNavFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bottomNavListener.updateBottomNav(BottomNavState.THIRD)
     }
 
 }

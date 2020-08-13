@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                 findViewById(R.id.bottom_navigation)
             when (currentState) {
                 BottomNavState.HOME -> bottomNavigationView.selectedItemId = R.id.nav_home
-                BottomNavState.DISCOVER -> bottomNavigationView.selectedItemId = R.id.nav_discover
+                // BottomNavState.DISCOVER -> bottomNavigationView.selectedItemId = R.id.nav_discover
                 BottomNavState.THIRD -> bottomNavigationView.selectedItemId = R.id.nav_inbox
                 BottomNavState.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
                 BottomNavState.SEARCH -> bottomNavigationView.selectedItemId = R.id.nav_search
@@ -49,11 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(navlistener)
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
         val homeFragment = HomeFragment()
-        homeFragment.setUpdateBottomNavListener(bottomNavListener)
 
         fragmentTransaction.replace(R.id.fragment_container, homeFragment).commit()
     }
@@ -66,50 +65,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* create listener for the bottom Nav*/
-    private val navlistener: BottomNavigationView.OnNavigationItemSelectedListener =
-        object : BottomNavigationView.OnNavigationItemSelectedListener {
-            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                val selectedFragment: BaseNavFragment? = when (item.itemId) {
-                    R.id.nav_home -> if (fragmentManager.findFragmentByTag(HomeFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(HomeFragment::class.java.name) as? HomeFragment
-                    } else {
-                        HomeFragment() // I had to make the home class Open
-                    }
-                    R.id.nav_search -> if (fragmentManager.findFragmentByTag(SearchFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(SearchFragment::class.java.name) as? SearchFragment
-                    } else {
-                        SearchFragment()
-                    }
-                    R.id.nav_inbox -> if (fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) as? ThirdFragment
-                    } else {
-                        ThirdFragment()
-                    }
-                    R.id.nav_profile -> if (fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) != null) {
-                        fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) as? ProfileFragment
-                    } else {
-                        ProfileFragment()
-                    }
-                    else -> {
-                        null
-                    }
-                }
+    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
-                selectedFragment?.let { fragment ->
-                    fragment.setUpdateBottomNavListener(bottomNavListener)
-                    return loadFragment(fragment)
-                } ?: run {
-                    return false
-                }
+        val selectedFragment: Fragment? = when (item.itemId) {
+            R.id.nav_home -> if (fragmentManager.findFragmentByTag(HomeFragment::class.java.name) != null) {
+                fragmentManager.findFragmentByTag(HomeFragment::class.java.name) as? HomeFragment
+            } else {
+                HomeFragment()
             }
-
+            R.id.nav_search -> if (fragmentManager.findFragmentByTag(SearchFragment::class.java.name) != null) {
+                fragmentManager.findFragmentByTag(SearchFragment::class.java.name) as? SearchFragment
+            } else {
+                SearchFragment()
+            }
+            R.id.nav_inbox -> if (fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) != null) {
+                fragmentManager.findFragmentByTag(ThirdFragment::class.java.name) as? ThirdFragment
+            } else {
+                ThirdFragment()
+            }
+            R.id.nav_profile -> if (fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) != null) {
+                fragmentManager.findFragmentByTag(ProfileFragment::class.java.name) as? ProfileFragment
+            } else {
+                ProfileFragment()
+            }
+            else -> {
+                null
+            }
         }
+
+        selectedFragment?.let { fragment ->
+            return@OnNavigationItemSelectedListener loadFragment(fragment)
+        } ?: run {
+            return@OnNavigationItemSelectedListener false
+        }
+    }
 
     fun onGroupItemClick(item: MenuItem) {
 
     }
 
-    private fun loadFragment(fragment: BaseNavFragment): Boolean {
+    private fun loadFragment(fragment: Fragment): Boolean {
         if (isNotInBackStack(fragmentManager, fragment)) {
             supportFragmentManager
                 .beginTransaction()
@@ -121,7 +116,6 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-
     /*confirm if there is anything in the backstack Queue*/
     fun isNotInBackStack(
         fragmentManager: FragmentManager,

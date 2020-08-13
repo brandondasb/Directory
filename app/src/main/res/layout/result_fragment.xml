@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/search_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_fragment_parent_recyclerView"
+        android:id="@+id/result_fragment_parent_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingLeft="@dimen/standard_margin"

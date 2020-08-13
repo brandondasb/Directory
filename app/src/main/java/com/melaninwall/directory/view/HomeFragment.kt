@@ -4,18 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.melaninwall.directory.R
+import com.melaninwall.directory.StorageKey
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
 import com.melaninwall.directory.interfaces.HomeListingCallback
-import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
 import com.melaninwall.directory.repo.Repo
+import java.io.Serializable
 
 
-class HomeFragment : BaseNavFragment() {
+class HomeFragment : Fragment() {
+    companion object {
+
+        fun create(itemDataList: List<ListingItemData>) {
+            val bundle = Bundle()
+            bundle.putSerializable(
+                StorageKey.FILTERED_LIST.toString(),
+                itemDataList as Serializable
+            )
+            val fragment = HomeFragment()
+            fragment.arguments = bundle
+            fragment
+            //return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +43,6 @@ class HomeFragment : BaseNavFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavListener.updateBottomNav(BottomNavState.HOME)
         val listingRepo = Repo()
         val homeFragmentPresenter = HomeFragmentPresenter(view, fragmentManager)
 
@@ -38,6 +53,7 @@ class HomeFragment : BaseNavFragment() {
             }
         }
         listingRepo.getAllListing(homeListingCallback)
+
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
             override fun loadItemDataCategory(
                 listingItemData: List<ListingItemData>,

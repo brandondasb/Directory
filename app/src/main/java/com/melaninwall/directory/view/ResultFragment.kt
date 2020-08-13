@@ -4,21 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.melaninwall.directory.R
 import com.melaninwall.directory.StorageKey
-import com.melaninwall.directory.interfaces.CategoryListingCallBack
-import com.melaninwall.directory.interfaces.SearchListingCallBack
-import com.melaninwall.directory.model.BottomNavState
-import com.melaninwall.directory.model.Category
+
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.ResultFragmentPresenter
-import com.melaninwall.directory.presenter.SearchFragmentPresenter
-import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
 
-class ResultFragment : BaseNavFragment() {
+class ResultFragment : Fragment() {
     companion object {
-        fun create(filteredList: List<ListingItemData>): ResultFragment{
+        fun create(filteredList: List<ListingItemData>): ResultFragment {
             val bundle = Bundle()
             bundle.putSerializable(
                 StorageKey.FILTERED_LIST.toString(),
@@ -41,6 +37,12 @@ class ResultFragment : BaseNavFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val resultFragmentPresenter = ResultFragmentPresenter(view, fragmentManager)
+        val list =  this.arguments?.getSerializable(StorageKey.FILTERED_LIST.toString())
+        val filteredList = list as List<ListingItemData>?
+        filteredList.let { list ->
+            if (list != null)
+                resultFragmentPresenter.loadItemData(list)
+        }
     }
 }

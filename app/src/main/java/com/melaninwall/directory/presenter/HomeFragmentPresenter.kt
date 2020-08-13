@@ -16,6 +16,7 @@ import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.repo.Repo
 import com.melaninwall.directory.view.SearchFragment
 import com.melaninwall.directory.view.ListingFragment
+import com.melaninwall.directory.view.ResultFragment
 import com.melaninwall.directory.viewHolder.HomeFragmentViewHolder
 
 class HomeFragmentPresenter(itemView: View, private var fragmentManager: FragmentManager?) :
@@ -83,10 +84,10 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     }
 
     override fun loadItemDataCategory(
-        listingItemData: List<ListingItemData>,
+        listingItemDataList: List<ListingItemData>,
         categoryItemData: List<Category>
     ) {
-        categoryRecyclerViewAdapter.setData(listingItemData, categoryItemData)
+        categoryRecyclerViewAdapter.setData(listingItemDataList, categoryItemData)
     }
 
     override fun launchFragment(itemData: ListingItemData) {
@@ -101,7 +102,7 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
 
     override fun launchCategoryFragment(itemData: List<ListingItemData>, selectedCategory: String) {
         val filteredByCategoryList = itemData.filter { it.category.contains(selectedCategory) }
-        val listingFragment = SearchFragment.create(filteredByCategoryList)
+        val listingFragment = ResultFragment.create(filteredByCategoryList)
 
         fragmentManager?.beginTransaction()
             ?.replace(R.id.fragment_container, listingFragment)
@@ -110,28 +111,28 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     }
 
     // TODO on textChange coming soon
-    fun setAfterTextChangeListener() {
-        if (textWatcher != null) {
-            homeFragmentViewHolder.homeSearchEditText.removeTextChangedListener(textWatcher)
-        }
-
-        textWatcher = object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if (s.toString().isNotEmpty()) {
-                    //TODO  setAdapter(s.toString())
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        }
-    }
+//    fun setAfterTextChangeListener() {
+//        if (textWatcher != null) {
+//            homeFragmentViewHolder.homeSearchEditText.removeTextChangedListener(textWatcher)
+//        }
+//
+//        textWatcher = object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {
+//                if (s.toString().isNotEmpty()) {
+//                    //TODO  setAdapter(s.toString())
+//                }
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//        }
+//    }
 
 }
 

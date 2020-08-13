@@ -6,10 +6,10 @@
         android:icon="@mipmap/ic_home"
 
         android:title="@string/home" />
-    <item
-        android:id="@+id/nav_discover"
-        android:icon="@mipmap/ic_location_pin_curvy_outline"
-        android:title="@string/discover" />
+<!--    <item-->
+<!--        android:id="@+id/nav_discover"-->
+<!--        android:icon="@mipmap/ic_location_pin_curvy_outline"-->
+<!--        android:title="@string/discover" />-->
     <item
         android:id="@+id/nav_search"
         android:icon="@mipmap/ic_search"
