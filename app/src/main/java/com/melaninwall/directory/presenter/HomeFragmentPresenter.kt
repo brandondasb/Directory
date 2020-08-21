@@ -18,6 +18,7 @@ import com.melaninwall.directory.view.SearchFragment
 import com.melaninwall.directory.view.ListingFragment
 import com.melaninwall.directory.view.ResultFragment
 import com.melaninwall.directory.viewHolder.HomeFragmentViewHolder
+import com.melaninwall.directory.viewHolder.ResultFragmentViewHolder
 
 class HomeFragmentPresenter(itemView: View, private var fragmentManager: FragmentManager?) :
     HomeListingCallback, CategoryListingCallBack,
@@ -34,7 +35,7 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     private var listingItemGroupAdapter = ListingItemGroupAdapter(context, this)
 
     init {
-        homeFragmentViewHolder.homeSearchEditText.addTextChangedListener(textWatcher)
+        //  homeFragmentViewHolder.homeSearchEditText.addTextChangedListener(textWatcher)
 
         //configureSpinner()
         val linearLayoutManager =
@@ -43,20 +44,19 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         homeFragmentViewHolder.homeRecyclerView.layoutManager = linearLayoutManager
-        homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
-
         listingItemGroupAdapter = ListingItemGroupAdapter(context, this)
         homeFragmentViewHolder.homeRecyclerView.adapter = listingItemGroupAdapter
 
+        homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
         categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
         homeFragmentViewHolder.categoryRecyclerView.adapter = categoryRecyclerViewAdapter
 
         val searchKeyword = homeFragmentViewHolder.homeSearchEditText.text.toString()
 
-        homeFragmentViewHolder.homeSearchButton.setOnClickListener { searchButton ->
-            firebaseListingSearch(searchKeyword)
-
-        }
+//        homeFragmentViewHolder.homeSearchButton.setOnClickListener { searchButton ->
+//           // firebaseListingSearch(searchKeyword)
+//
+//        }
     }
 
 

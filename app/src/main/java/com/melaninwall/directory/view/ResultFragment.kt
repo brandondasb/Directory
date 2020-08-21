@@ -10,6 +10,7 @@ import com.melaninwall.directory.StorageKey
 
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.ResultFragmentPresenter
+import kotlinx.android.synthetic.main.result_fragment.*
 import java.io.Serializable
 
 class ResultFragment : Fragment() {
@@ -22,7 +23,6 @@ class ResultFragment : Fragment() {
             )
             val fragment = ResultFragment()
             fragment.arguments = bundle
-
 
             return fragment
         }
@@ -38,11 +38,15 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val resultFragmentPresenter = ResultFragmentPresenter(view, fragmentManager)
-        val list =  this.arguments?.getSerializable(StorageKey.FILTERED_LIST.toString())
+        val list = this.arguments?.getSerializable(StorageKey.FILTERED_LIST.toString())
         val filteredList = list as List<ListingItemData>?
-        filteredList.let { list ->
-            if (list != null)
-                resultFragmentPresenter.loadItemData(list)
+        if (filteredList.isNullOrEmpty()) {
+            resultFragmentResultsTextview.visibility = View.VISIBLE
+        } else {
+            resultFragmentResultsTextview.visibility = View.GONE
+        }
+        filteredList?.let { list ->
+            resultFragmentPresenter.loadItemData(list)
         }
     }
 }

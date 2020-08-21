@@ -33,7 +33,7 @@ class CategoryRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return categoryList!!.size //TODO  double bang might be needed
+        return categoryList!!.size //TODO  double bang might not be needed
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {

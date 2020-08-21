@@ -98,7 +98,7 @@ class Repo {
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###QueryData", "${document.data}-> ${document.data.values}")
+                        Log.d("###GETQueryData", "${document.data}-> ${document.data.values}")
                     }
                     var filterListingList = collection.toObjects(ListingItemData::class.java)
                 }
@@ -111,14 +111,17 @@ class Repo {
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
-                        Log.d("###OMG", "${document.data}-> ${document.data.values}")
+                        Log.d("###GETCATEGORY", "${document.data}-> ${document.data.values}")
                         document.data
                     }
                     var collection = collection.toObjects(Category::class.java)
 
                     categoryListingCallBack.loadItemDataCategory(collecitonListingItem, collection)
                 } else {
-                    Log.d("###", "Null, can't find any documents in collection => $collection")
+                    Log.d(
+                        "###GETCATEGORY",
+                        "Null, can't find any documents in collection => $collection"
+                    )
                 }
             }
             .addOnFailureListener { exception ->

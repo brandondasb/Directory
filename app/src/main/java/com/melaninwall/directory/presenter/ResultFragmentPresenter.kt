@@ -25,6 +25,7 @@ class ResultFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
         resultFragmentViewHolder.resultRecyclerView.layoutManager = linearLayoutManager
 
         resultRecyclerViewAdapter = ResultRecyclerViewAdapter(context, this)
+        resultFragmentViewHolder.resultRecyclerView.adapter = resultRecyclerViewAdapter
     }
 
     override fun loadItemData(listingItemData: List<ListingItemData>) {

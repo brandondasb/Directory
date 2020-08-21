@@ -63,7 +63,7 @@ class ListingRecyclerViewAdapter(
         if (getItemViewType(position) == LISTING_CELL) {
 
             val listingViewHolder: ListingViewHolder = viewHolder as ListingViewHolder
-            val listing: ListingItemData = this.listingData!![position]
+            val listing: ListingItemData = this.listingData!![position] //TODO Double bang
 
             listingViewHolder.homeRootLayout.setOnClickListener {
                 itemListener.launchFragment(listing)

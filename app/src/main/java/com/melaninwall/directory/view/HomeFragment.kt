@@ -55,10 +55,7 @@ class HomeFragment : Fragment() {
         listingRepo.getAllListing(homeListingCallback)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(
-                listingItemData: List<ListingItemData>,
-                categoryItemData: List<Category>
-            ) {
+            override fun loadItemDataCategory(listingItemData: List<ListingItemData>,categoryItemData: List<Category>) {
                 homeFragmentPresenter.loadItemDataCategory(listingItemData, categoryItemData)
             }
         }

@@ -40,7 +40,7 @@ class ResultRecyclerViewAdapter(
         } else {
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.list_item_search_card_recycler, viewGroup, false)
-            SearchListingViewHolder(view) // could have it own in the future if data need to be different
+            SearchListingViewHolder(view) // could have its own in the future if data need to be different
 
         }
     }
@@ -50,6 +50,14 @@ class ResultRecyclerViewAdapter(
             LOADING_CELL_COUNT
         } else {
             itemDataList.size
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (isLoading) {
+            LOADING_CELL_TYPE
+        } else {
+            LISTING_CELL
         }
     }
 
