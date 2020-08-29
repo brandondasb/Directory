@@ -56,12 +56,11 @@ class SearchFragment : Fragment() {
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
             override fun loadItemDataCategory(
-                listingItemData: List<ListingItemData>,
                 categoryItemData: List<Category>
             ) {
-                searchFragmentPresenter.loadItemDataCategory(listingItemData, categoryItemData)
+                searchFragmentPresenter.loadItemDataCategory(categoryItemData)
             }
         }
-        listingRepo.getCategoryData(categoryListingCallBack)
+        listingRepo.getCategoryListing(categoryListingCallBack)
     }
 }

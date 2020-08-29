@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
 import com.melaninwall.directory.interfaces.ListItemCategoryListener
 import com.melaninwall.directory.model.Category
-import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.viewHolder.CategoryViewHolder
 
 class CategoryRecyclerViewAdapter(
@@ -17,11 +16,9 @@ class CategoryRecyclerViewAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var categoryList: List<Category>? = listOf()
-    private var listingItemDataList: List<ListingItemData>? = listOf()
 
-    fun setData(listingItemData: List<ListingItemData>,dataList: List<Category>?) {
+    fun setData(dataList: List<Category>?) {
         this.categoryList = dataList
-        this.listingItemDataList = listingItemData
         notifyDataSetChanged()
     }
 
@@ -40,10 +37,9 @@ class CategoryRecyclerViewAdapter(
         val categoryViewHolder: CategoryViewHolder = viewHolder as CategoryViewHolder
         val categoryList: Category =
             this.categoryList!![position] // TODO double bang again, cmon son
-        val listingItemData:List<ListingItemData> = this.listingItemDataList!!
 
         categoryViewHolder.homeRootLayout.setOnClickListener {
-            itemListener.launchCategoryFragment(listingItemData,categoryList.name)
+            itemListener.launchCategoryFragment(categoryList.name)
         }
 
         val name = categoryList.name

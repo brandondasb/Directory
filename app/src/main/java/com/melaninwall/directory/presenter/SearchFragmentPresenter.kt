@@ -45,10 +45,9 @@ class SearchFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
     }
 
     override fun loadItemDataCategory(
-        listingItemData: List<ListingItemData>,
         categoryItemData: List<Category>
     ) {
-        categoryRecyclerViewAdapter.setData(listingItemData, categoryItemData)
+        categoryRecyclerViewAdapter.setData(categoryItemData)
     }
 
     override fun launchFragment(itemData: ListingItemData) {
@@ -62,7 +61,6 @@ class SearchFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
     }
 
     override fun launchCategoryFragment(
-        listingItem: List<ListingItemData>,
         itemDataCategory: String
     ) {
 

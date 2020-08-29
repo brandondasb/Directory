@@ -84,10 +84,9 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     }
 
     override fun loadItemDataCategory(
-        listingItemDataList: List<ListingItemData>,
         categoryItemData: List<Category>
     ) {
-        categoryRecyclerViewAdapter.setData(listingItemDataList, categoryItemData)
+        categoryRecyclerViewAdapter.setData(categoryItemData)
     }
 
     override fun launchFragment(itemData: ListingItemData) {
@@ -100,14 +99,19 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
             ?.commitAllowingStateLoss()
     }
 
-    override fun launchCategoryFragment(itemData: List<ListingItemData>, selectedCategory: String) {
-        val filteredByCategoryList = itemData.filter { it.category.contains(selectedCategory) }
-        val listingFragment = ResultFragment.create(filteredByCategoryList)
+    override fun launchCategoryFragment(selectedCategory: String) {
+        repo = Repo()
+        val callBackack = object : SearchListingCallBack {
+            override fun loadItemData(listingItemData: List<ListingItemData>) {
+                val resultFragment = ResultFragment.create(listingItemData)
 
-        fragmentManager?.beginTransaction()
-            ?.replace(R.id.fragment_container, listingFragment)
-            ?.addToBackStack(SearchFragment::class.java.simpleName)
-            ?.commitAllowingStateLoss()
+                fragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragment_container, resultFragment)
+                    ?.addToBackStack(SearchFragment::class.java.simpleName)
+                    ?.commitAllowingStateLoss()
+            }
+        }
+        repo.getListingPerCategory(callBackack, selectedCategory)
     }
 
     // TODO on textChange coming soon

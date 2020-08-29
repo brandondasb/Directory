@@ -27,9 +27,8 @@ class Repo {
     private val imagesRef = storageRef.child("images")
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
-    var collecitonListingItem: MutableList<ListingItemData> = mutableListOf()
 
-    fun getAllListing(homeListingCallback: HomeListingCallback) {
+    fun getPersonalisedListing(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION.get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -37,20 +36,20 @@ class Repo {
                         Log.d("###ALLLISTING", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                    collecitonListingItem = collection.toObjects(ListingItemData::class.java)
+                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
 
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
-                                "Header title", collecitonListingItem
+                                "Recently added", collectionListingItem
                             ), ItemGroup(
-                                "Heading2", collecitonListingItem
+                                "Near you", collectionListingItem
 
                             ), ItemGroup(
-                                "Heading 3", collecitonListingItem
+                                "Heading 3", collectionListingItem
 
                             ), ItemGroup(
-                                "heading 4", collecitonListingItem
+                                "heading 4", collectionListingItem
                             )
                         )
                     )
@@ -105,7 +104,7 @@ class Repo {
             }
     }
 
-    fun getCategoryData(categoryListingCallBack: CategoryListingCallBack) {
+    fun getCategoryListing(categoryListingCallBack: CategoryListingCallBack) {
         CATEGORY_COLLECTION
             .get()
             .addOnSuccessListener { collection ->
@@ -114,9 +113,9 @@ class Repo {
                         Log.d("###GETCATEGORY", "${document.data}-> ${document.data.values}")
                         document.data
                     }
-                    var collection = collection.toObjects(Category::class.java)
+                    val categoryCollection = collection.toObjects(Category::class.java)
 
-                    categoryListingCallBack.loadItemDataCategory(collecitonListingItem, collection)
+                    categoryListingCallBack.loadItemDataCategory(categoryCollection)
                 } else {
                     Log.d(
                         "###GETCATEGORY",
@@ -129,7 +128,6 @@ class Repo {
             }
     }
 
-    //TODO test
     fun getListingPerCategory(
         searchListingCallBack: SearchListingCallBack,
         selectedCategory: String

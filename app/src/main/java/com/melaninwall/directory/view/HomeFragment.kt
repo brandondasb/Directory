@@ -52,14 +52,14 @@ class HomeFragment : Fragment() {
                 homeFragmentPresenter.loadAllGroupItemdata(listingItemGroupData)
             }
         }
-        listingRepo.getAllListing(homeListingCallback)
+        listingRepo.getPersonalisedListing(homeListingCallback)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(listingItemData: List<ListingItemData>,categoryItemData: List<Category>) {
-                homeFragmentPresenter.loadItemDataCategory(listingItemData, categoryItemData)
+            override fun loadItemDataCategory(categoryItemData: List<Category>) {
+                homeFragmentPresenter.loadItemDataCategory( categoryItemData)
             }
         }
-        listingRepo.getCategoryData(categoryListingCallBack)
+        listingRepo.getCategoryListing(categoryListingCallBack)
     }
 
     //listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
