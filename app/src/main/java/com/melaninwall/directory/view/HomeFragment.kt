@@ -52,7 +52,8 @@ class HomeFragment : Fragment() {
                 homeFragmentPresenter.loadAllGroupItemdata(listingItemGroupData)
             }
         }
-        listingRepo.getPersonalisedListing(homeListingCallback)
+       listingRepo.getPersonalisedListing(homeListingCallback)
+        listingRepo.getRecentlyAdded(homeListingCallback)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
             override fun loadItemDataCategory(categoryItemData: List<Category>) {

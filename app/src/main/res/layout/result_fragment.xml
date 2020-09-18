@@ -7,12 +7,7 @@
     android:background="@color/whitish"
     android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 <!--    <include-->
 <!--        layout="@layout/category_recycler"-->
@@ -21,7 +16,7 @@
 <!--        app:layout_constraintTop_toBottomOf="@id/search_bar" />-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/result_fragment_parent_recyclerView"
+        android:id="@+id/resultFragmentParentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingLeft="@dimen/standard_margin"
@@ -29,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/resultFragmentResultsTextview" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/resultFragmentResultsTextview"
@@ -37,5 +32,5 @@
         android:layout_height="wrap_content"
         android:text="@string/no_results_found"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/search_bar" />
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

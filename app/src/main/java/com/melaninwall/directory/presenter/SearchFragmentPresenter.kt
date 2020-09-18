@@ -1,17 +1,17 @@
 package com.melaninwall.directory.presenter
 
+import android.text.TextWatcher
 import android.view.View
+import android.widget.SearchView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.melaninwall.directory.R
 import com.melaninwall.directory.adapters.CategoryRecyclerViewAdapter
 import com.melaninwall.directory.adapters.SearchRecyclerViewAdapter
-import com.melaninwall.directory.interfaces.CategoryListingCallBack
-import com.melaninwall.directory.interfaces.ListItemCategoryListener
-import com.melaninwall.directory.interfaces.ListItemListener
-import com.melaninwall.directory.interfaces.SearchListingCallBack
+import com.melaninwall.directory.interfaces.*
 import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.repo.Repo
 import com.melaninwall.directory.view.ListingFragment
 import com.melaninwall.directory.viewHolder.SearchFragmentViewHolder
 
@@ -20,6 +20,8 @@ class SearchFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
     ListItemListener, ListItemCategoryListener {
 
     private val context = itemView.context
+    private val repo = Repo()
+    private var textWatcher: TextWatcher? = null
 
     private val searchFragmentViewHolder = SearchFragmentViewHolder(itemView)
 
@@ -66,4 +68,11 @@ class SearchFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
 
     }
 
+    fun setAdapter(listingItemData: QuerySearchCallback, stringQuery: String) {
+        repo.getQueryData(listingItemData, stringQuery)
+    }
+
+    // TODO on textChange coming soon
+    fun setAfterTextChangeListener() {
+    }
 }

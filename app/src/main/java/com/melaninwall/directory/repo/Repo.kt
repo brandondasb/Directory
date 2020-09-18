@@ -7,6 +7,7 @@ import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
@@ -28,9 +29,17 @@ class Repo {
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
+    //TODO This function is doing a lot,, it should return one list instead of 4 list for the homeView list
+
     fun getPersonalisedListing(homeListingCallback: HomeListingCallback) {
-        BASE_COLLECTION.get()
-            .addOnSuccessListener { collection ->
+        //test builder pattern
+        //  val test = ListBuilder.Builder().collection(BASE_COLLECTION).limit(1)
+        //  test.build()
+
+        BASE_COLLECTION
+            .limit(10)
+            .get()
+            ?.addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
                         Log.d("###ALLLISTING", " ${collection.query} -> ${document.data.values}")
@@ -40,17 +49,7 @@ class Repo {
 
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
-                            ItemGroup(
-                                "Recently added", collectionListingItem
-                            ), ItemGroup(
-                                "Near you", collectionListingItem
-
-                            ), ItemGroup(
-                                "Heading 3", collectionListingItem
-
-                            ), ItemGroup(
-                                "heading 4", collectionListingItem
-                            )
+                            ItemGroup("test header", collectionListingItem)
                         )
                     )
                 } else {
@@ -60,10 +59,93 @@ class Repo {
                     )
                 }
             }
-            .addOnFailureListener { exception ->
+            ?.addOnFailureListener { exception ->
                 Log.d("###ALLLISTING", "Error getting documents.", exception)
             }
     }
+
+    /* RETURN LIST OF NearYou ADDITION*/
+    fun getNearYou(homeListingCallback: HomeListingCallback) {
+        BASE_COLLECTION
+            .orderBy("dateAdded", Query.Direction.DESCENDING)
+            .limit(10)
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
+                        document.data
+                    }
+                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
+                    homeListingCallback.loadAllGroupItemdata(
+                        listOf(ItemGroup("Recently added", collectionListingItem))
+                    )
+                } else {
+                    Log.d(
+                        "###RECENT",
+                        "Null, can't find any documents in collection => $collection"
+                    )
+                }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d("###ALLLISTING", "Error getting documents.", exception)
+            }
+    }
+
+    /* RETURN LIST OF getMostLiked ADDITION WIP*/
+    fun getMostLiked(homeListingCallback: HomeListingCallback) {
+        BASE_COLLECTION
+            .orderBy("dateAdded", Query.Direction.DESCENDING)
+            .limit(10)
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
+                        document.data
+                    }
+                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
+                } else {
+                    Log.d(
+                        "###RECENT",
+                        "Null, can't find any documents in collection => $collection"
+                    )
+                }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d("###ALLLISTING", "Error getting documents.", exception)
+            }
+    }/* RETURN LIST OF LATEST ADDITION*/
+
+    fun getRecentlyAdded(homeListingCallback: HomeListingCallback) {
+        BASE_COLLECTION
+            .orderBy("dateAdded", Query.Direction.DESCENDING)
+            .limit(10)
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
+                        document.data
+                    }
+                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
+                    homeListingCallback.loadAllGroupItemdata(
+                        listOf(
+                            ItemGroup("recently added", collectionListingItem)
+                        )
+                    )
+                } else {
+                    Log.d(
+                        "###RECENT",
+                        "Null, can't find any documents in collection => $collection"
+                    )
+                }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d("###ALLLISTING", "Error getting documents.", exception)
+            }
+    }
+
 
     fun getSearchData(searchListingCallback: SearchListingCallBack) {
 
@@ -92,6 +174,11 @@ class Repo {
 
     fun getQueryData(querySearchCallback: QuerySearchCallback, searchText: String) {
         var nameListing = String
+        //  \uf8ff this means end can hvave the search string with any character after it
+//        BASE_COLLECTION.orderBy("name")
+////            .startAfter(searchText)
+////            .endAt("$searchText\uf8ff").get().addOnCompleteListener {  }
+
         BASE_COLLECTION.whereIn("name", listOf(nameListing))
             .get()
             .addOnSuccessListener { collection ->
@@ -148,18 +235,19 @@ class Repo {
     }
 
     fun recentlyAdded(homeListingCallback: HomeListingCallback) {
+//        var collectionList:List<ListingItemData>? = null
         BASE_COLLECTION.orderBy("dateAdded")
 
             .get()
             .addOnSuccessListener { collection ->
 
                 if (collection != null) {
-                    var collection = collection.toObjects(ListingItemData::class.java)
+                   val  collectionList = collection.toObjects(ListingItemData::class.java)
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
                                 "RecentlyAdded",
-                                collection
+                                collectionList
                             )
                         )
                     )
@@ -170,8 +258,13 @@ class Repo {
 
             }
 
-
     }
+
+
+//    fun buildHomeScreen():ItemGroup{
+//recentlyAdded()
+//
+//    }
 
     /*example on how to make changes write to server*/
     fun addListing() {

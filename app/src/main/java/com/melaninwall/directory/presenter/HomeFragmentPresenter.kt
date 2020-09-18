@@ -51,19 +51,6 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
         categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
         homeFragmentViewHolder.categoryRecyclerView.adapter = categoryRecyclerViewAdapter
 
-        val searchKeyword = homeFragmentViewHolder.homeSearchEditText.text.toString()
-
-//        homeFragmentViewHolder.homeSearchButton.setOnClickListener { searchButton ->
-//           // firebaseListingSearch(searchKeyword)
-//
-//        }
-    }
-
-
-    private fun firebaseListingSearch(keyWord: String) {
-        //setAdapter(keyWord)
-
-
     }
 
     fun setAdapter(listingItemData: QuerySearchCallback, stringQuery: String) {

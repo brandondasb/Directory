@@ -2,6 +2,7 @@ package com.melaninwall.directory.presenter
 
 import android.view.View
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.melaninwall.directory.R
 import com.melaninwall.directory.adapters.ResultRecyclerViewAdapter
@@ -17,7 +18,6 @@ class ResultFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
 
     private val resultFragmentViewHolder = ResultFragmentViewHolder(itemView)
     private var resultRecyclerViewAdapter = ResultRecyclerViewAdapter(context, this)
-
 
     init {
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

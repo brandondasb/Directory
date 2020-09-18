@@ -12,7 +12,5 @@ class HomeFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     var homeRecyclerView: RecyclerView = view.findViewById(R.id.homeFragmentParentRecyclerView)
     var categoryRecyclerView: RecyclerView = view.findViewById(R.id.category_recyclerView)
-    val homeSearchEditText: EditText = view.findViewById(R.id.homeSearchEditText)
-    val homeSearchButton: ImageButton = view.findViewById(R.id.homeSearchButton )
 
 }

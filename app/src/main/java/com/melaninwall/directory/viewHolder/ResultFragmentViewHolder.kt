@@ -6,6 +6,6 @@ import com.melaninwall.directory.R
 
 class ResultFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var resultRecyclerView: RecyclerView =
-        view.findViewById(R.id.result_fragment_parent_recyclerView)
+        view.findViewById(R.id.resultFragmentParentRecyclerView)
 
 }
