@@ -29,17 +29,37 @@ class Repo {
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
-    //TODO This function is doing a lot,, it should return one list instead of 4 list for the homeView list
+    //TODO This getPersonalisedListing function is doing a lot,it was creating multiple list of ITEM Group.
+    // I say F that, Single responsible principle. I would like to have multiple function each creating a filtered list(on the server)
+    //
+/*attempt to user the builder Pattern
+*
+* the plan is to be able to pass the result of each function
+* (ListingItemData or return an ItemGroup(including the title of the list)
+* linked building one of the horizontal view
+*   for the home screen to the new builder pattern.
+* the build pattern should then create the list of ItemGroups
+* by using that .build()
+* I feel like I am close but when i run this  getNearYou() function , Looks like it returns
+*  an empty list before going through the FIRESTORE STUFF.
+* SO it returns empty list to the builders.
+* */
+    fun buildHomeScreen(homeListingCallback: HomeListingCallback) {
+        val homeScreenListView = HomeListViewBuilder.Builder()
+            .recent(getNearYou())
+            .nearMe(getNearYou())
+            .hundred(getNearYou())
+            .build()
+
+        homeListingCallback.loadAllGroupItemdata(homeScreenListView)
+
+    }
 
     fun getPersonalisedListing(homeListingCallback: HomeListingCallback) {
-        //test builder pattern
-        //  val test = ListBuilder.Builder().collection(BASE_COLLECTION).limit(1)
-        //  test.build()
-
         BASE_COLLECTION
             .limit(10)
             .get()
-            ?.addOnSuccessListener { collection ->
+            .addOnSuccessListener { collection ->
                 if (collection != null) {
                     for (document in collection) {
                         Log.d("###ALLLISTING", " ${collection.query} -> ${document.data.values}")
@@ -59,13 +79,14 @@ class Repo {
                     )
                 }
             }
-            ?.addOnFailureListener { exception ->
+            .addOnFailureListener { exception ->
                 Log.d("###ALLLISTING", "Error getting documents.", exception)
             }
     }
 
     /* RETURN LIST OF NearYou ADDITION*/
-    fun getNearYou(homeListingCallback: HomeListingCallback) {
+    fun getNearYou(): MutableList<ListingItemData> {
+        var collectionListingItem = mutableListOf<ListingItemData>()
         BASE_COLLECTION
             .orderBy("dateAdded", Query.Direction.DESCENDING)
             .limit(10)
@@ -76,20 +97,28 @@ class Repo {
                         Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
-                    homeListingCallback.loadAllGroupItemdata(
-                        listOf(ItemGroup("Recently added", collectionListingItem))
-                    )
+                   collectionListingItem = collection.toObjects(ListingItemData::class.java)
+
+
                 } else {
                     Log.d(
-                        "###RECENT",
+                        "###OHSHITRECENT",
                         "Null, can't find any documents in collection => $collection"
                     )
                 }
             }
-            ?.addOnFailureListener { exception ->
-                Log.d("###ALLLISTING", "Error getting documents.", exception)
+            .addOnFailureListener { exception ->
+                Log.d("###RECENT", "Error getting documents.", exception)
+
             }
+
+
+         if (collectionListingItem.isEmpty() ) {
+            collectionListingItem = arrayListOf()
+          return  collectionListingItem
+        } else {
+          return  collectionListingItem
+        }
     }
 
     /* RETURN LIST OF getMostLiked ADDITION WIP*/
@@ -242,7 +271,7 @@ class Repo {
             .addOnSuccessListener { collection ->
 
                 if (collection != null) {
-                   val  collectionList = collection.toObjects(ListingItemData::class.java)
+                    val collectionList = collection.toObjects(ListingItemData::class.java)
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
                             ItemGroup(
