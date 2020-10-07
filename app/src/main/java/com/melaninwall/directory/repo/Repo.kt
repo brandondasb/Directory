@@ -3,17 +3,18 @@ package com.melaninwall.directory.repo
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.melaninwall.directory.interfaces.HomeListingCallback
-import com.melaninwall.directory.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
+import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.interfaces.QuerySearchCallback
 import com.melaninwall.directory.interfaces.SearchListingCallBack
 import com.melaninwall.directory.model.*
+import com.melaninwall.directory.view.MainActivity
 
 class Repo {
     private val FIRESTORE = FirebaseFirestore.getInstance()
@@ -29,30 +30,27 @@ class Repo {
     var rootRef: StorageReference = storageRef.root // point to root folder
     var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
-    //TODO This getPersonalisedListing function is doing a lot,it was creating multiple list of ITEM Group.
-    // I say F that, Single responsible principle. I would like to have multiple function each creating a filtered list(on the server)
-    //
-/*attempt to user the builder Pattern
-*
-* the plan is to be able to pass the result of each function
-* (ListingItemData or return an ItemGroup(including the title of the list)
-* linked building one of the horizontal view
-*   for the home screen to the new builder pattern.
-* the build pattern should then create the list of ItemGroups
-* by using that .build()
-* I feel like I am close but when i run this  getNearYou() function , Looks like it returns
-*  an empty list before going through the FIRESTORE STUFF.
-* SO it returns empty list to the builders.
-* */
-    fun buildHomeScreen(homeListingCallback: HomeListingCallback) {
-        val homeScreenListView = HomeListViewBuilder.Builder()
-            .recent(getNearYou())
-            .nearMe(getNearYou())
-            .hundred(getNearYou())
-            .build()
+    /*attempt to user the builder Pattern
+    * the plan is to be able to pass the result of each function
+    * current result:
+    *  each function makes a separate call
+    * added all function map and linked them to an Enum key to represent them.
+    * added a buildHomeScreen which takes my Builder class HomeListRequest
+    * used a foreach to invoke ea session when called.
+    * now all list are called by using the builder directly.
+    * at the moment its returning whichever call comes back first from the network call
+    ** * */
+    private val sectionMap: Map<HomeScreenSection, (HomeListingCallback) -> Unit> = mapOf(
+        HomeScreenSection.RECENT to ::getRecentlyAdded,
+        HomeScreenSection.NEARME to ::getNearYou,
+        HomeScreenSection.HUNDRED to ::getRecentlyAdded
+    )
 
-        homeListingCallback.loadAllGroupItemdata(homeScreenListView)
-
+    fun buildHomeScreen(homeListRequest: HomeListRequest) {
+        val callback = homeListRequest.callback
+        homeListRequest.section.forEach {
+            sectionMap[it]?.invoke(callback)
+        }
     }
 
     fun getPersonalisedListing(homeListingCallback: HomeListingCallback) {
@@ -69,7 +67,7 @@ class Repo {
 
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
-                            ItemGroup("test header", collectionListingItem)
+                            ItemGroup("For you", collectionListingItem)
                         )
                     )
                 } else {
@@ -85,8 +83,7 @@ class Repo {
     }
 
     /* RETURN LIST OF NearYou ADDITION*/
-    fun getNearYou(): MutableList<ListingItemData> {
-        var collectionListingItem = mutableListOf<ListingItemData>()
+    fun getNearYou(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION
             .orderBy("dateAdded", Query.Direction.DESCENDING)
             .limit(10)
@@ -97,8 +94,12 @@ class Repo {
                         Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                   collectionListingItem = collection.toObjects(ListingItemData::class.java)
-
+                    val collectionListingItem = mutableList(collection)
+                    homeListingCallback.loadAllGroupItemdata(
+                        listOf(
+                            ItemGroup("Near Me", collectionListingItem)
+                        )
+                    )
 
                 } else {
                     Log.d(
@@ -109,17 +110,12 @@ class Repo {
             }
             .addOnFailureListener { exception ->
                 Log.d("###RECENT", "Error getting documents.", exception)
-
             }
-
-
-         if (collectionListingItem.isEmpty() ) {
-            collectionListingItem = arrayListOf()
-          return  collectionListingItem
-        } else {
-          return  collectionListingItem
-        }
     }
+
+    //we testing around here
+    private fun mutableList(collection: QuerySnapshot): MutableList<ListingItemData> =
+        collection.toObjects(ListingItemData::class.java)
 
     /* RETURN LIST OF getMostLiked ADDITION WIP*/
     fun getMostLiked(homeListingCallback: HomeListingCallback) {

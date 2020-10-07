@@ -13,6 +13,7 @@ import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
+import com.melaninwall.directory.repo.HomeListRequest
 import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
 
@@ -52,12 +53,14 @@ class HomeFragment : Fragment() {
                 homeFragmentPresenter.loadAllGroupItemdata(listingItemGroupData)
             }
         }
-      // listingRepo.getPersonalisedListing(homeListingCallback)
-       listingRepo.buildHomeScreen(homeListingCallback)
+        //  listingRepo.getPersonalisedListing(homeListingCallback)
+        val homeListRequest =
+            HomeListRequest.Builder(homeListingCallback).recent().nearMe().hundred().build()
+        listingRepo.buildHomeScreen(homeListRequest)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
             override fun loadItemDataCategory(categoryItemData: List<Category>) {
-                homeFragmentPresenter.loadItemDataCategory( categoryItemData)
+                homeFragmentPresenter.loadItemDataCategory(categoryItemData)
             }
         }
         listingRepo.getCategoryListing(categoryListingCallBack)

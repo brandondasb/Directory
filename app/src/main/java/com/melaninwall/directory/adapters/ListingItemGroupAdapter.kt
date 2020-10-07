@@ -15,12 +15,11 @@ class ListingItemGroupAdapter(
     private val listener: ListItemListener
 ) :
     RecyclerView.Adapter<ListingItemGroupViewHolder>() {
-
-    private var dataGroupList: List<ItemGroup> = listOf()
+    private var dataGroupList: MutableList<ItemGroup> = mutableListOf()
     private val viewPool = RecyclerView.RecycledViewPool()
 
     fun setData(dataGroupList: List<ItemGroup>) {
-        this.dataGroupList = dataGroupList
+        this.dataGroupList.addAll(dataGroupList)
         notifyDataSetChanged()
     }
 
@@ -40,7 +39,6 @@ class ListingItemGroupAdapter(
         parentViewHolder.itemTitle.text = listingDataGroup.headerTitle
         var itemData = listingDataGroup.listItem
 
-
         var itemListAdapter = ListingRecyclerViewAdapter(context, itemListener = listener)
 
         itemListAdapter.setData(itemData)
@@ -56,7 +54,6 @@ class ListingItemGroupAdapter(
             parentViewHolder.groupRecyclerView.isNestedScrollingEnabled = false
             setRecycledViewPool(viewPool)
         }
-
     }
 
     override fun getItemCount(): Int {
