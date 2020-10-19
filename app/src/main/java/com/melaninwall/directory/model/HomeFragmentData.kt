@@ -2,5 +2,5 @@ package com.melaninwall.directory.model
 
 data class HomeFragmentData(
 
-    val listItem: List<ItemGroup>
+    val listItem: List<Section>
 )

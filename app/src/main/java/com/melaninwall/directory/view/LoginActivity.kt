@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
     }
 
-    private fun performSignIn() {
+    fun performSignIn() {
         val email = email_login.text.toString()
         val password = password_log_in.text.toString()
 

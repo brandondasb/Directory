@@ -1,24 +1,21 @@
 package com.melaninwall.directory.presenter;
 
-import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.FragmentManager
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.melaninwall.directory.R
 import com.melaninwall.directory.adapters.CategoryRecyclerViewAdapter
-import com.melaninwall.directory.adapters.ListingItemGroupAdapter
+import com.melaninwall.directory.adapters.ListingSectionAdapter
 import com.melaninwall.directory.interfaces.*
 import com.melaninwall.directory.model.Category
-import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.model.Section
 import com.melaninwall.directory.repo.Repo
-import com.melaninwall.directory.view.SearchFragment
 import com.melaninwall.directory.view.ListingFragment
 import com.melaninwall.directory.view.ResultFragment
+import com.melaninwall.directory.view.SearchFragment
 import com.melaninwall.directory.viewHolder.HomeFragmentViewHolder
-import com.melaninwall.directory.viewHolder.ResultFragmentViewHolder
 
 class HomeFragmentPresenter(itemView: View, private var fragmentManager: FragmentManager?) :
     HomeListingCallback, CategoryListingCallBack,
@@ -32,7 +29,7 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
 
     private val homeFragmentViewHolder = HomeFragmentViewHolder(itemView)
     private var categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
-    private var listingItemGroupAdapter = ListingItemGroupAdapter(context, this)
+    private var listingItemGroupAdapter = ListingSectionAdapter(context, this)
 
     init {
         //  homeFragmentViewHolder.homeSearchEditText.addTextChangedListener(textWatcher)
@@ -44,7 +41,7 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         homeFragmentViewHolder.homeRecyclerView.layoutManager = linearLayoutManager
-        listingItemGroupAdapter = ListingItemGroupAdapter(context, this)
+        listingItemGroupAdapter = ListingSectionAdapter(context, this)
         homeFragmentViewHolder.homeRecyclerView.adapter = listingItemGroupAdapter
 
         homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
@@ -65,9 +62,9 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
         TODO("not implemented") //An Adapter, with a setData function that takes list and search criteria
     }
 
-    override fun loadAllGroupItemdata(listingItemGroupData: List<ItemGroup>) {
+    override fun loadAllGroupItemdata(listingSectionData: List<Section>) {
 
-        listingItemGroupAdapter.setData(listingItemGroupData)
+        listingItemGroupAdapter.setData(listingSectionData)
     }
 
     override fun loadItemDataCategory(
@@ -100,30 +97,5 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
         }
         repo.getListingPerCategory(callBackack, selectedCategory)
     }
-
-    // TODO on textChange coming soon
-//    fun setAfterTextChangeListener() {
-//        if (textWatcher != null) {
-//            homeFragmentViewHolder.homeSearchEditText.removeTextChangedListener(textWatcher)
-//        }
-//
-//        textWatcher = object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//                if (s.toString().isNotEmpty()) {
-//                    //TODO  setAdapter(s.toString())
-//                }
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//        }
-//    }
-
 }
 

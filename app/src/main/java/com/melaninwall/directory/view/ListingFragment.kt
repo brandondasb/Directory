@@ -45,14 +45,12 @@ class ListingFragment : Fragment() {
         val tabLayout = detailsTablayout
         viewPager = view.findViewById(R.id.itemDetailPager)
         //TODO Pager test
-        val arrayList = arrayListOf<String>()
-        arrayList.add("About")
-        arrayList.add("Gallery")
-        arrayList.add("Contact")
-        arrayList.add("reviews")
-        //  demoCollectionPagerAdapter = ListingPagerAdapter(childFragmentManager)
-        //  viewPager = view.findViewById(R.id.itemDetailPager)
-        //  viewPager.adapter = demoCollectionPagerAdapter
+        val arrayList = listOf(
+            "About",
+            "Gallery", "Contact", "reviews"
+        )
+
+
         listingPagerAdapter = ListingPagerAdapter(childFragmentManager)
         //ini main fragment
         listingPagerAdapter.addFragment(Tab1Fragment(), arrayList[0])

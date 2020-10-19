@@ -8,7 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
 import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.interfaces.QuerySearchCallback
@@ -20,30 +19,16 @@ class Repo {
     private val FIRESTORE = FirebaseFirestore.getInstance()
     private val BASE_COLLECTION = FIRESTORE.collection("listing")
     private val CATEGORY_COLLECTION = FIRESTORE.collection("category")
-    private val HOME_CONTAINER_COLLECTION = FIRESTORE.collection("home_container")
     private val USER_COLLECTION = FIRESTORE.collection("/users/")
-    private val BASE_DOCUMENT = FIRESTORE.document("")
     //ref to storage service for file
     private val STORAGE = FirebaseStorage.getInstance()
     private val storageRef = STORAGE.reference
     private val imagesRef = storageRef.child("images")
-    var rootRef: StorageReference = storageRef.root // point to root folder
-    var rootParent: StorageReference? = imagesRef.parent // point to parent of image folder
 
-    /*attempt to user the builder Pattern
-    * the plan is to be able to pass the result of each function
-    * current result:
-    *  each function makes a separate call
-    * added all function map and linked them to an Enum key to represent them.
-    * added a buildHomeScreen which takes my Builder class HomeListRequest
-    * used a foreach to invoke ea session when called.
-    * now all list are called by using the builder directly.
-    * at the moment its returning whichever call comes back first from the network call
-    ** * */
     private val sectionMap: Map<HomeScreenSection, (HomeListingCallback) -> Unit> = mapOf(
         HomeScreenSection.RECENT to ::getRecentlyAdded,
         HomeScreenSection.NEARME to ::getNearYou,
-        HomeScreenSection.HUNDRED to ::getRecentlyAdded
+        HomeScreenSection.HUNDRED to ::getTopHundred
     )
 
     fun buildHomeScreen(homeListRequest: HomeListRequest) {
@@ -53,7 +38,7 @@ class Repo {
         }
     }
 
-    fun getPersonalisedListing(homeListingCallback: HomeListingCallback) {
+    fun getTopHundred(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION
             .limit(10)
             .get()
@@ -67,7 +52,7 @@ class Repo {
 
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
-                            ItemGroup("For you", collectionListingItem)
+                            Section(HomeScreenSection.HUNDRED, collectionListingItem)
                         )
                     )
                 } else {
@@ -97,7 +82,7 @@ class Repo {
                     val collectionListingItem = mutableList(collection)
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
-                            ItemGroup("Near Me", collectionListingItem)
+                            Section(HomeScreenSection.NEARME, collectionListingItem)
                         )
                     )
 
@@ -156,7 +141,7 @@ class Repo {
                     val collectionListingItem = collection.toObjects(ListingItemData::class.java)
                     homeListingCallback.loadAllGroupItemdata(
                         listOf(
-                            ItemGroup("recently added", collectionListingItem)
+                            Section(HomeScreenSection.RECENT, collectionListingItem)
                         )
                     )
                 } else {
@@ -199,10 +184,10 @@ class Repo {
 
     fun getQueryData(querySearchCallback: QuerySearchCallback, searchText: String) {
         var nameListing = String
-        //  \uf8ff this means end can hvave the search string with any character after it
-//        BASE_COLLECTION.orderBy("name")
-////            .startAfter(searchText)
-////            .endAt("$searchText\uf8ff").get().addOnCompleteListener {  }
+        //  \uf8ff this means end can have the search string with any character after it
+        // BASE_COLLECTION.orderBy("name")
+        //  .startAfter(searchText)
+        //  .endAt("$searchText\uf8ff").get().addOnCompleteListener {  }
 
         BASE_COLLECTION.whereIn("name", listOf(nameListing))
             .get()
@@ -258,38 +243,6 @@ class Repo {
 
             }
     }
-
-    fun recentlyAdded(homeListingCallback: HomeListingCallback) {
-//        var collectionList:List<ListingItemData>? = null
-        BASE_COLLECTION.orderBy("dateAdded")
-
-            .get()
-            .addOnSuccessListener { collection ->
-
-                if (collection != null) {
-                    val collectionList = collection.toObjects(ListingItemData::class.java)
-                    homeListingCallback.loadAllGroupItemdata(
-                        listOf(
-                            ItemGroup(
-                                "RecentlyAdded",
-                                collectionList
-                            )
-                        )
-                    )
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("###GETLISTING", "Error getting documents.", exception)
-
-            }
-
-    }
-
-
-//    fun buildHomeScreen():ItemGroup{
-//recentlyAdded()
-//
-//    }
 
     /*example on how to make changes write to server*/
     fun addListing() {

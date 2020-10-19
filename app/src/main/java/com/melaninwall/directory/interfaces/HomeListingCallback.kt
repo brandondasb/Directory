@@ -1,8 +1,8 @@
 package com.melaninwall.directory.interfaces
 
-import com.melaninwall.directory.model.ItemGroup
+import com.melaninwall.directory.model.Section
 
 interface HomeListingCallback {
-    fun loadAllGroupItemdata(listingItemGroupData: List<ItemGroup>)
+    fun loadAllGroupItemdata(listingSectionData: List<Section>)
 
 }

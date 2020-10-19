@@ -3,8 +3,10 @@ package com.melaninwall.directory.repo
 
 import com.melaninwall.directory.interfaces.HomeListingCallback
 
-enum class HomeScreenSection {
-    RECENT, NEARME, HUNDRED
+enum class HomeScreenSection(val title: String) {
+    RECENT("Recent"),
+    HUNDRED("Top 100"),
+    NEARME("Near Me"),
 }
 
 class HomeListRequest private constructor(builder: Builder) {
@@ -26,12 +28,10 @@ class HomeListRequest private constructor(builder: Builder) {
 
         fun nearMe() = apply {
             sections.add(HomeScreenSection.NEARME)
-
         }
 
         fun hundred() = apply {
             sections.add(HomeScreenSection.HUNDRED)
-
         }
 
         fun build() = HomeListRequest(this)

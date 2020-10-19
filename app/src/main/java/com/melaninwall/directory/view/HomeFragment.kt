@@ -10,8 +10,8 @@ import com.melaninwall.directory.StorageKey
 import com.melaninwall.directory.interfaces.CategoryListingCallBack
 import com.melaninwall.directory.interfaces.HomeListingCallback
 import com.melaninwall.directory.model.Category
-import com.melaninwall.directory.model.ItemGroup
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.model.Section
 import com.melaninwall.directory.presenter.HomeFragmentPresenter
 import com.melaninwall.directory.repo.HomeListRequest
 import com.melaninwall.directory.repo.Repo
@@ -49,8 +49,8 @@ class HomeFragment : Fragment() {
 
         val homeListingCallback: HomeListingCallback = object : HomeListingCallback {
 
-            override fun loadAllGroupItemdata(listingItemGroupData: List<ItemGroup>) {
-                homeFragmentPresenter.loadAllGroupItemdata(listingItemGroupData)
+            override fun loadAllGroupItemdata(listingSectionData: List<Section>) {
+                homeFragmentPresenter.loadAllGroupItemdata(listingSectionData)
             }
         }
         //  listingRepo.getPersonalisedListing(homeListingCallback)
