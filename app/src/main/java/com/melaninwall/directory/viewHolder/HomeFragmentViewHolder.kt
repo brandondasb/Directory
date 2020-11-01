@@ -1,8 +1,6 @@
 package com.melaninwall.directory.viewHolder
 
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.melaninwall.directory.R
 

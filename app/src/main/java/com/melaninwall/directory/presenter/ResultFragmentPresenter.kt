@@ -2,7 +2,6 @@ package com.melaninwall.directory.presenter
 
 import android.view.View
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.melaninwall.directory.R
 import com.melaninwall.directory.adapters.ResultRecyclerViewAdapter
@@ -23,19 +22,18 @@ class ResultFragmentPresenter(itemView: View, var fragmentManager: FragmentManag
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         resultFragmentViewHolder.resultRecyclerView.layoutManager = linearLayoutManager
-
         resultRecyclerViewAdapter = ResultRecyclerViewAdapter(context, this)
         resultFragmentViewHolder.resultRecyclerView.adapter = resultRecyclerViewAdapter
     }
 
     override fun loadItemData(listingItemData: List<ListingItemData>) {
         resultRecyclerViewAdapter.setData(listingItemData)
+        resultFragmentViewHolder.resultRecyclerView.startLayoutAnimation()
     }
 
     override fun launchFragment(itemData: ListingItemData) {
         val listingFragment = ListingFragment.create(itemData)
 
-        // lunch frag
         fragmentManager?.beginTransaction()
             ?.replace(R.id.fragment_container, listingFragment)
             ?.addToBackStack(ListingFragment::class.java.simpleName)

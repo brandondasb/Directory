@@ -10,7 +10,8 @@ class HomeListRequestTest {
     @Test
     fun `when Builder receives 1 list, then creates builder with one list`() {
         val callback = object : HomeListingCallback {
-            override fun loadAllGroupItemdata(listingSectionData: List<Section>) {
+            override fun loadSectionList(listingSectionData: List<Section>) {
+                TODO("Not yet implemented")
             }
         }
         val builder = HomeListRequest.Builder(callback).hundred().build()

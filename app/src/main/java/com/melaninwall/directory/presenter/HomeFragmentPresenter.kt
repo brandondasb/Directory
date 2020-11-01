@@ -35,18 +35,20 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
         //  homeFragmentViewHolder.homeSearchEditText.addTextChangedListener(textWatcher)
 
         //configureSpinner()
-        val linearLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val horizontalLinearLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
+        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
+        homeFragmentViewHolder.categoryRecyclerView.adapter = categoryRecyclerViewAdapter
+        homeFragmentViewHolder.categoryRecyclerView.startLayoutAnimation()
 
         homeFragmentViewHolder.homeRecyclerView.layoutManager = linearLayoutManager
         listingItemGroupAdapter = ListingSectionAdapter(context, this)
         homeFragmentViewHolder.homeRecyclerView.adapter = listingItemGroupAdapter
 
-        homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
-        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
-        homeFragmentViewHolder.categoryRecyclerView.adapter = categoryRecyclerViewAdapter
 
     }
 
@@ -62,15 +64,14 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
         TODO("not implemented") //An Adapter, with a setData function that takes list and search criteria
     }
 
-    override fun loadAllGroupItemdata(listingSectionData: List<Section>) {
-
-        listingItemGroupAdapter.setData(listingSectionData)
+    override fun loadCategoryList(categoryList: List<Category>) {
+        categoryRecyclerViewAdapter.setData(categoryList)
+        homeFragmentViewHolder.categoryRecyclerView.startLayoutAnimation()
     }
 
-    override fun loadItemDataCategory(
-        categoryItemData: List<Category>
-    ) {
-        categoryRecyclerViewAdapter.setData(categoryItemData)
+    override fun loadSectionList(listingSectionData: List<Section>) {
+        listingItemGroupAdapter.setData(listingSectionData)
+        homeFragmentViewHolder.homeRecyclerView.startLayoutAnimation()
     }
 
     override fun launchFragment(itemData: ListingItemData) {

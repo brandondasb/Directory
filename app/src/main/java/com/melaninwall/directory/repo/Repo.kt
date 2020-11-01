@@ -20,6 +20,7 @@ class Repo {
     private val BASE_COLLECTION = FIRESTORE.collection("listing")
     private val CATEGORY_COLLECTION = FIRESTORE.collection("category")
     private val USER_COLLECTION = FIRESTORE.collection("/users/")
+
     //ref to storage service for file
     private val STORAGE = FirebaseStorage.getInstance()
     private val storageRef = STORAGE.reference
@@ -38,9 +39,8 @@ class Repo {
         }
     }
 
-    fun getTopHundred(homeListingCallback: HomeListingCallback) {
+    private fun getTopHundred(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION
-            .limit(10)
             .get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -48,9 +48,9 @@ class Repo {
                         Log.d("###ALLLISTING", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
+                    val collectionListingItem = mutableList(collection)
 
-                    homeListingCallback.loadAllGroupItemdata(
+                    homeListingCallback.loadSectionList(
                         listOf(
                             Section(HomeScreenSection.HUNDRED, collectionListingItem)
                         )
@@ -68,10 +68,9 @@ class Repo {
     }
 
     /* RETURN LIST OF NearYou ADDITION*/
-    fun getNearYou(homeListingCallback: HomeListingCallback) {
+    private fun getNearYou(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION
             .orderBy("dateAdded", Query.Direction.DESCENDING)
-            .limit(10)
             .get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -80,7 +79,7 @@ class Repo {
                         document.data
                     }
                     val collectionListingItem = mutableList(collection)
-                    homeListingCallback.loadAllGroupItemdata(
+                    homeListingCallback.loadSectionList(
                         listOf(
                             Section(HomeScreenSection.NEARME, collectionListingItem)
                         )
@@ -98,39 +97,9 @@ class Repo {
             }
     }
 
-    //we testing around here
-    private fun mutableList(collection: QuerySnapshot): MutableList<ListingItemData> =
-        collection.toObjects(ListingItemData::class.java)
-
-    /* RETURN LIST OF getMostLiked ADDITION WIP*/
-    fun getMostLiked(homeListingCallback: HomeListingCallback) {
-        BASE_COLLECTION
-            .orderBy("dateAdded", Query.Direction.DESCENDING)
-            .limit(10)
-            .get()
-            .addOnSuccessListener { collection ->
-                if (collection != null) {
-                    for (document in collection) {
-                        Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
-                        document.data
-                    }
-                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
-                } else {
-                    Log.d(
-                        "###RECENT",
-                        "Null, can't find any documents in collection => $collection"
-                    )
-                }
-            }
-            ?.addOnFailureListener { exception ->
-                Log.d("###ALLLISTING", "Error getting documents.", exception)
-            }
-    }/* RETURN LIST OF LATEST ADDITION*/
-
     fun getRecentlyAdded(homeListingCallback: HomeListingCallback) {
         BASE_COLLECTION
             .orderBy("dateAdded", Query.Direction.DESCENDING)
-            .limit(10)
             .get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
@@ -138,8 +107,8 @@ class Repo {
                         Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
                         document.data
                     }
-                    val collectionListingItem = collection.toObjects(ListingItemData::class.java)
-                    homeListingCallback.loadAllGroupItemdata(
+                    val collectionListingItem = mutableList(collection)
+                    homeListingCallback.loadSectionList(
                         listOf(
                             Section(HomeScreenSection.RECENT, collectionListingItem)
                         )
@@ -156,6 +125,32 @@ class Repo {
             }
     }
 
+    /* RETURN LIST OF getMostLiked ADDITION WIP*/
+    fun getMostLiked(homeListingCallback: HomeListingCallback) {
+        BASE_COLLECTION
+            .orderBy("dateAdded", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { collection ->
+                if (collection != null) {
+                    for (document in collection) {
+                        Log.d("###RECENT", " ${collection.query} -> ${document.data.values}")
+                        document.data
+                    }
+                    val collectionListingItem = mutableList(collection)
+                } else {
+                    Log.d(
+                        "###RECENT",
+                        "Null, can't find any documents in collection => $collection"
+                    )
+                }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d("###ALLLISTING", "Error getting documents.", exception)
+            }
+    }/* RETURN LIST OF LATEST ADDITION*/
+
+    private fun mutableList(collection: QuerySnapshot): MutableList<ListingItemData> =
+        collection.toObjects(ListingItemData::class.java)
 
     fun getSearchData(searchListingCallback: SearchListingCallBack) {
 
@@ -212,7 +207,7 @@ class Repo {
                     }
                     val categoryCollection = collection.toObjects(Category::class.java)
 
-                    categoryListingCallBack.loadItemDataCategory(categoryCollection)
+                    categoryListingCallBack.loadCategoryList(categoryCollection)
                 } else {
                     Log.d(
                         "###GETCATEGORY",

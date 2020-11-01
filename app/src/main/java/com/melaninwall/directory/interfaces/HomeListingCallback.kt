@@ -3,6 +3,6 @@ package com.melaninwall.directory.interfaces
 import com.melaninwall.directory.model.Section
 
 interface HomeListingCallback {
-    fun loadAllGroupItemdata(listingSectionData: List<Section>)
+    fun loadSectionList(listingSectionData: List<Section>)
 
 }

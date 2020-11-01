@@ -23,7 +23,6 @@ class ListingFragment : Fragment() {
             bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), listing)
             val fragment = ListingFragment()
             fragment.arguments = bundle
-
             return fragment
         }
     }
@@ -52,7 +51,7 @@ class ListingFragment : Fragment() {
 
 
         listingPagerAdapter = ListingPagerAdapter(childFragmentManager)
-        //ini main fragment
+        //init main fragment
         listingPagerAdapter.addFragment(Tab1Fragment(), arrayList[0])
         listingPagerAdapter.addFragment(Tab2Fragment(), arrayList[1])
         listingPagerAdapter.addFragment(Tab2Fragment(), arrayList[2])
@@ -64,11 +63,7 @@ class ListingFragment : Fragment() {
         val bundle = arguments
         var data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
-        if (data == null) {
-            //
-        } else {
-            ListingFragmentPresenter(view).loadUi(data)
-        }
+        ListingFragmentPresenter(view).loadUi(data)
     }
 }
 

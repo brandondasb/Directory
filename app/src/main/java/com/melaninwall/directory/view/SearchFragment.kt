@@ -6,9 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.melaninwall.directory.R
 import com.melaninwall.directory.StorageKey
-import com.melaninwall.directory.interfaces.CategoryListingCallBack
 import com.melaninwall.directory.interfaces.SearchListingCallBack
-import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.SearchFragmentPresenter
 import com.melaninwall.directory.repo.Repo
@@ -53,15 +51,6 @@ class SearchFragment : Fragment() {
             }
         }
         listingRepo.getSearchData(searchListingCallback)
-
-        val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(
-                categoryItemData: List<Category>
-            ) {
-                searchFragmentPresenter.loadItemDataCategory(categoryItemData)
-            }
-        }
-        listingRepo.getCategoryListing(categoryListingCallBack)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

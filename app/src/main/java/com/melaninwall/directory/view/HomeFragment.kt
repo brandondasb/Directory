@@ -17,7 +17,6 @@ import com.melaninwall.directory.repo.HomeListRequest
 import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
 
-
 class HomeFragment : Fragment() {
     companion object {
 
@@ -49,18 +48,17 @@ class HomeFragment : Fragment() {
 
         val homeListingCallback: HomeListingCallback = object : HomeListingCallback {
 
-            override fun loadAllGroupItemdata(listingSectionData: List<Section>) {
-                homeFragmentPresenter.loadAllGroupItemdata(listingSectionData)
+            override fun loadSectionList(listingSectionData: List<Section>) {
+                homeFragmentPresenter.loadSectionList(listingSectionData)
             }
         }
-        //  listingRepo.getPersonalisedListing(homeListingCallback)
         val homeListRequest =
             HomeListRequest.Builder(homeListingCallback).recent().nearMe().hundred().build()
         listingRepo.buildHomeScreen(homeListRequest)
 
         val categoryListingCallBack: CategoryListingCallBack = object : CategoryListingCallBack {
-            override fun loadItemDataCategory(categoryItemData: List<Category>) {
-                homeFragmentPresenter.loadItemDataCategory(categoryItemData)
+            override fun loadCategoryList(categoryList: List<Category>) {
+                homeFragmentPresenter.loadCategoryList(categoryList)
             }
         }
         listingRepo.getCategoryListing(categoryListingCallBack)

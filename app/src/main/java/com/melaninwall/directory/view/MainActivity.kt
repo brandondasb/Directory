@@ -1,18 +1,18 @@
 package com.melaninwall.directory.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.melaninwall.directory.R
+import com.melaninwall.directory.interfaces.LoginAuthorisation
 import com.melaninwall.directory.interfaces.UpdateBottomNavListener
 import com.melaninwall.directory.model.BottomNavState
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.melaninwall.directory.interfaces.LoginAuthorisation
 import com.melaninwall.directory.repo.AuthEmailPassword
 
 
@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +59,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflate: MenuInflater = menuInflater
         inflate.inflate(R.menu.menu_bottom_navigation_bar, menu)
-        return return false
-
+        return false
     }
 
     /* create listener for the bottom Nav*/
@@ -116,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
     /*confirm if there is anything in the backstack Queue*/
     fun isNotInBackStack(
         fragmentManager: FragmentManager,
