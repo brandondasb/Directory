@@ -1,9 +1,8 @@
 package com.melaninwall.directory.presenter
 
 import com.melaninwall.directory.model.ListingItemData
+import org.junit.Assert.assertTrue
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 
 class SearchFragmentPresenterTest {
@@ -11,7 +10,7 @@ class SearchFragmentPresenterTest {
     //   private val fragmentManager = FragmentManager()
     @Before
     fun setUp() {
-        //discoverFragmentPresenter = DiscoverFragmentPresenter(View,FragmentManager)
+        //   searchFragmentPresenter = SearchFragmentPresenter(View, FragmentManager)
     }
 
     @Test

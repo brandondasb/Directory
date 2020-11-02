@@ -19,7 +19,7 @@ class HomeScreenSorterTest {
 
     @Test
     fun `when we're passed an empty list, then return an empty list`() {
-        val result = homeScreenSorter.sortList(emptyList()) {}
+        val result = homeScreenSorter.sortList(emptyList()) { 1 }
 
         assertTrue(result.isEmpty())
     }
@@ -34,11 +34,8 @@ class HomeScreenSorterTest {
         )
         val result = homeScreenSorter.sortList(
             sectionList
-        ) {}
-
-
+        ) { 1 }
         assertEquals(sectionList, result)
-
     }
 
     @Test
@@ -55,7 +52,7 @@ class HomeScreenSorterTest {
 
         val result = homeScreenSorter.sortList(
             sectionList
-        ) {}
+        ) { section: Section -> section.type }
         assertEquals(sectionList, result)
     }
 
@@ -82,7 +79,6 @@ class HomeScreenSorterTest {
                 emptyList<ListingItemData>().toMutableList()
             )
         )
-
         assertEquals(expected, actual)
     }
 

@@ -30,7 +30,6 @@ class ResultRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return if (viewType == LOADING_CELL_TYPE) {
@@ -41,7 +40,6 @@ class ResultRecyclerViewAdapter(
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.list_item_search_card_recycler, viewGroup, false)
             SearchListingViewHolder(view) // could have its own in the future if data need to be different
-
         }
     }
 
@@ -88,10 +86,7 @@ class ResultRecyclerViewAdapter(
             Glide.with(context)
                 .load(image).centerCrop()
                 .into(searchFragmentViewHolder.image)
-
         }
     }
-
-
 }
 

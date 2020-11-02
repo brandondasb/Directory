@@ -10,8 +10,6 @@ import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.Section
 import com.melaninwall.directory.viewHolder.ListingSectionViewHolder
 
-private fun sectionTypeSort(section: Section) = section.type
-
 class ListingSectionAdapter(
     private val context: Context,
     private val listener: ListItemListener
@@ -21,13 +19,8 @@ class ListingSectionAdapter(
 
     fun setData(sectionList: List<Section>) {
         this.sectionList.addAll(sectionList)
-//        this.sectionList.sortWith(Comparator { section1, section2 ->
-//            section1.type.compareTo(section2.type)
-//        })
-        val sortingFunction = ::sectionTypeSort
+        HomeScreenSectionSorter().sortList(sectionList = sectionList, sortFunction = { 1 })
 
-        // this.sectionList.sortBy { section -> section.type }// same as below
-        this.sectionList.sortBy(sortingFunction)
         notifyDataSetChanged()
     }
 
