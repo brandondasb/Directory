@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/sectionHighlighted">
+    app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,14 +19,14 @@
             android:background="@color/whitish">
 
             <LinearLayout
-                android:id="@+id/section1"
+                android:id="@+id/topSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/innerDiv"
+                    android:id="@+id/imageContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/first_layer"
@@ -59,7 +59,7 @@
             <!--  section 2 Highlighted section-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sectionHighlighted"
+                android:id="@+id/highlightedSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/large_margin"
@@ -257,7 +257,7 @@
                 android:layout_width="409dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sectionHighlighted">
+                app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"

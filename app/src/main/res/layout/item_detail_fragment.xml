@@ -4,479 +4,264 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/sectionHighlighted">
+    app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/whitish">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:id="@+id/topSection"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/whitish">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/section1"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/first_layer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/fpaImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/imagesample"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/likeSearchImageView"
+                    android:layout_width="@dimen/standard_icon_width"
+                    android:layout_height="@dimen/standard_icon_height"
+                    android:layout_margin="@dimen/standard_margin"
+                    android:src="@mipmap/ic_heart_curvy_outline"
+                    android:tint="@color/brown"
+                    app:layout_constraintEnd_toEndOf="@id/fpaImageView"
+                    app:layout_constraintTop_toTopOf="@id/fpaImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        <!--  section 2 Highlighted section-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/highlightedSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_margin"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="@dimen/large_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/listingDetailCardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/card_max_elevation"
+                android:padding="@dimen/standard_padding"
+                android:paddingBottom="@dimen/standard_padding"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/innerDiv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/first_layer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/fpaImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_marginBottom="@dimen/small_margin"
+                    <TextView
+                        android:id="@+id/fpaNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:text="business name"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/imagesample"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/likeSearchImageView"
+                        android:id="@+id/fpaVerifiedListingImageView"
                         android:layout_width="@dimen/standard_icon_width"
                         android:layout_height="@dimen/standard_icon_height"
-                        android:layout_margin="@dimen/standard_margin"
-                        android:src="@mipmap/ic_heart_curvy_outline"
-                        android:tint="@color/brown"
-                        app:layout_constraintEnd_toEndOf="@id/fpaImageView"
-                        app:layout_constraintTop_toTopOf="@id/fpaImageView" />
+                        android:layout_margin="@dimen/small_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:padding="@dimen/small_padding"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_checkmark"
+                        android:tint="@color/tw__blue_default"
+                        app:layout_constraintBottom_toBottomOf="@id/fpaNameTextView"
+                        app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
+                        app:layout_constraintTop_toTopOf="@id/fpaNameTextView" />
 
+                    <TextView
+                        android:id="@+id/fpaCategoryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/small_margin"
+                        android:layout_marginEnd="44dp"
+                        android:text="category"
+                        app:layout_constraintEnd_toEndOf="@+id/fpaNameTextView"
+                        app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-            <!--  section 2 Highlighted section-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fpaRatingIconDetailImageView"
+                        android:layout_width="@dimen/standard_icon_width"
+                        android:layout_height="@dimen/small_icon_height"
+                        android:layout_marginTop="16dp"
+                        android:src="@mipmap/ic_star_curved_solid"
+                        android:tint="@color/gold"
+                        app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
+                        app:layout_constraintTop_toBottomOf="@id/fpaCategoryTextView" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sectionHighlighted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/large_margin"
-                android:layout_marginTop="200dp"
-                android:layout_marginRight="@dimen/large_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/ratingValueSearchTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="@dimen/text_size_body"
+                        app:layout_constraintBottom_toBottomOf="@id/fpaRatingIconDetailImageView"
+                        app:layout_constraintStart_toEndOf="@+id/fpaRatingIconDetailImageView"
+                        app:layout_constraintTop_toTopOf="@+id/fpaRatingIconDetailImageView"
+                        app:layout_constraintVertical_bias="0.454" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/listingDetailCardview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="@dimen/card_max_elevation"
-                    android:padding="@dimen/standard_padding"
-                    android:paddingBottom="@dimen/standard_padding"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/numberOfReviewsSearchTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:text="(0 reviews)"
+                        android:textColor="@color/greyish"
+                        android:textSize="@dimen/text_size_body"
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
+                        app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
+                        app:layout_constraintTop_toTopOf="@+id/ratingValueSearchTextView" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionResume"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/standard_margin"
+                        android:layout_marginTop="@dimen/standard_margin"
+                        android:layout_marginRight="@dimen/standard_margin"
+                        android:layout_marginBottom="@dimen/standard_margin"
+                        android:background="@drawable/second_layer"
+                        android:paddingBottom="@dimen/standard_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fpaRatingIconDetailImageView">
 
                         <TextView
-                            android:id="@+id/fpaNameTextView"
+                            android:id="@+id/likesNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/large_margin"
-                            android:text="business name"
-                            android:textColor="@color/colorTitle"
-                            android:textSize="22sp"
+                            android:layout_marginTop="@dimen/standard_margin"
+                            android:text="6k"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/followingNumbers"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/fpaVerifiedListingImageView"
-                            android:layout_width="@dimen/standard_icon_width"
-                            android:layout_height="@dimen/standard_icon_height"
-                            android:layout_margin="@dimen/small_margin"
-                            android:layout_marginStart="@dimen/small_margin"
-                            android:padding="@dimen/small_padding"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/ic_checkmark"
-                            android:tint="@color/tw__blue_default"
-                            app:layout_constraintBottom_toBottomOf="@id/fpaNameTextView"
-                            app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
-                            app:layout_constraintTop_toTopOf="@id/fpaNameTextView" />
-
                         <TextView
-                            android:id="@+id/fpaCategoryTextView"
+                            android:id="@+id/likes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/small_margin"
-                            android:layout_marginEnd="44dp"
-                            android:text="category"
-                            app:layout_constraintEnd_toEndOf="@+id/fpaNameTextView"
-                            app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
-                            app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/fpaRatingIconDetailImageView"
-                            android:layout_width="@dimen/standard_icon_width"
-                            android:layout_height="@dimen/small_icon_height"
-                            android:layout_marginTop="16dp"
-                            android:src="@mipmap/ic_star_curved_solid"
-                            android:tint="@color/gold"
-                            app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
-                            app:layout_constraintTop_toBottomOf="@id/fpaCategoryTextView" />
+                            android:text="Likes"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@id/likesNumber"
+                            app:layout_constraintStart_toStartOf="@id/likesNumber"
+                            app:layout_constraintTop_toBottomOf="@id/likesNumber" />
 
                         <TextView
-                            android:id="@+id/ratingValueSearchTextView"
+                            android:id="@+id/followingNumbers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textSize="@dimen/text_size_body"
-                            app:layout_constraintBottom_toBottomOf="@id/fpaRatingIconDetailImageView"
-                            app:layout_constraintStart_toEndOf="@+id/fpaRatingIconDetailImageView"
-                            app:layout_constraintTop_toTopOf="@+id/fpaRatingIconDetailImageView"
-                            app:layout_constraintVertical_bias="0.454" />
-
-                        <TextView
-                            android:id="@+id/numberOfReviewsSearchTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/small_margin"
-                            android:text="(0 reviews)"
-                            android:textColor="@color/greyish"
-                            android:textSize="@dimen/text_size_body"
-                            app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
-                            app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
-                            app:layout_constraintTop_toTopOf="@+id/ratingValueSearchTextView" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/sectionResume"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/standard_margin"
-                            android:layout_marginTop="@dimen/standard_margin"
-                            android:layout_marginRight="@dimen/standard_margin"
-                            android:layout_marginBottom="@dimen/standard_margin"
-                            android:background="@drawable/second_layer"
-                            android:paddingBottom="@dimen/standard_margin"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:text="150"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/fpaRatingIconDetailImageView">
+                            app:layout_constraintTop_toTopOf="@+id/likesNumber" />
 
-                            <TextView
-                                android:id="@+id/likesNumber"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/standard_margin"
-                                android:text="6k"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toStartOf="@id/followingNumbers"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/following"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="following"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/followingNumbers"
+                            app:layout_constraintStart_toStartOf="@+id/followingNumbers"
+                            app:layout_constraintTop_toBottomOf="@id/followingNumbers" />
 
-                            <TextView
-                                android:id="@+id/likes"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Likes"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="@id/likesNumber"
-                                app:layout_constraintStart_toStartOf="@id/likesNumber"
-                                app:layout_constraintTop_toBottomOf="@id/likesNumber" />
+                        <TextView
+                            android:id="@+id/followersNumbers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10k"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/followingNumbers"
+                            app:layout_constraintTop_toTopOf="@+id/likesNumber" />
 
-                            <TextView
-                                android:id="@+id/followingNumbers"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="150"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/likesNumber" />
-
-                            <TextView
-                                android:id="@+id/following"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="following"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="@+id/followingNumbers"
-                                app:layout_constraintStart_toStartOf="@+id/followingNumbers"
-                                app:layout_constraintTop_toBottomOf="@id/followingNumbers" />
-
-                            <TextView
-                                android:id="@+id/followersNumbers"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="10k"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/followingNumbers"
-                                app:layout_constraintTop_toTopOf="@+id/likesNumber" />
-
-                            <TextView
-                                android:id="@+id/followers"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Followers"
-                                android:textColor="@color/blackish"
-                                android:textSize="@dimen/text_size_title"
-                                android:textStyle="normal"
-                                app:layout_constraintEnd_toEndOf="@+id/followersNumbers"
-                                app:layout_constraintStart_toStartOf="@+id/followersNumbers"
-                                app:layout_constraintTop_toBottomOf="@id/followersNumbers" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/followers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Followers"
+                            android:textColor="@color/blackish"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/followersNumbers"
+                            app:layout_constraintStart_toStartOf="@+id/followersNumbers"
+                            app:layout_constraintTop_toBottomOf="@id/followersNumbers" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- section3 -->
-
-
-            <!-- begin view pager -->
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/itemDetailPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/sectionHighlighted" />
-            <!-- about section -->
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/detailsTablayout"
-                android:layout_width="409dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sectionHighlighted">
-
-                <!--                <com.google.android.material.tabs.TabItem-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="@string/about" />-->
-
-                <!--                <com.google.android.material.tabs.TabItem-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="@string/gallery" />-->
-
-                <!--                <com.google.android.material.tabs.TabItem-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="@string/contact" />-->
-
-                <!--                <com.google.android.material.tabs.TabItem-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="@string/reviews" />-->
-            </com.google.android.material.tabs.TabLayout>
-
-            <TextView
-                android:id="@+id/fpaAboutHeading"
-                style="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_margin"
-                android:layout_marginBottom="@dimen/small_margin"
-                android:text="About"
-                android:textColor="@color/color2"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailsTablayout" />
-
-            <TextView
-                android:id="@+id/fpaAboutTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/color2"
-                android:textSize="18sp"
-                android:textStyle="normal"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/highlightedSection" />
+
+            <!-- begin view pager -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/itemDetailPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fpaAboutHeading" />
-            <!--Social -->
-            <LinearLayout
-                android:id="@+id/socialLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fpaAboutTextView">
-
-                <TextView
-                    android:id="@+id/fpaSocialHeading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Social"
-                    android:textColor="@color/colorSubTitle"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaWebsiteheading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="website"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaWebsite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="mybusiness.co.uk"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-
-                <TextView
-                    android:id="@+id/fpaIgHeading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:text="instagram"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaInstagram"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="sampleIG"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/fpatwitterHeading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="twitter"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpatwitter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="twitter.co.uk/sdsds"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/fpaFacebookHeading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="facebook"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaFacebook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="facebook/asdasdas"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/addressLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/socialLayout">
-
-                <TextView
-                    android:id="@+id/fpaLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Location"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="address"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/fpaCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="city -"
-                    android:textColor="@color/color2"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fpaPostcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_marginStart="24dp"
-                    android:text="postcode -"
-                    android:textColor="@color/color2"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/detailsTablayout" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 
 

@@ -53,13 +53,12 @@ class SearchFragment : Fragment() {
         listingRepo.getSearchData(searchListingCallback)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater?.inflate(R.menu.menu_search_view, menu)
 
         (activity as MainActivity?)?.supportActionBar?.setDisplayShowTitleEnabled(false)
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
-
 
         searchView.apply {
             setIconifiedByDefault(false)
