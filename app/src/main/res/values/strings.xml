@@ -2,7 +2,7 @@
     <string name="app_name">directory</string>
     <string name="facebook_app_id">501394247451297</string>
     <string name="fb_login_protocol_scheme">fb501394247451297</string>
-    <!-- botom nav-->
+    <!-- bottom nav-->
     <string name="home">home</string>
     <string name="me">m</string>
     <string name="profile">profile</string>
@@ -15,7 +15,8 @@
     <string name="health">health</string>
     <string name="tech">tech</string>
     <string name="events">events</string>
-    <!--  general  -->
+
+    <!--  signup  -->
     <string name="textview_sign_up">sign up</string>
     <string name="login_button">login</string>
     <string name="register_button">register</string>
@@ -26,9 +27,16 @@
     <string name="search_title">Search</string>
     <string name="search_hint">hint</string>
     <string name="no_results_found">no results found</string>
+
+    <!--  litingItem  -->
     <string name="about">about</string>
     <string name="gallery">Gallery</string>
     <string name="contact">Contact</string>
     <string name="reviews">Reviews</string>
     <string name="facebook">facebook</string>
+    <string name="_0_0">0.0</string>
+    <string name="socialHeader">Social</string>
+    <string name="websiteHeading">website</string>
+    <string name="twitterHeading">twitter</string>
+    <string name="facebookHeading">facebook</string>
 </resources>

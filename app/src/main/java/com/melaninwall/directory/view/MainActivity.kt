@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
                 BottomNavState.THIRD -> bottomNavigationView.selectedItemId = R.id.nav_inbox
                 BottomNavState.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
                 BottomNavState.SEARCH -> bottomNavigationView.selectedItemId = R.id.nav_search
-
-            }
+          }
         }
     }
 

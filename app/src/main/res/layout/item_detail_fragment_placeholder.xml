@@ -330,19 +330,19 @@
                     android:layout_margin="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
-                    android:text="Social"
+                    android:text="@string/socialHeader"
                     android:textColor="@color/colorSubTitle"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpaWebsiteheading"
+                    android:id="@+id/fpaWebsiteHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
-                    android:text="website"
+                    android:text="@string/websiteHeading"
                     android:textColor="@color/color2"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -354,7 +354,6 @@
                     android:layout_margin="4dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
-                    android:text="mybusiness.co.uk"
                     android:background="@color/placeholder"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
@@ -377,7 +376,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:text="sampleIG"
                     android:background="@color/placeholder"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
@@ -388,7 +386,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:text="twitter"
+                    android:text="@string/twitterHeading"
                     android:textColor="@color/color2"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -398,7 +396,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:text="twitter.co.uk/sdsds"
                     android:background="@color/placeholder"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
@@ -409,7 +406,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:text="facebook"
+                    android:text="@string/facebookHeading"
                     android:textColor="@color/color2"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -419,12 +416,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:text="facebook/asdasdas"
                     android:background="@color/placeholder"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/addressLayout"
@@ -454,8 +449,8 @@
                     android:layout_margin="4dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
-                    android:text="address"
                     android:background="@color/placeholder"
+                    android:text="address"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
@@ -478,12 +473,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_marginStart="24dp"
-                    android:text="postcode -"
                     android:background="@color/placeholder"
+                    android:text="postcode -"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     android:textStyle="normal" />
-
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

@@ -44,7 +44,7 @@
                     android:layout_height="@dimen/standard_icon_height"
                     android:layout_margin="@dimen/standard_margin"
                     android:src="@mipmap/ic_heart_curvy_outline"
-                    android:tint="@color/brown"
+                    android:tint="@color/primaryDarkColor"
                     app:layout_constraintEnd_toEndOf="@id/fpaImageView"
                     app:layout_constraintTop_toTopOf="@id/fpaImageView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -94,6 +94,7 @@
                         android:layout_height="@dimen/standard_icon_height"
                         android:layout_margin="@dimen/small_margin"
                         android:layout_marginStart="@dimen/small_margin"
+                        android:contentDescription="image"
                         android:padding="@dimen/small_padding"
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_checkmark"
@@ -127,7 +128,7 @@
                         android:id="@+id/ratingValueSearchTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0.0"
+                        android:text="@string/_0_0"
                         android:textSize="@dimen/text_size_body"
                         app:layout_constraintBottom_toBottomOf="@id/fpaRatingIconDetailImageView"
                         app:layout_constraintStart_toEndOf="@+id/fpaRatingIconDetailImageView"
@@ -138,9 +139,9 @@
                         android:id="@+id/numberOfReviewsSearchTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginStart="@dimen/small_margin"
                         android:text="(0 reviews)"
-                        android:textColor="@color/greyish"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_size_body"
                         app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
                         app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
@@ -250,7 +251,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/highlightedSection" />
+                app:layout_constraintTop_toBottomOf="@+id/highlightedSection"
+                app:tabIndicatorColor="@color/primaryDarkColor"
+                app:tabTextColor="@color/onPrimaryLightColor" />
 
             <!-- begin view pager -->
             <androidx.viewpager2.widget.ViewPager2

@@ -8,5 +8,6 @@
     <TextView
         android:id="@+id/fpaAboutTextView"
         android:layout_width="match_parent"
+        android:text="text"
         android:layout_height="match_parent" />
 </LinearLayout>

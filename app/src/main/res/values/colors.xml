@@ -4,14 +4,24 @@
     <color name="primaryColor">#b78c62</color>
     <color name="primaryLightColor">#ebbc90</color>
     <color name="primaryDarkColor">#855f37</color>
-    <color name="primaryTextColor">#000000</color>
     <color name="placeholder">#C0C0C0</color>
+
+    <color name="onPrimaryDarkColor">#fff</color>
+    <color name="onPrimaryColor">#000</color>
+    <color name="onPrimaryLightColor">#000</color>
+
+    <color name="backgroundColor">#C0C0C0</color>
+    <color name="surface">#f6f6f6</color>
+    <color name="error">#b00020</color>
 
     <color name="secondaryColor">#7020da</color>
     <color name="secondaryLightColor">#a755ff</color>
     <color name="secondaryDarkColor">#3400a7</color>
     <color name="secondaryTextColor">#ffffff</color>
+    <color name="onSecondaryColor">#b00020</color>
+
     <color name="black">#000</color>
+
     <!-- color test-->
     <color name="blackish">#12100F</color>
     <color name="brown_dark">#4C301E</color>
@@ -21,19 +31,17 @@
     <color name="gold">#DAA520</color>
     <color name="white">#fff</color>
 
-<!-- brown look -->
+    <!-- brown look -->
     <color name="brown">#B78C62</color>
     <color name="brownLight">#ebbc90</color>
     <color name="brownDark">#855f37</color>
+
     <!--  test-->
-
-
     <color name="whitish">#f6f6f6</color>
     <color name="color2">#3a432f</color>
     <color name="color3">#b34e21</color>
     <color name="color4">#d8a639</color>
     <color name="greyish">#9fa29e</color>
-
 
     <color name="colorLayerBack">#8a56ab</color>
     <color name="colorBack">#241333</color>
