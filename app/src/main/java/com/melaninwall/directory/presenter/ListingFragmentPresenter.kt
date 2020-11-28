@@ -15,7 +15,10 @@ import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.model.PagerSection
 import com.melaninwall.directory.model.lookUpPagerSection
 import com.melaninwall.directory.view.ListingFragment
-import com.melaninwall.directory.viewHolder.*
+import com.melaninwall.directory.viewHolder.GalleryPageViewHolder
+import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
+import com.melaninwall.directory.viewHolder.SocialPageViewHolder
+import com.melaninwall.directory.viewHolder.SummaryPageViewHolder
 
 class ListingFragmentPresenter(itemView: View) {
     val view = itemView
@@ -83,12 +86,6 @@ class ListingFragmentPresenter(itemView: View) {
                             .inflate(R.layout.item_detail_page_social, parent, false)
                     SocialPageViewHolder(socialView)
                 }
-                PagerSection.REVIEW -> {
-                    val reviewView =
-                        inflater
-                            .inflate(R.layout.item_detail_page_review, parent, false)
-                    ReviewsPageViewHolder(reviewView)
-                }
             }
         }
 
@@ -97,8 +94,8 @@ class ListingFragmentPresenter(itemView: View) {
         override fun getItemViewType(position: Int): Int = position
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            val binder = BuildListingBinder()
-            binder.bind(holder.itemView, data)
+            val binder = BuildListingBinder(holder, data)
+            binder.bind()
         }
     }
 }

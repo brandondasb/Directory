@@ -3,11 +3,13 @@
     android:id="@+id/pageAbout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/standard_margin">
 
     <TextView
         android:id="@+id/fpaAboutTextView"
         android:layout_width="match_parent"
-        android:text="text"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/standard_margin"
+        android:fontFamily="@font/alegreya" />
 </LinearLayout>

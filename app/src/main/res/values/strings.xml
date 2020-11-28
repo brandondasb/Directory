@@ -39,4 +39,7 @@
     <string name="websiteHeading">website</string>
     <string name="twitterHeading">twitter</string>
     <string name="facebookHeading">facebook</string>
+    <string name="fpa_opening_hours">Opening Hours</string>
+    <string name="fpa_phone_number">phone number</string>
+    <string name="instagram">instagram</string>
 </resources>
