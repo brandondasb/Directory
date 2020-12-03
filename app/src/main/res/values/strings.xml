@@ -42,4 +42,11 @@
     <string name="fpa_opening_hours">Opening Hours</string>
     <string name="fpa_phone_number">phone number</string>
     <string name="instagram">instagram</string>
+    <string name="emailHeading">Email</string>
+    <string name="summary_upcoming_events_heading">Upcoming Events</string>
+    <string name="no_upcoming_events">no upcoming events</string>
+    <string name="offers">Offers</string>
+    <string name="detail_price_range">Price Range</string>
+    <string name="details_services">services</string>
+    <string name="about_us">About Us</string>
 </resources>

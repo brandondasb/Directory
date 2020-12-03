@@ -1,33 +1,21 @@
 package com.melaninwall.directory.model
 
-import androidx.recyclerview.widget.RecyclerView
-import com.melaninwall.directory.viewHolder.SocialPageViewHolder
-import com.melaninwall.directory.viewHolder.SummaryPageViewHolder
+import com.melaninwall.directory.viewHolder.PageViewGenerator
 
 class BuildListingBinder(
-    val viewHolder: RecyclerView.ViewHolder,
+    val viewHolder: PageViewGenerator,
     private val dataModel: ListingItemData?
 ) {
-
     fun bind() {
-
-        when (viewHolder) {
-            is SocialPageViewHolder -> bindContactSection(viewHolder)
-            is SummaryPageViewHolder -> bindAboutSection(viewHolder, dataModel?.about)
-        }
+        val testPattern = GetViewHolderFactory()
+        testPattern.getViews(viewHolder, dataModel).getViews(dataModel)
     }
+}
 
-    private fun bindAboutSection(view: SummaryPageViewHolder, about: String?) {
-        view.about?.text = about
-    }
+class GetViewHolderFactory {
+    fun getViews(viewHolder: PageViewGenerator, dataModel: ListingItemData?): PageViewGenerator {
+        viewHolder.getViews(dataModel)
 
-    private fun bindContactSection(
-        view: SocialPageViewHolder
-    ) {
-        view.website?.text = dataModel?.website
-        view.facebook?.text = dataModel?.social?.firstOrNull { it.name == "facebook" }?.url
-        view.instagram?.text = dataModel?.social?.firstOrNull { it.name == "instagram" }?.url
-        view.twitter?.text = dataModel?.social?.firstOrNull { it.name == "twitter" }?.url
-
+        return viewHolder
     }
 }

@@ -8,17 +8,14 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.melaninwall.directory.R
 import com.melaninwall.directory.R.layout.item_detail_page_gallery
-import com.melaninwall.directory.R.layout.item_detail_page_summary
+import com.melaninwall.directory.R.layout.item_detail_page_overview
 import com.melaninwall.directory.StorageKey
 import com.melaninwall.directory.model.BuildListingBinder
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.model.PagerSection
 import com.melaninwall.directory.model.lookUpPagerSection
 import com.melaninwall.directory.view.ListingFragment
-import com.melaninwall.directory.viewHolder.GalleryPageViewHolder
-import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
-import com.melaninwall.directory.viewHolder.SocialPageViewHolder
-import com.melaninwall.directory.viewHolder.SummaryPageViewHolder
+import com.melaninwall.directory.viewHolder.*
 
 class ListingFragmentPresenter(itemView: View) {
     val view = itemView
@@ -33,10 +30,6 @@ class ListingFragmentPresenter(itemView: View) {
 
         viewHolder.name.text = data.name
         viewHolder.category.text = data.category.joinToString(" | ")
-//        viewHolder.address.text = data.address
-//        viewHolder.city.text = data.city
-//        viewHolder.postcode.text = data.postcode
-//        viewHolder.website.text = data.website
 
         if (data.verified) {
             viewHolder.verified.visibility = View.VISIBLE
@@ -71,8 +64,8 @@ class ListingFragmentPresenter(itemView: View) {
                 PagerSection.SUMMARY -> {
                     val summaryView =
                         inflater
-                            .inflate(item_detail_page_summary, parent, false)
-                    SummaryPageViewHolder(summaryView)
+                            .inflate(item_detail_page_overview, parent, false)
+                    OverviewPageViewHolder(summaryView)
                 }
                 PagerSection.GALLERY -> {
                     val galleryView =
@@ -83,8 +76,8 @@ class ListingFragmentPresenter(itemView: View) {
                 PagerSection.CONTACT -> {
                     val socialView =
                         inflater
-                            .inflate(R.layout.item_detail_page_social, parent, false)
-                    SocialPageViewHolder(socialView)
+                            .inflate(R.layout.item_detail_page_details, parent, false)
+                    DetailPageViewHolder(socialView)
                 }
             }
         }
@@ -94,7 +87,8 @@ class ListingFragmentPresenter(itemView: View) {
         override fun getItemViewType(position: Int): Int = position
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            val binder = BuildListingBinder(holder, data)
+            val pageViewGenerator = holder as PageViewGenerator
+            val binder = BuildListingBinder(pageViewGenerator, data)
             binder.bind()
         }
     }

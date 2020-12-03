@@ -33,7 +33,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/fpaImageView"
+                        android:id="@+id/listingImageView"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:layout_marginBottom="@dimen/small_margin"
@@ -49,14 +49,12 @@
                         android:background="@color/placeholder"
                         android:src="@mipmap/ic_heart_curvy_outline"
                         android:tint="@color/placeholder"
-                        app:layout_constraintEnd_toEndOf="@id/fpaImageView"
-                        app:layout_constraintTop_toTopOf="@id/fpaImageView" />
-
+                        app:layout_constraintEnd_toEndOf="@id/listingImageView"
+                        app:layout_constraintTop_toTopOf="@id/listingImageView" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <!--  section 2 Highlighted section-->
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/highlightedSection"
                 android:layout_width="match_parent"
@@ -83,7 +81,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/fpaNameTextView"
+                            android:id="@+id/listingNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/large_margin"
@@ -97,7 +95,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/fpaVerifiedListingImageView"
+                            android:id="@+id/listingVerifiedListingImageView"
                             android:layout_width="@dimen/standard_icon_width"
                             android:layout_height="@dimen/standard_icon_height"
                             android:layout_margin="@dimen/small_margin"
@@ -107,12 +105,12 @@
                             android:scaleType="fitXY"
                             android:src="@mipmap/ic_checkmark"
                             android:tint="@color/placeholder"
-                            app:layout_constraintBottom_toBottomOf="@id/fpaNameTextView"
-                            app:layout_constraintStart_toEndOf="@id/fpaNameTextView"
-                            app:layout_constraintTop_toTopOf="@id/fpaNameTextView" />
+                            app:layout_constraintBottom_toBottomOf="@id/listingNameTextView"
+                            app:layout_constraintStart_toEndOf="@id/listingNameTextView"
+                            app:layout_constraintTop_toTopOf="@id/listingNameTextView" />
 
                         <TextView
-                            android:id="@+id/fpaCategoryTextView"
+                            android:id="@+id/listingCategoryTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/small_margin"
@@ -120,20 +118,20 @@
                             android:background="@color/placeholder"
                             android:text="category"
                             android:textColor="@color/placeholder"
-                            app:layout_constraintEnd_toEndOf="@+id/fpaNameTextView"
-                            app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
-                            app:layout_constraintTop_toBottomOf="@+id/fpaNameTextView" />
+                            app:layout_constraintEnd_toEndOf="@+id/listingNameTextView"
+                            app:layout_constraintStart_toStartOf="@+id/listingNameTextView"
+                            app:layout_constraintTop_toBottomOf="@+id/listingNameTextView" />
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/fpaRatingIconDetailImageView"
+                            android:id="@+id/listingRatingIconDetailImageView"
                             android:layout_width="@dimen/standard_icon_width"
                             android:layout_height="@dimen/small_icon_height"
                             android:layout_marginTop="16dp"
                             android:background="@color/placeholder"
                             android:src="@mipmap/ic_star_curved_solid"
                             android:tint="@color/placeholder"
-                            app:layout_constraintStart_toStartOf="@+id/fpaNameTextView"
-                            app:layout_constraintTop_toBottomOf="@id/fpaCategoryTextView" />
+                            app:layout_constraintStart_toStartOf="@+id/listingNameTextView"
+                            app:layout_constraintTop_toBottomOf="@id/listingCategoryTextView" />
 
                         <TextView
                             android:id="@+id/ratingValueSearchTextView"
@@ -143,9 +141,9 @@
                             android:text="0.0"
                             android:textColor="@color/placeholder"
                             android:textSize="@dimen/text_size_body"
-                            app:layout_constraintBottom_toBottomOf="@id/fpaRatingIconDetailImageView"
-                            app:layout_constraintStart_toEndOf="@+id/fpaRatingIconDetailImageView"
-                            app:layout_constraintTop_toTopOf="@+id/fpaRatingIconDetailImageView"
+                            app:layout_constraintBottom_toBottomOf="@id/listingRatingIconDetailImageView"
+                            app:layout_constraintStart_toEndOf="@+id/listingRatingIconDetailImageView"
+                            app:layout_constraintTop_toTopOf="@+id/listingRatingIconDetailImageView"
                             app:layout_constraintVertical_bias="0.454" />
 
                         <TextView
@@ -174,7 +172,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/fpaRatingIconDetailImageView">
+                            app:layout_constraintTop_toBottomOf="@id/listingRatingIconDetailImageView">
 
                             <TextView
                                 android:id="@+id/likesNumber"
@@ -304,7 +302,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/detailsTablayout" />
 
             <TextView
-                android:id="@+id/fpaAboutTextView"
+                android:id="@+id/detailsAboutTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -321,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fpaAboutTextView">
+                app:layout_constraintTop_toBottomOf="@+id/detailsAboutTextView">
 
                 <TextView
                     android:id="@+id/fpaSocialHeading"
@@ -348,7 +346,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpaWebsite"
+                    android:id="@+id/overviewWebsite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -372,7 +370,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpaInstagram"
+                    android:id="@+id/overviewInstagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -392,7 +390,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpatwitter"
+                    android:id="@+id/overviewTwitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -412,7 +410,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/fpaFacebook"
+                    android:id="@+id/overviewFacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"

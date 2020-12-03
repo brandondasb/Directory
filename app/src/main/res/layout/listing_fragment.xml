@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitish">
+
+        <LinearLayout
+            android:id="@+id/topSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/first_layer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/listingImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/imagesample"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/likeSearchImageView"
+                    android:layout_width="@dimen/standard_icon_width"
+                    android:layout_height="@dimen/standard_icon_height"
+                    android:layout_margin="@dimen/standard_margin"
+                    android:src="@mipmap/ic_heart_curvy_outline"
+                    android:tint="@color/primaryDarkColor"
+                    app:layout_constraintEnd_toEndOf="@id/listingImageView"
+                    app:layout_constraintTop_toTopOf="@id/listingImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/listingDetailCardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="@dimen/small_margin"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_max_elevation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/listingNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:text="business name"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/listingVerifiedListingImageView"
+                    android:layout_width="@dimen/standard_icon_width"
+                    android:layout_height="@dimen/standard_icon_height"
+                    android:layout_margin="@dimen/small_margin"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:contentDescription="image"
+                    android:padding="@dimen/small_padding"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_checkmark"
+                    android:tint="@color/tw__blue_default"
+                    app:layout_constraintBottom_toBottomOf="@id/listingNameTextView"
+                    app:layout_constraintStart_toEndOf="@id/listingNameTextView"
+                    app:layout_constraintTop_toTopOf="@id/listingNameTextView" />
+
+                <TextView
+                    android:id="@+id/listingCategoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin"
+                    android:layout_marginEnd="44dp"
+                    android:text="category"
+                    app:layout_constraintEnd_toEndOf="@+id/listingNameTextView"
+                    app:layout_constraintStart_toStartOf="@+id/listingNameTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/listingNameTextView" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/listingRatingIconDetailImageView"
+                    android:layout_width="@dimen/standard_icon_width"
+                    android:layout_height="@dimen/small_icon_height"
+                    android:layout_marginTop="16dp"
+                    android:src="@mipmap/ic_star_curved_solid"
+                    android:tint="@color/gold"
+                    app:layout_constraintStart_toStartOf="@+id/listingNameTextView"
+                    app:layout_constraintTop_toBottomOf="@id/listingCategoryTextView" />
+
+                <TextView
+                    android:id="@+id/ratingValueSearchTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_0_0"
+                    android:textSize="@dimen/text_size_body"
+                    app:layout_constraintBottom_toBottomOf="@id/listingRatingIconDetailImageView"
+                    app:layout_constraintStart_toEndOf="@+id/listingRatingIconDetailImageView"
+                    app:layout_constraintTop_toTopOf="@+id/listingRatingIconDetailImageView"
+                    app:layout_constraintVertical_bias="0.454" />
+
+                <TextView
+                    android:id="@+id/numberOfReviewsSearchTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:text="(0 reviews)"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_body"
+                    app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"
+                    app:layout_constraintStart_toEndOf="@+id/ratingValueSearchTextView"
+                    app:layout_constraintTop_toTopOf="@+id/ratingValueSearchTextView" />
+                <!--  tab/pager container -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/numberOfReviewsSearchTextView">
+
+                    <!-- begin view pager -->
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/detailsTablayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/highlightedSection"
+                        app:tabIndicatorColor="@color/primaryDarkColor"
+                        app:tabTextColor="@color/onPrimaryLightColor" />
+
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/itemDetailPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detailsTablayout" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
