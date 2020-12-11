@@ -8,76 +8,46 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewWebsiteImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
-        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:src="@drawable/ic_earth_outline"
+        app:layout_constraintEnd_toStartOf="@+id/overviewEmailImageView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/overviewWebsite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:textColor="@color/color2"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@id/overviewWebsiteImageView"
-        app:layout_constraintStart_toEndOf="@id/overviewWebsiteImageView"
-        app:layout_constraintTop_toTopOf="@id/overviewWebsiteImageView" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewEmailImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
-        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:src="@drawable/ic_email_outline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewWebsiteImageView" />
+        app:layout_constraintEnd_toStartOf="@+id/overviewInstagramImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/overviewWebsiteImageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/overviewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:fontFamily="@font/alegreya_bold"
-        android:textColor="@color/color2"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@id/overviewEmailImageView"
-        app:layout_constraintStart_toEndOf="@id/overviewEmailImageView"
-        app:layout_constraintTop_toTopOf="@id/overviewEmailImageView" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewNumberImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:layout_margin="@dimen/standard_margin"
         android:src="@drawable/ic_iphone_outline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/overviewEmailImageView" />
 
-    <TextView
-        android:id="@+id/overviewNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:textColor="@color/color2"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@id/overviewEmailImageView"
-        app:layout_constraintStart_toEndOf="@id/overviewEmailImageView"
-        app:layout_constraintTop_toTopOf="@id/overviewEmailImageView" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewInstagramImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
-        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:src="@drawable/ic_instagram_new_outline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewNumberImageView" />
+
+        app:layout_constraintEnd_toStartOf="@+id/overviewTwitterImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/overviewEmailImageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/overviewInstagram"
@@ -93,12 +63,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewTwitterImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
-        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:src="@drawable/ic_twitter_outline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewInstagramImageView" />
+        app:layout_constraintEnd_toStartOf="@+id/overviewFacebookImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/overviewInstagramImageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/overviewTwitter"
@@ -114,37 +85,26 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewFacebookImageView"
-        android:layout_width="@dimen/small_icon_width"
-        android:layout_height="@dimen/small_icon_height"
-        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
         android:src="@drawable/ic_facebook_outline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewTwitterImageView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/overviewTwitterImageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/overviewFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:layout_marginStart="@dimen/small_margin"
-        android:textColor="@color/color2"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/overviewFacebookImageView"
-        app:layout_constraintStart_toEndOf="@id/overviewFacebookImageView"
-        app:layout_constraintTop_toTopOf="@id/overviewFacebookImageView" />
 
     <TextView
         android:id="@+id/overviewListingAddressHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_margin"
         android:fontFamily="@font/alegreya_bold"
         android:text="Location"
         android:textColor="@color/color2"
         android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewFacebookImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/overviewNumberImageView" />
 
     <TextView
         android:id="@+id/listingAddress"
