@@ -49,4 +49,7 @@
     <string name="detail_price_range">Price Range</string>
     <string name="details_services">services</string>
     <string name="about_us">About Us</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="location">Location</string>
 </resources>

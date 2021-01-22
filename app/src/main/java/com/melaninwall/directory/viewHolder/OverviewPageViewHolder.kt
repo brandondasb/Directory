@@ -12,7 +12,6 @@ import com.melaninwall.directory.model.ListingItemData
 class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     PageViewGenerator {
 
-
     val address: TextView = itemView.findViewById(R.id.listingAddress)
     val city: TextView? = itemView.findViewById(R.id.listingCity)
     val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
@@ -27,14 +26,25 @@ class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         city?.text = data?.city
         postcode?.text = data?.postcode
 
-        website?.setOnClickListener {
-            val link = data?.website
-            openURL(it, link)
+        address.setOnClickListener {
+            val query =
+                "https://www.google.com/maps/search/?api=1&query=${address.text}%2C${city?.text}%2C${postcode?.text}"
+            openURL(
+                it, query
+            )
         }
 
-        instagram?.setOnClickListener {
-            val link = data?.social?.firstOrNull { social -> social.name == "instagram" }?.url
-            openURL(it, link)
+        website?.setOnClickListener {
+            val link = data?.website
+            openURL(
+                it, link
+            )
+        }
+
+        instagram?.setOnClickListener { view ->
+            data?.social?.firstOrNull { social -> social.name == "instagram" }?.url?.let {
+                openURL(view, it)
+            }
         }
         twitter?.setOnClickListener { view ->
             data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {

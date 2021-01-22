@@ -1,17 +1,18 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="android:statusBarColor">@color/primaryDarkColor</item>
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:colorPrimary">@color/brown</item>
+        <item name="android:button">@color/brown</item>
     </style>
 
-    <style name="Theme.App" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Widget.app.BottomAppBar.Colored" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/brown</item>
-        <item name="colorSecondary">@color/whitish</item>
+        <item name="colorOnPrimary">@color/brown_dark</item>
         <item name="android:colorFocusedHighlight">@color/tw__blue_default</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
     </style>
 </resources>

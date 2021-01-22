@@ -32,7 +32,6 @@
             android:ellipsize="end"
             android:maxWidth="100dp"
             android:maxLines="1"
-            android:textColor="@color/color2"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/homeImageView"
