@@ -28,7 +28,7 @@
             android:layout_width="@dimen/standard_icon_width"
             android:layout_height="@dimen/standard_icon_height"
             android:src="@mipmap/ic_heart_curvy_outline"
-            android:tint="@color/brown"
+            android:tint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@id/imageSearchImageView"
             app:layout_constraintTop_toTopOf="@id/imageSearchImageView" />
 
@@ -86,7 +86,7 @@
             android:layout_width="@dimen/small_icon_width"
             android:layout_height="@dimen/small_icon_height"
             android:src="@mipmap/ic_location_pin_curvy_outline"
-            android:tint="@color/gold"
+            android:tint="@color/primaryColor"
             app:layout_constraintBottom_toBottomOf="@id/locationSearchTextView"
             app:layout_constraintStart_toStartOf="@+id/categorySearchTextView"
             app:layout_constraintTop_toTopOf="@+id/locationSearchTextView" />
@@ -108,7 +108,7 @@
             android:layout_marginTop="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:src="@mipmap/ic_star_curved_solid"
-            android:tint="@color/gold"
+            android:tint="@color/primaryColor"
             app:layout_constraintStart_toStartOf="@+id/locationIconSearchImageView"
             app:layout_constraintTop_toBottomOf="@+id/locationIconSearchImageView" />
 

@@ -4,15 +4,20 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="android:statusBarColor">@color/primaryDarkColor</item>
         <!-- Customize your theme here. -->
-        <item name="android:colorPrimary">@color/brown</item>
-        <item name="android:button">@color/brown</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/secondaryColor</item>
+
+        <item name="colorPrimarySurface">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+
+
+    </style>
+    <!-- =============================================================== -->
+    <!-- Material-Dark styles -->
+    <!-- =============================================================== -->
+    <style name="Theme.MyAPP" parent="Theme.MaterialComponents.DayNight">
+
+
     </style>
 
-    <style name="Widget.app.BottomAppBar.Colored" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/brown</item>
-        <item name="colorOnPrimary">@color/brown_dark</item>
-        <item name="android:colorFocusedHighlight">@color/tw__blue_default</item>
-        <item name="itemIconTint">@color/white</item>
-        <item name="itemTextColor">@color/white</item>
-    </style>
 </resources>

@@ -3,6 +3,7 @@ package com.melaninwall.directory.viewHolder
 import android.content.Intent
 import android.net.Uri
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.melaninwall.directory.model.ListingItemData
 
 class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     PageViewGenerator {
-
+    val addressContainer: View = itemView.findViewById(R.id.listingAddressContainer)
     val address: TextView = itemView.findViewById(R.id.listingAddress)
     val city: TextView? = itemView.findViewById(R.id.listingCity)
     val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
@@ -26,7 +27,8 @@ class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         city?.text = data?.city
         postcode?.text = data?.postcode
 
-        address.setOnClickListener {
+        addressContainer.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(it.context, R.anim.icon_click))
             val query =
                 "https://www.google.com/maps/search/?api=1&query=${address.text}%2C${city?.text}%2C${postcode?.text}"
             openURL(

@@ -30,15 +30,6 @@
         app:layout_constraintStart_toEndOf="@+id/overviewWebsiteImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/overviewNumberImageView"
-        android:layout_width="@dimen/standard_icon_width"
-        android:layout_height="@dimen/standard_icon_height"
-        android:layout_margin="@dimen/standard_margin"
-        android:src="@drawable/ic_iphone_outline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewEmailImageView" />
-
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/overviewInstagramImageView"
@@ -103,27 +94,47 @@
         app:layout_constraintStart_toEndOf="@+id/overviewTwitterImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/overviewListingAddressHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alegreya_bold"
-        android:text="@string/location"
-        android:textSize="18sp"
-        android:textStyle="normal"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/overviewNumberImageView"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
+        android:layout_margin="@dimen/standard_margin"
+        android:src="@drawable/ic_iphone_outline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overviewNumberImageView" />
+        app:layout_constraintTop_toBottomOf="@id/overviewEmailImageView" />
+
+    <View
+        android:id="@+id/separatorNumber"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/overviewNumberImageView" />
+
 
     <LinearLayout
         android:id="@+id/listingAddressContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0.5dp"
+
+        android:clickable="true"
+        android:elevation="@dimen/card_max_elevation"
         android:orientation="vertical"
         android:padding="@dimen/small_padding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overviewListingAddressHeading">
+        app:layout_constraintTop_toBottomOf="@id/separatorNumber">
+
+        <TextView
+            android:id="@+id/overviewListingAddressHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_bold"
+            android:text="@string/location"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overviewNumberImageView" />
 
         <TextView
             android:id="@+id/listingAddress"
@@ -150,6 +161,15 @@
             app:layout_constraintStart_toStartOf="@id/listingCity"
             app:layout_constraintTop_toBottomOf="@id/listingCity" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/separatorAddress"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listingAddressContainer" />
 
     <TextView
         android:id="@+id/overviewOpeningHoursHeading"

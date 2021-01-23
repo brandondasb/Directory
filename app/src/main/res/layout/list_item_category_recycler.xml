@@ -26,7 +26,7 @@
         android:padding="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/com_facebook_button_like_icon_selected"
-        android:tint="@color/brown"
+        android:tint="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@id/iconNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

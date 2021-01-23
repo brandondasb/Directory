@@ -1,62 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--  Primary-->
-    <color name="primaryColor">#b78c62</color>
+    <color name="primaryVariantColor">#3700b3</color>
+    <color name="primaryColor">#1da1f2</color>
     <color name="primaryLightColor">#ebbc90</color>
-    <color name="primaryDarkColor">#855f37</color>
-    <color name="placeholder">#C0C0C0</color>
+    <color name="primaryDarkColor">#1da1f2</color>
 
-    <color name="onPrimaryDarkColor">#fff</color>
     <color name="onPrimaryColor">#000</color>
-    <color name="onPrimaryLightColor">#000</color>
+    <color name="onPrimaryDarkColor">#000</color>
+    <color name="onPrimaryLightColor">#fff</color>
 
-    <color name="backgroundColor">#C0C0C0</color>
-    <color name="surface">#121212</color>
-    <color name="error">#b00020</color>
+    <color name="placeholder">#C0C0C0</color>
+    <!--  secondary-->
+    <color name="secondaryVariantColor">#03dac6</color>
+    <color name="secondaryColor">#03dac6</color>
 
-    <color name="secondaryColor">#7020da</color>
-    <color name="secondaryLightColor">#a755ff</color>
-    <color name="secondaryDarkColor">#3400a7</color>
-    <color name="secondaryTextColor">#ffffff</color>
-    <color name="onSecondaryColor">#b00020</color>
+    <color name="onSecondaryColor">#000</color>
+    <color name="onSecondaryDarkColor">#000</color>
+    <color name="onSecondaryLightColor">#000</color>
+
+    <!--  surface-->
+    <color name="colorSurface">#121212</color>
+    <color name="colorOnSurface">#ffffff</color>
+
+    <!--  surface-->
+    <color name="colorBackground">#121212</color>
+    <color name="colorOnBackground">#121212</color>
+
+    <!--  surface-->
+    <color name="colorError">#cf6679</color>
+    <color name="colorOnError">#000</color>
+
 
     <color name="black">#000</color>
     <!-- darkmode-->
     <color name="dark_Grey">#121212</color> <!--color elavation and depth-->
     <!--    <color name="dark_Grey">#121212</color> semi overlay color elavation and depth&ndash;&gt;-->
-
-    <!-- color test-->
-    <color name="blackish">#12100F</color>
-    <color name="brown_dark">#4C301E</color>
-    <color name="brown_wood">#615141</color>
-    <color name="brown_medium">#995F34</color>
-    <color name="green_cak">#929D88</color>
-    <color name="gold">#DAA520</color>
-    <color name="white">#fff</color>
-
-    <!-- brown look -->
-    <color name="brown">#B78C62</color>
-    <color name="brownLight">#ebbc90</color>
-    <color name="brownDark">#855f37</color>
-
-    <!--  test-->
-    <color name="whitish">#f6f6f6</color>
-    <color name="color2">#3a432f</color>
-    <color name="color3">#b34e21</color>
-    <color name="color4">#d8a639</color>
-    <color name="greyish">#9fa29e</color>
-
-    <color name="colorLayerBack">#8a56ab</color>
-    <color name="colorBack">#241333</color>
-    <color name="colorTitle">#362742</color>
-    <color name="colorSubTitle">#c5c9cf</color>
-    <color name="colorTitleWhite">#fff</color>
-    <color name="colorSubTitleWhite">#b795ce</color>
-    <color name="colorHorizontalDivider">#898a56ab</color>
-    <color name="beige">#FAE6B1</color>
-    <color name="green_dark">#013328</color>
-
-    <color name="pink">#E2C2B3</color>
-    <color name="purple_dark">#403234</color>
 
 </resources>
