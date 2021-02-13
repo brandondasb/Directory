@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listingAddressContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:elevation="@dimen/card_max_elevation"
+    android:orientation="vertical"
+    android:padding="@dimen/small_padding"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/separatorNumber"
+    tools:showIn="@layout/item_detail_page_about"
+    android:focusable="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/overviewLocationIcon"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:src="@drawable/ic_location_pin_curvy_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/listingAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/overviewLocationIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="street" />
+
+    <TextView
+        android:id="@+id/listingCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/listingAddress"
+        app:layout_constraintStart_toEndOf="@id/listingAddress"
+        app:layout_constraintTop_toTopOf="@id/listingAddress"
+        tools:text="city " />
+
+    <TextView
+        android:id="@+id/listingPostcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/listingAddress"
+        app:layout_constraintStart_toEndOf="@id/listingCity"
+        app:layout_constraintTop_toTopOf="@id/listingAddress"
+        tools:text="postcode" />
+
+    <ImageView
+        android:id="@+id/see_more_button"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_chevron_rounded_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

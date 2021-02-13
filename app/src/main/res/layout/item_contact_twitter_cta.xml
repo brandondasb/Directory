@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listingTwitterCTA"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:elevation="@dimen/card_max_elevation"
+    android:orientation="vertical"
+    android:padding="@dimen/small_padding"
+    tools:showIn="@layout/item_detail_page_about"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/separatorInstagram"
+    android:focusable="true">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/overviewTwitterImageView"
+        android:layout_width="@dimen/standard_icon_width"
+        android:layout_height="@dimen/standard_icon_height"
+        android:src="@drawable/ic_twitter_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/listingTwitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintBottom_toBottomOf="@id/overviewTwitterImageView"
+        app:layout_constraintStart_toEndOf="@id/overviewTwitterImageView"
+        app:layout_constraintTop_toTopOf="@id/overviewTwitterImageView"
+        tools:text="www.facebook.com/thegram" />
+
+    <ImageView
+        android:id="@+id/open_link"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_chevron_rounded_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -342,7 +342,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/overviewWebsite"
+                    android:id="@+id/listingWebsite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -365,7 +365,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/overviewInstagram"
+                    android:id="@+id/listingInstagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -384,7 +384,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/overviewTwitter"
+                    android:id="@+id/listingTwitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"

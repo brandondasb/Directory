@@ -1,7 +1,7 @@
 package com.melaninwall.directory.model
 
 enum class PagerSection {
-    SUMMARY, GALLERY, CONTACT
+    SUMMARY, ABOUT, GALLERY, DETAILS
 }
 
 fun lookUpPagerSection(viewType: Int): PagerSection {

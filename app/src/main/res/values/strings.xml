@@ -52,4 +52,6 @@
     <string name="password">password</string>
     <string name="email">email</string>
     <string name="location">Location</string>
+    <string name="number">number</string>
+    <string name="click_to_call">click to call</string>
 </resources>

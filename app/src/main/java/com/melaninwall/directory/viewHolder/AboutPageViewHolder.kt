@@ -4,28 +4,37 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.melaninwall.directory.R
 import com.melaninwall.directory.model.ListingItemData
 
-class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     PageViewGenerator {
-    val addressContainer: View = itemView.findViewById(R.id.listingAddressContainer)
-    val address: TextView = itemView.findViewById(R.id.listingAddress)
+    private val addressContainer: View = itemView.findViewById(R.id.listingAddressContainer)
+    private val address: TextView = itemView.findViewById(R.id.listingAddress)
     val city: TextView? = itemView.findViewById(R.id.listingCity)
-    val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
+    private val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
 
-    val twitter: ImageView? = itemView.findViewById(R.id.overviewTwitterImageView)
-    val website: ImageView? = itemView.findViewById(R.id.overviewWebsiteImageView)
-    val instagram: ImageView? = itemView.findViewById(R.id.overviewInstagramImageView)
-    val facebook: ImageView? = itemView.findViewById(R.id.overviewFacebook)
+    private val twitter: TextView? = itemView.findViewById(R.id.listingTwitter)
+    private val website: TextView? = itemView.findViewById(R.id.listingWebsite)
+    private val instagram: TextView? = itemView.findViewById(R.id.listingInstagram)
+
+    private val twitterCta: View? = itemView.findViewById(R.id.listingTwitterCTA)
+    private val websiteCta: View? = itemView.findViewById(R.id.listingWebisteCTA)
+    private val instagramCta: View? = itemView.findViewById(R.id.listingInstagramCTA)
+
+    // private val facebookCta: View?
+    private val numberCta: View? = itemView.findViewById(R.id.listingNumberCTA)
 
     override fun getViews(data: ListingItemData?) {
         address.text = data?.address
         city?.text = data?.city
         postcode?.text = data?.postcode
+        twitter?.text = data?.social?.firstOrNull { social -> social.name == "twitter" }?.url
+        instagram?.text = data?.social?.firstOrNull { social -> social.name == "instagram" }?.url
+        website?.text = data?.website
+
 
         addressContainer.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(it.context, R.anim.icon_click))
@@ -36,28 +45,28 @@ class OverviewPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
             )
         }
 
-        website?.setOnClickListener {
+        websiteCta?.setOnClickListener {
             val link = data?.website
             openURL(
                 it, link
             )
         }
 
-        instagram?.setOnClickListener { view ->
+        instagramCta?.setOnClickListener { view ->
             data?.social?.firstOrNull { social -> social.name == "instagram" }?.url?.let {
                 openURL(view, it)
             }
         }
-        twitter?.setOnClickListener { view ->
+        twitterCta?.setOnClickListener { view ->
             data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {
                 openURL(view, it)
             }
         }
-        facebook?.setOnClickListener { view ->
-            data?.social?.firstOrNull { social -> social.name == "facebook" }?.url?.let {
-                openURL(view, it)
-            }
-        }
+//        facebookCta?.setOnClickListener { view ->
+//            data?.social?.firstOrNull { social -> social.name == "facebook" }?.url?.let {
+//                openURL(view, it)
+//            }
+//        }
     }
 
     private fun openURL(view: View, link: String?) {

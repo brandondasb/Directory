@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.melaninwall.directory.R
-import com.melaninwall.directory.R.layout.item_detail_page_gallery
-import com.melaninwall.directory.R.layout.item_detail_page_overview
+import com.melaninwall.directory.R.layout.*
 import com.melaninwall.directory.StorageKey
 import com.melaninwall.directory.model.BuildListingBinder
 import com.melaninwall.directory.model.ListingItemData
@@ -51,6 +50,7 @@ class ListingFragmentPresenter(itemView: View) {
         }.attach()
 
         viewHolder.viewPager.clipChildren
+        viewHolder.viewPager.offscreenPageLimit = 10
     }
 
     //TODO pager set up
@@ -64,8 +64,15 @@ class ListingFragmentPresenter(itemView: View) {
                 PagerSection.SUMMARY -> {
                     val summaryView =
                         inflater
-                            .inflate(item_detail_page_overview, parent, false)
-                    OverviewPageViewHolder(summaryView)
+                            .inflate(item_detail_page_summary, parent, false)
+                    SummaryPageViewHolder(summaryView)
+                }
+                PagerSection.ABOUT -> {
+                    val about =
+                        inflater
+                            .inflate(item_detail_page_about, parent, false)
+                    AboutPageViewHolder(about)
+
                 }
                 PagerSection.GALLERY -> {
                     val galleryView =
@@ -73,7 +80,7 @@ class ListingFragmentPresenter(itemView: View) {
                             .inflate(item_detail_page_gallery, parent, false)
                     GalleryPageViewHolder(galleryView)
                 }
-                PagerSection.CONTACT -> {
+                PagerSection.DETAILS -> {
                     val socialView =
                         inflater
                             .inflate(R.layout.item_detail_page_details, parent, false)

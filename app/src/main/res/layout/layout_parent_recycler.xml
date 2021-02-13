@@ -30,7 +30,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="253dp"
             android:layout_toEndOf="@+id/itemTitle"
-            android:src="@mipmap/ic_arrow_outline"
+            android:src="@drawable/ic_arrow_outline"
             android:tint="@color/primaryColor"
             app:layout_constraintBottom_toBottomOf="@id/itemTitle"
             app:layout_constraintEnd_toEndOf="parent"

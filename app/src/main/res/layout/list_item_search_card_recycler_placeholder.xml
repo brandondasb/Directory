@@ -103,7 +103,7 @@
                 android:layout_width="@dimen/small_icon_width"
                 android:layout_height="@dimen/small_icon_height"
                 android:background="@color/placeholder"
-                android:src="@mipmap/ic_location_pin_curvy_outline"
+                android:src="@drawable/ic_location_pin_curvy_outline"
                 android:textColor="@color/placeholder"
                 android:tint="@color/placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/locationSearchTextView"
