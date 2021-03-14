@@ -26,4 +26,5 @@
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="card_max_elevation">8dp</dimen>
     <dimen name="card_standard_height">320dp</dimen>
+    <dimen name="app_bar_height">300dp</dimen>
 </resources>

@@ -3,7 +3,6 @@ package com.melaninwall.directory.view
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,6 +13,7 @@ import com.melaninwall.directory.interfaces.LoginAuthorisation
 import com.melaninwall.directory.interfaces.UpdateBottomNavListener
 import com.melaninwall.directory.model.BottomNavState
 import com.melaninwall.directory.repo.AuthEmailPassword
+import kotlinx.android.synthetic.main.listing_fragment.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 //        loginAuthorisation.updateUI()
 
 
-        val actionBar = supportActionBar
+        //val actionBar = supportActionBar
         // actionBar?.hide()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -97,9 +97,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onGroupItemClick(item: MenuItem) {
-
-    }
 
     private fun loadFragment(fragment: Fragment): Boolean {
         if (isNotInBackStack(fragmentManager, fragment)) {

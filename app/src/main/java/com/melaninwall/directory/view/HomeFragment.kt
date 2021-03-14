@@ -28,8 +28,6 @@ class HomeFragment : Fragment() {
             )
             val fragment = HomeFragment()
             fragment.arguments = bundle
-            fragment
-            //return fragment
         }
     }
 

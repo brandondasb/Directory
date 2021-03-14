@@ -31,7 +31,7 @@
                 <ImageView
                     android:id="@+id/listingImageView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="100dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/imagesample"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="@dimen/small_margin"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_max_elevation"

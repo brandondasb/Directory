@@ -11,11 +11,32 @@ class HomeListRequestTest {
     fun `when Builder receives 1 list, then creates builder with one list`() {
         val callback = object : HomeListingCallback {
             override fun loadSectionList(listingSectionData: List<Section>) {
-                TODO("Not yet implemented")
             }
         }
         val builder = HomeListRequest.Builder(callback).hundred().build()
         val expected = HomeListRequest.Builder(callback).hundred().build()
+        assertEquals(builder.section.size, expected.section.size)
+    }
+
+    @Test
+    fun `when Builder receives two list, then creates builder with two list`() {
+        val callback = object : HomeListingCallback {
+            override fun loadSectionList(listingSectionData: List<Section>) {
+            }
+        }
+        val builder = HomeListRequest.Builder(callback).hundred().nearMe().build()
+        val expected = HomeListRequest.Builder(callback).hundred().nearMe().build()
+        assertEquals(builder.section.size, expected.section.size)
+    }
+
+    @Test
+    fun `when Builder receives three list, then creates builder with three list`() {
+        val callback = object : HomeListingCallback {
+            override fun loadSectionList(listingSectionData: List<Section>) {
+            }
+        }
+        val builder = HomeListRequest.Builder(callback).hundred().nearMe().recent().build()
+        val expected = HomeListRequest.Builder(callback).hundred().nearMe().nearMe().build()
         assertEquals(builder.section.size, expected.section.size)
     }
 }

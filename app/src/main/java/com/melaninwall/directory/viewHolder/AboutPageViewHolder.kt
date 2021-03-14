@@ -13,7 +13,7 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     PageViewGenerator {
     private val addressContainer: View = itemView.findViewById(R.id.listingAddressContainer)
     private val address: TextView = itemView.findViewById(R.id.listingAddress)
-    val city: TextView? = itemView.findViewById(R.id.listingCity)
+    private val city: TextView? = itemView.findViewById(R.id.listingCity)
     private val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
 
     private val twitter: TextView? = itemView.findViewById(R.id.listingTwitter)
