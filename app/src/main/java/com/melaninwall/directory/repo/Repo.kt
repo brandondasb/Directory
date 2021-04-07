@@ -243,11 +243,22 @@ class Repo {
     fun addListing() {
         // Create a new user with a first and last name
         val listing = ListingItemData(
-            1, "test the one com", "Ab",
+            1, "test Opening Hours com", "Ab",
             "https://firebasestorage.googleapis.com/v0/b/directory-mila.appspot.com/o/images%2Ftestbusiness.jpg?alt=media&token=af43bceb-a63f-42ea-9715-33233bb308e4",
             "image.co.uk",
             listOf("food", "gym"), false, "www.test.co.uk", "16 road", "manchester", "m2o5e",
-            listOf(Social("twitter", "www.twitter/thetest"))
+            listOf(Social("twitter", "www.twitter/thetest")),
+            openingHours =
+            listOf(
+                OpeningHours("Monday", 10, 30, 5, 0),
+                OpeningHours("Tuesday", 10, 20, 5, 0),
+                OpeningHours("Wednesday", 10, 20, 5, 0),
+                OpeningHours("Thursday", 10, 20, 5, 0),
+                OpeningHours("Friday", 10, 20, 5, 0),
+                OpeningHours("Saturday", 10, 20, 5, 0),
+                OpeningHours("Sunday", 10, 20, 5, 0)
+            )
+
         )
 // Add a new document with a generated ID
         FIRESTORE.collection("listing")

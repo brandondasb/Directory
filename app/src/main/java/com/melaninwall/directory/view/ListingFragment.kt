@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.melaninwall.directory.R
 import com.melaninwall.directory.StorageKey
+import com.melaninwall.directory.interfaces.ListingFragmentView
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.ListingFragmentPresenter
 
-class ListingFragment : Fragment() {
+class ListingFragment : Fragment(), ListingFragmentView {
 
     companion object {
         fun create(listing: ListingItemData?): ListingFragment {
@@ -36,6 +37,10 @@ class ListingFragment : Fragment() {
         val bundle = arguments
         var data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
-        ListingFragmentPresenter(view).loadUi(data)
+        ListingFragmentPresenter(view, this).loadUi(data)
+    }
+
+    override fun displayViews() {
+        TODO("Not yet implemented")
     }
 }

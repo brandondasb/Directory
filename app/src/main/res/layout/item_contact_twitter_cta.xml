@@ -7,12 +7,11 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:elevation="@dimen/card_max_elevation"
+    android:focusable="true"
     android:orientation="vertical"
-    android:padding="@dimen/small_padding"
-    tools:showIn="@layout/item_detail_page_about"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/separatorInstagram"
-    android:focusable="true">
+    tools:showIn="@layout/item_detail_page_about">
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -42,4 +41,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/separatorTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/overviewTwitterImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

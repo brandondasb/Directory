@@ -1,24 +1,20 @@
 package com.melaninwall.directory.presenter
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import com.melaninwall.directory.R
-import com.melaninwall.directory.R.layout.*
 import com.melaninwall.directory.StorageKey
-import com.melaninwall.directory.model.BuildListingBinder
+import com.melaninwall.directory.adapters.ListingPagerAdapter
+import com.melaninwall.directory.interfaces.ListingFragmentView
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.model.PagerSection
-import com.melaninwall.directory.model.lookUpPagerSection
 import com.melaninwall.directory.view.ListingFragment
-import com.melaninwall.directory.viewHolder.*
+import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
 
-class ListingFragmentPresenter(itemView: View) {
+class ListingFragmentPresenter(itemView: View, listingFragmentView: ListingFragmentView) {
     val view = itemView
     val viewHolder = ListingFragmentViewHolder(view)
+    val fragmentView = listingFragmentView
 
     private lateinit var adapter: ListingPagerAdapter
 
@@ -50,53 +46,7 @@ class ListingFragmentPresenter(itemView: View) {
         }.attach()
 
         viewHolder.viewPager.clipChildren
-        viewHolder.viewPager.offscreenPageLimit = 10
+        viewHolder.viewPager.offscreenPageLimit = 1
     }
 
-    //TODO pager set up
-    class ListingPagerAdapter(
-        val data: ListingItemData?
-    ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            val inflater = LayoutInflater.from(parent.context)
-            return when (lookUpPagerSection(viewType)) {
-                PagerSection.SUMMARY -> {
-                    val summaryView =
-                        inflater
-                            .inflate(item_detail_page_summary, parent, false)
-                    SummaryPageViewHolder(summaryView)
-                }
-                PagerSection.ABOUT -> {
-                    val about =
-                        inflater
-                            .inflate(item_detail_page_about, parent, false)
-                    AboutPageViewHolder(about)
-
-                }
-                PagerSection.GALLERY -> {
-                    val galleryView =
-                        inflater
-                            .inflate(item_detail_page_gallery, parent, false)
-                    GalleryPageViewHolder(galleryView)
-                }
-                PagerSection.DETAILS -> {
-                    val socialView =
-                        inflater
-                            .inflate(R.layout.item_detail_page_details, parent, false)
-                    DetailPageViewHolder(socialView)
-                }
-            }
-        }
-
-        override fun getItemCount(): Int = PagerSection.values().size
-
-        override fun getItemViewType(position: Int): Int = position
-
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            val pageViewGenerator = holder as PageViewGenerator
-            val binder = BuildListingBinder(pageViewGenerator, data)
-            binder.bind()
-        }
-    }
 }

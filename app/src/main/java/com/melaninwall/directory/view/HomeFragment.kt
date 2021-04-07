@@ -16,7 +16,6 @@ import com.melaninwall.directory.presenter.HomeFragmentPresenter
 import com.melaninwall.directory.repo.HomeListRequest
 import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
-
 class HomeFragment : Fragment() {
     companion object {
 
@@ -60,7 +59,7 @@ class HomeFragment : Fragment() {
             }
         }
         listingRepo.getCategoryListing(categoryListingCallBack)
+        //  listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
     }
 
-    //listingRepo.addListing()//TODO  used for testing purposes, helps create sample data.
 }

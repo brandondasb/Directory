@@ -30,11 +30,26 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     override fun getViews(data: ListingItemData?) {
         address.text = data?.address
         city?.text = data?.city
-        postcode?.text = data?.postcode
-        twitter?.text = data?.social?.firstOrNull { social -> social.name == "twitter" }?.url
-        instagram?.text = data?.social?.firstOrNull { social -> social.name == "instagram" }?.url
-        website?.text = data?.website
+        // without postcode it will hide the entire block// dodgy logic
+        data?.postcode?.let {
+            postcode?.text = it
+        } ?: kotlin.run {
+            addressContainer.visibility = View.GONE
+        }
 
+        data?.social?.firstOrNull { social -> social.name == "instagram" }?.url?.let {
+            instagram?.text = it
+        } ?: run {
+            instagramCta?.visibility = View.GONE
+        }
+
+        data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {
+            twitter?.text = it
+        } ?: run {
+            twitterCta?.visibility = View.GONE
+        }
+        //instagram?.text = data?.social?.firstOrNull { social -> social.name == "instagram" }?.url
+        website?.text = data?.website
 
         addressContainer.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(it.context, R.anim.icon_click))
@@ -57,6 +72,7 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
                 openURL(view, it)
             }
         }
+
         twitterCta?.setOnClickListener { view ->
             data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {
                 openURL(view, it)
