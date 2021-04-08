@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import com.melaninwall.directory.R
 import com.melaninwall.directory.StorageKey
+import com.melaninwall.directory.adapters.ListingPagerAdapter
 import com.melaninwall.directory.interfaces.ListingFragmentView
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.model.PagerSection
 import com.melaninwall.directory.presenter.ListingFragmentPresenter
+import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
 
 class ListingFragment : Fragment(), ListingFragmentView {
 
@@ -33,14 +38,46 @@ class ListingFragment : Fragment(), ListingFragmentView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val bundle = arguments
-        var data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
+        val data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
-        ListingFragmentPresenter(view, this).loadUi(data)
+        ListingFragmentPresenter(this).loadUi(data)
     }
 
-    override fun displayViews() {
-        TODO("Not yet implemented")
+    override fun displayViews(listingItemData: ListingItemData) {
+        val fragment = create(listingItemData)
+        val data = fragment.arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
+        data as ListingItemData
+        val viewHolder = view?.let {
+            ListingFragmentViewHolder(it)
+        }
+
+        if (viewHolder != null) {
+            viewHolder.name.text = data.name
+            viewHolder.category.text = data.category.joinToString(" | ")
+            if (data.verified) {
+                viewHolder.verified.visibility = View.VISIBLE
+            } else {
+                viewHolder.verified.visibility = View.GONE
+            }
+
+            view?.context?.let {
+                Glide.with(it)
+                    .load(data.image)
+                    .centerCrop()
+                    .into(viewHolder.image)
+            }
+
+            val titles = PagerSection.values().toList()
+            val adapter = ListingPagerAdapter(data)
+            viewHolder.viewPager.adapter = adapter
+
+            TabLayoutMediator(viewHolder.tabLayout, viewHolder.viewPager) { tab, position ->
+                tab.text = titles[position].name
+            }.attach()
+
+            viewHolder.viewPager.clipChildren
+            viewHolder.viewPager.offscreenPageLimit = 1
+        }
     }
 }

@@ -32,8 +32,6 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     private var listingItemGroupAdapter = ListingSectionAdapter(context, this)
 
     init {
-        //  homeFragmentViewHolder.homeSearchEditText.addTextChangedListener(textWatcher)
-
         //configureSpinner()
         val horizontalLinearLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
