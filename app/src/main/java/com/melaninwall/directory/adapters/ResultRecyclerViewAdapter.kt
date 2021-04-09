@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
-import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.view.ResultFragment
 import com.melaninwall.directory.viewHolder.LoadingSearchViewHolder
 import com.melaninwall.directory.viewHolder.SearchListingViewHolder
 
-// using same view holder as search
 class ResultRecyclerViewAdapter(
-    private val context: Context,
-    private val itemListener: ListItemListener
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val fragmentResult = ResultFragment()
     private var itemDataList: List<ListingItemData> = listOf()
     private var isLoading: Boolean = true
     private val LOADING_CELL_COUNT = 20
@@ -64,9 +62,7 @@ class ResultRecyclerViewAdapter(
             val searchFragmentViewHolder = viewHolder as SearchListingViewHolder
             val listingItemData = itemDataList[position]
 
-            searchFragmentViewHolder.homeRootLayout.setOnClickListener {
-                itemListener.launchFragment(listingItemData)
-            }
+            fragmentResult.launchFragment(searchFragmentViewHolder.homeRootLayout, listingItemData)
 
             val name = listingItemData.name
             val image = listingItemData.image

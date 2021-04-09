@@ -6,15 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
-import com.melaninwall.directory.interfaces.ListItemCategoryListener
 import com.melaninwall.directory.model.Category
+import com.melaninwall.directory.view.HomeFragment
 import com.melaninwall.directory.viewHolder.CategoryViewHolder
 
 class CategoryRecyclerViewAdapter(
-    private val context: Context,
-    private val itemListener: ListItemCategoryListener
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val fragment = HomeFragment()
     private var categoryList: List<Category>? = listOf()
 
     fun setData(dataList: List<Category>?) {
@@ -25,7 +24,6 @@ class CategoryRecyclerViewAdapter(
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.list_item_category_recycler, viewGroup, false)
-
         return CategoryViewHolder(view)
     }
 
@@ -35,18 +33,14 @@ class CategoryRecyclerViewAdapter(
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val categoryViewHolder: CategoryViewHolder = viewHolder as CategoryViewHolder
-        val categoryList: Category =
-            this.categoryList!![position] // TODO double bang again, cmon son
+        val categoryList: Category = categoryList!![position] // TODO double bang again, cmon son
 
-        categoryViewHolder.homeRootLayout.setOnClickListener {
-            itemListener.launchCategoryFragment(categoryList.name)
-        }
+        fragment.launchCategoryNavigator(categoryViewHolder.homeRootLayout, categoryList.name)
 
         val name = categoryList.name
         val imageUrl = categoryList.url
 
         categoryViewHolder.name.text = name
-
         Glide.with(context)
             .load(imageUrl)
             .into(categoryViewHolder.image)

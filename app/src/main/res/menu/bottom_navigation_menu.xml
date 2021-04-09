@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:icon="@mipmap/ic_home"
         android:title="@string/home" />
     <!--    <item-->
@@ -9,17 +9,15 @@
     <!--        android:icon="@mipmap/ic_location_pin_curvy_outline"-->
     <!--        android:title="@string/discover" />-->
     <item
-        android:id="@+id/nav_search"
+        android:id="@+id/searchFragment"
         android:icon="@mipmap/ic_search"
         android:title="@string/search" />
-
     <item
-        android:id="@+id/nav_inbox"
+        android:id="@+id/thirdFragment"
         android:icon="@mipmap/ic_chat"
         android:title="@string/inbox" />
     <item
-        android:id="@+id/nav_profile"
+        android:id="@+id/profileFragment"
         android:icon="@mipmap/ic_person"
         android:title="@string/profile" />
-
 </menu>

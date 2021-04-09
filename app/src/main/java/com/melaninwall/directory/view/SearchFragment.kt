@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.melaninwall.directory.R
 import com.melaninwall.directory.StorageKey
+import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.interfaces.SearchListingCallBack
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.SearchFragmentPresenter
 import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
 
-
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ListItemListener {
     private val queryTextListener: SearchView.OnQueryTextListener? = null
 
     companion object {
@@ -29,13 +30,17 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.search_fragment, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,10 +59,9 @@ class SearchFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater?.inflate(R.menu.menu_search_view, menu)
+        inflater.inflate(R.menu.menu_search_view, menu)
 
-        (activity as MainActivity?)?.supportActionBar?.setDisplayShowTitleEnabled(false)
-        val searchItem = menu?.findItem(R.id.action_search)
+        val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
 
         searchView.apply {
@@ -67,5 +71,16 @@ class SearchFragment : Fragment() {
             setOnQueryTextListener(queryTextListener)
         }
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun launchFragment(clickableView: View, itemData: ListingItemData) {
+        clickableView.setOnClickListener {
+            val listingFragment = ListingFragment.create(itemData)
+            val navController = Navigation.findNavController(it)
+            navController.navigate(
+                R.id.action_searchFragment_to_listingFragment,
+                listingFragment.arguments
+            )
+        }
     }
 }

@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.melaninwall.directory.R
-import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.ListingItemData
+import com.melaninwall.directory.view.HomeFragment
 import com.melaninwall.directory.viewHolder.ListingViewHolder
 import com.melaninwall.directory.viewHolder.LoadingSearchViewHolder
 
 class ListingRecyclerViewAdapter(
-    private val context: Context,
-    private val itemListener: ListItemListener
+    private val context: Context
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val fragment = HomeFragment()
     private var listingData: List<ListingItemData>? = listOf()
     private var isLoading: Boolean = true
     private val LOADING_CELL_COUNT = 20
@@ -63,11 +62,12 @@ class ListingRecyclerViewAdapter(
         if (getItemViewType(position) == LISTING_CELL) {
 
             val listingViewHolder: ListingViewHolder = viewHolder as ListingViewHolder
-            val listing: ListingItemData = this.listingData!![position] //TODO Double bang
+            val listing: ListingItemData = listingData!![position] //TODO Double bang
 
-            listingViewHolder.homeRootLayout.setOnClickListener {
-                itemListener.launchFragment(listing)
-            }
+            fragment.launchFragment(
+                listingViewHolder.homeRootLayout,
+                listingData!![position]
+            ) // fix it man
 
             val name: String = listing.name
             val about: String = listing.about

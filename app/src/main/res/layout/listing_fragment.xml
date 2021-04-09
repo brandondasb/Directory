@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/highlightedSection">
+    app:layout_constraintTop_toBottomOf="@+id/highlightedSection"
+    tools:context=".view.ListingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,9 +44,9 @@
                     android:layout_height="@dimen/standard_icon_height"
                     android:layout_margin="@dimen/standard_margin"
                     android:src="@mipmap/ic_heart_curvy_outline"
-                    android:tint="@color/primaryDarkColor"
                     app:layout_constraintEnd_toEndOf="@id/listingImageView"
-                    app:layout_constraintTop_toTopOf="@id/listingImageView" />
+                    app:layout_constraintTop_toTopOf="@id/listingImageView"
+                    app:tint="@color/primaryDarkColor" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -85,10 +86,10 @@
                     android:padding="@dimen/small_padding"
                     android:scaleType="fitXY"
                     android:src="@mipmap/ic_checkmark"
-                    android:tint="@color/tw__blue_default"
                     app:layout_constraintBottom_toBottomOf="@id/listingNameTextView"
                     app:layout_constraintStart_toEndOf="@id/listingNameTextView"
-                    app:layout_constraintTop_toTopOf="@id/listingNameTextView" />
+                    app:layout_constraintTop_toTopOf="@id/listingNameTextView"
+                    app:tint="@color/tw__blue_default" />
 
                 <TextView
                     android:id="@+id/listingCategoryTextView"

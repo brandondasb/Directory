@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.melaninwall.directory.R
@@ -16,7 +15,7 @@ import com.melaninwall.directory.model.PagerSection
 import com.melaninwall.directory.presenter.ListingFragmentPresenter
 import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
 
-class ListingFragment : Fragment(), ListingFragmentView {
+class ListingFragment : NestedFragment(), ListingFragmentView {
 
     companion object {
         fun create(listing: ListingItemData?): ListingFragment {
@@ -44,8 +43,8 @@ class ListingFragment : Fragment(), ListingFragmentView {
         ListingFragmentPresenter(this).loadUi(data)
     }
 
-    override fun displayViews(listingItemData: ListingItemData) {
-        val fragment = create(listingItemData)
+    override fun displayViews(data: ListingItemData) {
+        val fragment = create(data)
         val data = fragment.arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
         val viewHolder = view?.let {

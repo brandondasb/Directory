@@ -2,24 +2,20 @@ package com.melaninwall.directory.presenter;
 
 import android.text.TextWatcher
 import android.view.View
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.melaninwall.directory.R
 import com.melaninwall.directory.adapters.CategoryRecyclerViewAdapter
 import com.melaninwall.directory.adapters.ListingSectionAdapter
-import com.melaninwall.directory.interfaces.*
+import com.melaninwall.directory.interfaces.CategoryListingCallBack
+import com.melaninwall.directory.interfaces.HomeListingCallback
+import com.melaninwall.directory.interfaces.QuerySearchCallback
 import com.melaninwall.directory.model.Category
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.model.Section
 import com.melaninwall.directory.repo.Repo
-import com.melaninwall.directory.view.ListingFragment
-import com.melaninwall.directory.view.ResultFragment
-import com.melaninwall.directory.view.SearchFragment
 import com.melaninwall.directory.viewHolder.HomeFragmentViewHolder
 
-class HomeFragmentPresenter(itemView: View, private var fragmentManager: FragmentManager?) :
-    HomeListingCallback, CategoryListingCallBack,
-    ListItemListener, ListItemCategoryListener, QuerySearchCallback {
+class HomeFragmentPresenter(itemView: View) :
+    HomeListingCallback, CategoryListingCallBack, QuerySearchCallback {
 
     private val context = itemView.context
     private var textWatcher: TextWatcher? = null
@@ -28,8 +24,8 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     var repo = Repo()
 
     private val homeFragmentViewHolder = HomeFragmentViewHolder(itemView)
-    private var categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
-    private var listingItemGroupAdapter = ListingSectionAdapter(context, this)
+    private var categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context)
+    private var listingItemGroupAdapter = ListingSectionAdapter(context)
 
     init {
         //configureSpinner()
@@ -39,21 +35,18 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         homeFragmentViewHolder.categoryRecyclerView.layoutManager = horizontalLinearLayoutManager
-        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context, this)
+        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context)
         homeFragmentViewHolder.categoryRecyclerView.adapter = categoryRecyclerViewAdapter
         homeFragmentViewHolder.categoryRecyclerView.startLayoutAnimation()
 
         homeFragmentViewHolder.homeRecyclerView.layoutManager = linearLayoutManager
-        listingItemGroupAdapter = ListingSectionAdapter(context, this)
+        listingItemGroupAdapter = ListingSectionAdapter(context)
         homeFragmentViewHolder.homeRecyclerView.adapter = listingItemGroupAdapter
-
-
     }
 
     fun setAdapter(listingItemData: QuerySearchCallback, stringQuery: String) {
         repo.getQueryData(listingItemData, stringQuery)
     }
-
 
     override fun loadQueriedData(
         queriedListingItemData: List<ListingItemData>,
@@ -70,31 +63,6 @@ class HomeFragmentPresenter(itemView: View, private var fragmentManager: Fragmen
     override fun loadSectionList(listingSectionData: List<Section>) {
         listingItemGroupAdapter.setData(listingSectionData)
         homeFragmentViewHolder.homeRecyclerView.startLayoutAnimation()
-    }
-
-    override fun launchFragment(itemData: ListingItemData) {
-        val listingFragment = ListingFragment.create(itemData)
-
-        // lunch frag
-        fragmentManager?.beginTransaction()
-            ?.replace(R.id.fragment_container, listingFragment)
-            ?.addToBackStack(ListingFragment::class.java.simpleName)
-            ?.commitAllowingStateLoss()
-    }
-
-    override fun launchCategoryFragment(selectedCategory: String) {
-        repo = Repo()
-        val callBackack = object : SearchListingCallBack {
-            override fun loadItemData(listingItemData: List<ListingItemData>) {
-                val resultFragment = ResultFragment.create(listingItemData)
-
-                fragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragment_container, resultFragment)
-                    ?.addToBackStack(SearchFragment::class.java.simpleName)
-                    ?.commitAllowingStateLoss()
-            }
-        }
-        repo.getListingPerCategory(callBackack, selectedCategory)
     }
 }
 

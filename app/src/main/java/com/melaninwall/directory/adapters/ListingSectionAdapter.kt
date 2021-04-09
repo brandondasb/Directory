@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.melaninwall.directory.R
-import com.melaninwall.directory.interfaces.ListItemListener
 import com.melaninwall.directory.model.Section
 import com.melaninwall.directory.viewHolder.ListingSectionViewHolder
 
 class ListingSectionAdapter(
-    private val context: Context,
-    private val listener: ListItemListener
+    private val context: Context
 ) : RecyclerView.Adapter<ListingSectionViewHolder>() {
     private var sectionList: MutableList<Section> = mutableListOf()
     private val viewPool = RecyclerView.RecycledViewPool()
@@ -20,7 +18,6 @@ class ListingSectionAdapter(
     fun setData(sectionList: List<Section>) {
         this.sectionList.addAll(sectionList)
         HomeScreenSectionSorter().sortList(sectionList = sectionList, sortFunction = { 1 })
-
         notifyDataSetChanged()
     }
 
@@ -34,13 +31,13 @@ class ListingSectionAdapter(
         listingSectionViewHolder: ListingSectionViewHolder,
         position: Int
     ) {
-        var parentViewHolder = listingSectionViewHolder
-        var listingDataGroup = sectionList[position]
+        val parentViewHolder = listingSectionViewHolder
+        val listingDataGroup = sectionList[position]
 
         parentViewHolder.itemTitle.text = listingDataGroup.type.title
-        var itemData = listingDataGroup.listItem
+        val itemData = listingDataGroup.listItem
 
-        var itemListAdapter = ListingRecyclerViewAdapter(context, itemListener = listener)
+        val itemListAdapter = ListingRecyclerViewAdapter(context)
 
         itemListAdapter.setData(itemData)
         parentViewHolder.sectionRecyclerView.setHasFixedSize(true)
