@@ -11,11 +11,10 @@ enum class HomeScreenSection(val title: String) {
 
 class HomeListRequest private constructor(builder: Builder) {
 
-    val callback: HomeListingCallback
+    val callback: HomeListingCallback = builder.callback
     val section: List<HomeScreenSection>
 
     init {
-        callback = builder.callback
         section = builder.sections
     }
 

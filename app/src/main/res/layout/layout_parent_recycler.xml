@@ -24,17 +24,17 @@
 
         <ImageView
             android:id="@+id/see_more_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/small_icon_width"
+            android:layout_height="@dimen/small_icon_height"
             android:layout_alignTop="@+id/itemTitle"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="253dp"
             android:layout_toEndOf="@+id/itemTitle"
-            android:src="@drawable/ic_arrow_outline"
-            android:tint="@color/primaryColor"
+            android:src="@drawable/ic_chevron_rounded_outline"
             app:layout_constraintBottom_toBottomOf="@id/itemTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/itemTitle" />
+            app:layout_constraintTop_toTopOf="@id/itemTitle"
+            app:tint="@color/primaryColor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

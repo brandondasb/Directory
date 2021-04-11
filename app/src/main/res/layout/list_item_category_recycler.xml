@@ -26,11 +26,11 @@
         android:padding="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/com_facebook_button_like_icon_selected"
-        android:tint="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@id/iconNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/primaryColor" />
     <!--    </androidx.cardview.widget.CardView>-->
 
     <TextView

@@ -48,7 +48,7 @@ class SearchFragment : Fragment(), ListItemListener {
         setHasOptionsMenu(true)
 
         val listingRepo = Repo()
-        val searchFragmentPresenter = SearchFragmentPresenter(view, fragmentManager)
+        val searchFragmentPresenter = SearchFragmentPresenter(view)
 
         val searchListingCallback: SearchListingCallBack = object : SearchListingCallBack {
             override fun loadItemData(listingItemData: List<ListingItemData>) {
