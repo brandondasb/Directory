@@ -23,17 +23,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         loginAuthorisation = AuthEmailPassword()
 //        loginAuthorisation.updateUI()
         setupViews()
     }
 
-
     private fun setupViews() {
         //find the navigation controller
         val navController = findNavController(R.id.fragNavHost)
-
         // setting navigation controller with the bottomNavigationView
         val bottomNavView: BottomNavigationView = findViewById(R.id.bottomNavView)
         bottomNavView.setupWithNavController(navController)

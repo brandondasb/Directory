@@ -12,23 +12,10 @@ import com.melaninwall.directory.interfaces.SearchListingCallBack
 import com.melaninwall.directory.model.ListingItemData
 import com.melaninwall.directory.presenter.SearchFragmentPresenter
 import com.melaninwall.directory.repo.Repo
-import java.io.Serializable
 
 class SearchFragment : Fragment(), ListItemListener {
-    private val queryTextListener: SearchView.OnQueryTextListener? = null
 
-    companion object {
-        fun create(filteredList: List<ListingItemData>): SearchFragment {
-            val bundle = Bundle()
-            bundle.putSerializable(
-                StorageKey.FILTERED_LIST.toString(),
-                filteredList as Serializable
-            )
-            val fragment = SearchFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+    private val queryTextListener: SearchView.OnQueryTextListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,11 +62,14 @@ class SearchFragment : Fragment(), ListItemListener {
 
     override fun launchFragment(clickableView: View, itemData: ListingItemData) {
         clickableView.setOnClickListener {
-            val listingFragment = ListingFragment.create(itemData)
+            val bundle = Bundle()
+            bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), itemData)
+            arguments = bundle
+
             val navController = Navigation.findNavController(it)
             navController.navigate(
                 R.id.action_searchFragment_to_listingFragment,
-                listingFragment.arguments
+                arguments
             )
         }
     }

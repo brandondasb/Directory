@@ -21,17 +21,6 @@ import com.melaninwall.directory.repo.Repo
 import java.io.Serializable
 
 class HomeFragment : Fragment(), ListItemListener {
-    companion object {
-        fun create(itemDataList: List<ListingItemData>) {
-            val bundle = Bundle()
-            bundle.putSerializable(
-                StorageKey.FILTERED_LIST.toString(),
-                itemDataList as Serializable
-            )
-            val fragment = HomeFragment()
-            fragment.arguments = bundle
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,30 +53,36 @@ class HomeFragment : Fragment(), ListItemListener {
     }
 
     fun launchCategoryNavigator(clickableView: View, selectedCategory: String) {
-        clickableView.setOnClickListener {
+        clickableView.setOnClickListener { category ->
             val repo = Repo()
-            val callBackack = object : SearchListingCallBack {
+            val callBack = object : SearchListingCallBack {
                 override fun loadItemData(listingItemData: List<ListingItemData>) {
-                    val resultFragment = ResultFragment.create(listingItemData)
-                    val navController = Navigation.findNavController(it)
+                    val bundle = Bundle()
+                    bundle.putSerializable(
+                        StorageKey.FILTERED_LIST.toString(),
+                        listingItemData as Serializable
+                    )
+                    bundle.also { arguments = it }
+                    val navController = Navigation.findNavController(category)
                     navController.navigate(
                         R.id.action_homeFragment_to_resultFragment,
-                        resultFragment.arguments
+                        arguments
                     )
                 }
             }
-            repo.getListingPerCategory(callBackack, selectedCategory)
+            repo.getListingPerCategory(callBack, selectedCategory)
         }
     }
 
-
     override fun launchFragment(clickableView: View, itemData: ListingItemData) {
+        val bundle = Bundle()
+        bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), itemData)
+        arguments = bundle
         clickableView.setOnClickListener {
-            val listingFragment = ListingFragment.create(itemData)
             val navController = Navigation.findNavController(it)
             navController.navigate(
                 R.id.action_homeFragment_to_listingFragment,
-                listingFragment.arguments
+                arguments
             )
         }
     }

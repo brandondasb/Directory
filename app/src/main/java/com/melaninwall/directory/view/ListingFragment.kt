@@ -44,17 +44,17 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
     }
 
     override fun displayViews(data: ListingItemData) {
-        val fragment = create(data)
-        val data = fragment.arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
-        data as ListingItemData
+
+        val args = arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
+        args as ListingItemData
         val viewHolder = view?.let {
             ListingFragmentViewHolder(it)
         }
 
         if (viewHolder != null) {
-            viewHolder.name.text = data.name
-            viewHolder.category.text = data.category.joinToString(" | ")
-            if (data.verified) {
+            viewHolder.name.text = args.name
+            viewHolder.category.text = args.category.joinToString(" | ")
+            if (args.verified) {
                 viewHolder.verified.visibility = View.VISIBLE
             } else {
                 viewHolder.verified.visibility = View.GONE
@@ -68,7 +68,7 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
             }
 
             val titles = PagerSection.values().toList()
-            val adapter = ListingPagerAdapter(data)
+            val adapter = ListingPagerAdapter(args)
             viewHolder.viewPager.adapter = adapter
 
             TabLayoutMediator(viewHolder.tabLayout, viewHolder.viewPager) { tab, position ->

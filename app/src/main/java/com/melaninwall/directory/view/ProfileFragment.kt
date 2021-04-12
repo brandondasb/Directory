@@ -9,17 +9,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.melaninwall.directory.R
 
 class ProfileFragment : Fragment() {
-    companion object {
-
-        fun create(): ProfileFragment {
-
-            val fragment = ProfileFragment()
-
-            fragment
-
-            return fragment
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +16,6 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.profile_fragment, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

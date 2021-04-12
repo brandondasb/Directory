@@ -9,17 +9,6 @@ import com.melaninwall.directory.R
 
 
 class ThirdFragment : Fragment() {
-    companion object {
-
-        fun create(): ThirdFragment {
-            val bundle = Bundle()
-            val fragment = ThirdFragment()
-            fragment.arguments = bundle
-            fragment
-
-            return fragment
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

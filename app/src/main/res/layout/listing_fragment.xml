@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/highlightedSection"
     tools:context=".view.ListingFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/topSection"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            app:expandedTitleTextAppearance="@style/collapsingToolbarLayoutExpandedTextStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/imageContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/first_layer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax">
 
                 <ImageView
                     android:id="@+id/listingImageView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/imagesample"
                     tools:srcCompat="@tools:sample/avatars" />
 
@@ -46,146 +43,68 @@
                     android:src="@mipmap/ic_heart_curvy_outline"
                     app:layout_constraintEnd_toEndOf="@id/listingImageView"
                     app:layout_constraintTop_toTopOf="@id/listingImageView"
-                    app:tint="@color/primaryDarkColor" />
+                    app:tint="@color/black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.3"
+                android:background="@android:color/black" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/detailsTablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_collapseMode="pin"
+                app:tabMode="fixed" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginBottom="148dp"
+                android:gravity="top"
+                android:visibility="gone"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/listingDetailCardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_max_elevation"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardElevation="@dimen/card_max_elevation">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listingDetails">
 
-                <TextView
-                    android:id="@+id/listingNameTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/large_margin"
-                    android:text="business name"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <include layout="@layout/listing_details_section" />
 
-                <ImageView
-                    android:id="@+id/listingVerifiedListingImageView"
-                    android:layout_width="@dimen/standard_icon_width"
-                    android:layout_height="@dimen/standard_icon_height"
-                    android:layout_margin="@dimen/small_margin"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:contentDescription="image"
-                    android:padding="@dimen/small_padding"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_checkmark"
-                    app:layout_constraintBottom_toBottomOf="@id/listingNameTextView"
-                    app:layout_constraintStart_toEndOf="@id/listingNameTextView"
-                    app:layout_constraintTop_toTopOf="@id/listingNameTextView"
-                    app:tint="@color/tw__blue_default" />
+                <include layout="@layout/listing_service_list_section" />
 
-                <TextView
-                    android:id="@+id/listingCategoryTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/small_margin"
-                    android:layout_marginEnd="44dp"
-                    android:text="category"
-                    app:layout_constraintEnd_toEndOf="@+id/listingNameTextView"
-                    app:layout_constraintStart_toStartOf="@+id/listingNameTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/listingNameTextView" />
-
-
-                <!--  tab/pager container -->
-                <LinearLayout
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/itemDetailPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/standard_margin"
                     android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listingCategoryTextView">
-
-                    <HorizontalScrollView
-                        android:id="@+id/serviceList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none">
-
-                        <com.google.android.material.chip.ChipGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:scrollbars="none"
-                            app:singleLine="true">
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryChipDelivery"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="delivery" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryChipOnline"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="online" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryRegistered"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="registered" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryDelivery"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="delivery" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryDelivery2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="delivery" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/summaryDelivery1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="delivery" />
-
-                        </com.google.android.material.chip.ChipGroup>
-
-                    </HorizontalScrollView>
-                    <!-- begin view tabLayout -->
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/detailsTablayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/highlightedSection"
-                        app:tabIndicatorColor="@color/primaryDarkColor"
-                        app:tabTextColor="@color/primaryDarkColor" />
-
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/itemDetailPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/detailsTablayout" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
