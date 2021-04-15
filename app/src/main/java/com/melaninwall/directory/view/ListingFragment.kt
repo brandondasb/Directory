@@ -17,16 +17,6 @@ import com.melaninwall.directory.viewHolder.ListingFragmentViewHolder
 
 class ListingFragment : NestedFragment(), ListingFragmentView {
 
-    companion object {
-        fun create(listing: ListingItemData?): ListingFragment {
-            val bundle = Bundle()
-            bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), listing)
-            val fragment = ListingFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +33,7 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
         ListingFragmentPresenter(this).loadUi(data)
     }
 
-    override fun displayViews(data: ListingItemData) {
+    override fun displayViews(imageUrl: String) {
 
         val args = arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         args as ListingItemData
@@ -52,17 +42,9 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
         }
 
         if (viewHolder != null) {
-            viewHolder.name.text = args.name
-            viewHolder.category.text = args.category.joinToString(" | ")
-            if (args.verified) {
-                viewHolder.verified.visibility = View.VISIBLE
-            } else {
-                viewHolder.verified.visibility = View.GONE
-            }
-
             view?.context?.let {
                 Glide.with(it)
-                    .load(data.image)
+                    .load(imageUrl)
                     .centerCrop()
                     .into(viewHolder.image)
             }

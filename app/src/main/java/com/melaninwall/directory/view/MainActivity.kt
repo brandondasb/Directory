@@ -71,10 +71,8 @@ class MainActivity : AppCompatActivity() {
 
             backPressedOnce = true
             Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show()
-
             Handler(Looper.getMainLooper()).postDelayed(Runnable {
                 backPressedOnce = false
-
             }, 2000)
         } else {
             super.onBackPressed()

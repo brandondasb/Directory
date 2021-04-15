@@ -58,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 app:layout_collapseMode="pin"
-                app:tabMode="fixed" />
+                app:tabGravity="fill"
+                app:tabMode="scrollable" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -93,15 +94,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/listingDetails">
 
-                <include layout="@layout/listing_details_section" />
-
-                <include layout="@layout/listing_service_list_section" />
-
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/itemDetailPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
             </LinearLayout>

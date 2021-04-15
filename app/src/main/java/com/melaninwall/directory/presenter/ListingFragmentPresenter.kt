@@ -5,18 +5,18 @@ import com.melaninwall.directory.model.ListingItemData
 
 class ListingFragmentPresenter(listingFragmentView: ListingFragmentView) {
     val fragmentView = listingFragmentView
-
+    lateinit var imageUrl: String
 
     fun loadUi(listingItemData: ListingItemData?) {
-
         if (listingItemData != null) {
-//            val name = listingItemData.name
-//            val categorList = listingItemData.category.joinToString(" | ")
-//            val imageUrl = listingItemData.image
-//            val isVerified = listingItemData.verified
-
-            fragmentView.displayViews(listingItemData)
+            listingItemData.image.let {
+                imageUrl = if (it.isEmpty()) {
+                    "No data found"
+                } else {
+                    it
+                }
+            }
+            fragmentView.displayViews(imageUrl)
         }
     }
-
 }
