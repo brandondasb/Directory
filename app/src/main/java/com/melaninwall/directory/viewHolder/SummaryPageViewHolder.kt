@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.melaninwall.directory.R
 import com.melaninwall.directory.model.ListingItemData
 
@@ -15,7 +17,7 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     val about: TextView? = itemView.findViewById(R.id.summaryAbout)
     val overviewOpeningHours: TextView? = itemView.findViewById(R.id.overviewOpeningHours)
 
-    // val deliveryAvailableChip:Chip = itemView.findViewById(R.id.overviewSomethingChip)
+    val deliveryAvailableChip: ChipGroup = itemView.findViewById(R.id.summarySomethingChip)
     override fun getViews(data: ListingItemData?) {
 
         if (data != null) {
@@ -26,6 +28,13 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
                 verified.visibility = View.VISIBLE
             } else {
                 verified.visibility = View.GONE
+            }
+
+            for (service in data.services) {
+                var chip = Chip(itemView.context)
+                chip.text = service
+
+                deliveryAvailableChip.addView(chip)
             }
         }
 

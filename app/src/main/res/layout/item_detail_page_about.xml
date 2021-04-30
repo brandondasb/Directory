@@ -6,6 +6,13 @@
     android:layout_margin="@dimen/standard_margin"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_heading"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_title" />
+
     <include layout="@layout/item_contact_website_cta" />
 
     <include layout="@layout/item_contact_instagram_cta" />

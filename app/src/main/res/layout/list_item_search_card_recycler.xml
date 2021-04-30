@@ -19,6 +19,7 @@
             android:id="@+id/imageSearchImageView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:contentDescription="@string/business_logo"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,10 +28,13 @@
             android:id="@+id/likeSearchImageView"
             android:layout_width="@dimen/standard_icon_width"
             android:layout_height="@dimen/standard_icon_height"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_margin"
+            android:contentDescription="@string/like_button"
             android:src="@mipmap/ic_heart_curvy_outline"
-            android:tint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@id/imageSearchImageView"
-            app:layout_constraintTop_toTopOf="@id/imageSearchImageView" />
+            app:layout_constraintTop_toTopOf="@id/imageSearchImageView"
+            app:tint="@color/primaryColor" />
 
         <TextView
             android:id="@+id/nameSearchTextView"
@@ -49,13 +53,14 @@
             android:id="@+id/verifiedImageView"
             android:layout_width="@dimen/standard_icon_height"
             android:layout_height="@dimen/standard_icon_height"
+            android:contentDescription="@string/verified_tick"
             android:padding="@dimen/small_padding"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_checkmark"
-            android:tint="@color/tw__blue_default"
             app:layout_constraintBottom_toBottomOf="@+id/nameSearchTextView"
             app:layout_constraintStart_toEndOf="@+id/nameSearchTextView"
-            app:layout_constraintTop_toTopOf="@id/nameSearchTextView" />
+            app:layout_constraintTop_toTopOf="@id/nameSearchTextView"
+            app:tint="@color/tw__blue_default" />
 
         <TextView
             android:id="@+id/shortDescriptionSearchTextView"
@@ -127,7 +132,7 @@
             android:id="@+id/numberOfReviewsSearchTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginStart="@dimen/small_margin"
             android:text="(0 reviews)"
             android:textSize="@dimen/text_size_body"
             app:layout_constraintBottom_toBottomOf="@+id/ratingValueSearchTextView"

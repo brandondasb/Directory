@@ -15,17 +15,9 @@ data class ListingItemData(
     val city: String = "",
     val postcode: String = "",
     val social: List<Social> = emptyList(),
+    val services: List<String> = emptyList(),
+    val phoneNumber: Int = -1,
     val openingHours: List<OpeningHours> = emptyList()
-//        listOf(
-//        OpeningHours("Monday", 10, 30, 5, 0),
-//        OpeningHours("Tuesday", 10, 20, 5, 0),
-//        OpeningHours("Wednesday", 10, 20, 5, 0),
-//        OpeningHours("Thursday", 10, 20, 5, 0),
-//        OpeningHours("Friday", 10, 20, 5, 0),
-//        OpeningHours("Saturday", 10, 20, 5, 0),
-//        OpeningHours("Sunday", 10, 20, 5, 0)
-//    )
-// TBC
 ) : Serializable
 
 data class Social(

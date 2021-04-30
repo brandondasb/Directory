@@ -29,6 +29,7 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         val data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
+        savedInstanceState?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
         ListingFragmentPresenter(this).loadUi(data)
     }

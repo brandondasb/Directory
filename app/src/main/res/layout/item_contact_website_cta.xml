@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="@id/overviewWebsiteImageView"
         app:layout_constraintStart_toEndOf="@id/overviewWebsiteImageView"
         app:layout_constraintTop_toTopOf="@id/overviewWebsiteImageView"
-        tools:text="www.google.co.uk" />
+        android:text="@string/visit_site" />
 
     <ImageView
         android:id="@+id/open_link"

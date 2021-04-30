@@ -16,15 +16,10 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     private val city: TextView? = itemView.findViewById(R.id.listingCity)
     private val postcode: TextView? = itemView.findViewById(R.id.listingPostcode)
 
-    private val twitter: TextView? = itemView.findViewById(R.id.listingTwitter)
-    private val website: TextView? = itemView.findViewById(R.id.listingWebsite)
-    private val instagram: TextView? = itemView.findViewById(R.id.listingInstagram)
-
     private val twitterCta: View? = itemView.findViewById(R.id.listingTwitterCTA)
     private val websiteCta: View? = itemView.findViewById(R.id.listingWebisteCTA)
     private val instagramCta: View? = itemView.findViewById(R.id.listingInstagramCTA)
 
-    // private val facebookCta: View?
     private val numberCta: View? = itemView.findViewById(R.id.listingNumberCTA)
 
     override fun getViews(data: ListingItemData?) {
@@ -38,18 +33,24 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         }
 
         data?.social?.firstOrNull { social -> social.name == "instagram" }?.url?.let {
-            instagram?.text = it
+            instagramCta?.setOnClickListener { view ->
+                data.social.firstOrNull { social -> social.name == "instagram" }?.url?.let {
+                    openURL(view, it)
+                }
+            }
         } ?: run {
             instagramCta?.visibility = View.GONE
         }
 
         data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {
-            twitter?.text = it
+            twitterCta?.setOnClickListener { view ->
+                data.social.firstOrNull { social -> social.name == "twitter" }?.url?.let {
+                    openURL(view, it)
+                }
+            }
         } ?: run {
             twitterCta?.visibility = View.GONE
         }
-        //instagram?.text = data?.social?.firstOrNull { social -> social.name == "instagram" }?.url
-        website?.text = data?.website
 
         addressContainer.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(it.context, R.anim.icon_click))
@@ -60,29 +61,24 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             )
         }
 
+        if (data?.phoneNumber == -1) {
+            numberCta?.visibility = View.GONE
+        } else {
+            numberCta?.visibility = View.VISIBLE
+            numberCta?.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL)
+                val number = data?.phoneNumber
+                intent.data = Uri.parse("tel: 0$number")
+                it.context.startActivity(intent)
+            }
+        }
+
         websiteCta?.setOnClickListener {
             val link = data?.website
             openURL(
                 it, link
             )
         }
-
-        instagramCta?.setOnClickListener { view ->
-            data?.social?.firstOrNull { social -> social.name == "instagram" }?.url?.let {
-                openURL(view, it)
-            }
-        }
-
-        twitterCta?.setOnClickListener { view ->
-            data?.social?.firstOrNull { social -> social.name == "twitter" }?.url?.let {
-                openURL(view, it)
-            }
-        }
-//        facebookCta?.setOnClickListener { view ->
-//            data?.social?.firstOrNull { social -> social.name == "facebook" }?.url?.let {
-//                openURL(view, it)
-//            }
-//        }
     }
 
     private fun openURL(view: View, link: String?) {

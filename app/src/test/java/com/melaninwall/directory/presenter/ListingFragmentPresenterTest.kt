@@ -20,10 +20,10 @@ class ListingFragmentPresenterTest {
     }
 
     @Test
-    fun `when loadUi is called, with empty imageUrl then return default text`() {
+    fun `when loadUi is called, with empty imageUrl then return default no image URL`() {
         val list = ListingItemData(image = "")
         listingFragmentPresenter.loadUi(list)
-        verify(listingItemView).displayViews("No data found")
+        verify(listingItemView).displayViews("https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg")
     }
 
     @Test

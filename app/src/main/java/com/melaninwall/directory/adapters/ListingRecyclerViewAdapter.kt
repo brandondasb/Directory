@@ -66,7 +66,7 @@ class ListingRecyclerViewAdapter(
 
             fragment.launchFragment(
                 listingViewHolder.homeRootLayout,
-                listingData!![position]
+                listing
             ) // fix it man
 
             val name: String = listing.name

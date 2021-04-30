@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="@id/overviewInstagramImageView"
         app:layout_constraintStart_toEndOf="@id/overviewInstagramImageView"
         app:layout_constraintTop_toTopOf="@id/overviewInstagramImageView"
-        tools:text="www.instragram.com/thegram" />
+        android:text="@string/check_our_instagram" />
 
     <ImageView
         android:id="@+id/open_link"

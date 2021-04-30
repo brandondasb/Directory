@@ -12,47 +12,12 @@
     tools:showIn="@layout/listing_fragment">
 
     <com.google.android.material.chip.ChipGroup
+        android:id="@+id/summarySomethingChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
         android:scrollbars="none"
         app:singleLine="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryChipDelivery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="delivery" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryChipOnline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="online" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryRegistered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="registered" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryDelivery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="delivery" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryDelivery2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="delivery" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/summaryDelivery1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="delivery" />
 
     </com.google.android.material.chip.ChipGroup>
 

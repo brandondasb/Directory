@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="@id/overviewTwitterImageView"
         app:layout_constraintStart_toEndOf="@id/overviewTwitterImageView"
         app:layout_constraintTop_toTopOf="@id/overviewTwitterImageView"
-        tools:text="www.facebook.com/thegram" />
+        android:text="@string/follow_us_on_twitter" />
 
     <ImageView
         android:id="@+id/open_link"

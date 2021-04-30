@@ -11,7 +11,8 @@ class ListingFragmentPresenter(listingFragmentView: ListingFragmentView) {
         if (listingItemData != null) {
             listingItemData.image.let {
                 imageUrl = if (it.isEmpty()) {
-                    "No data found"
+//                    "No data found"
+                    "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg"
                 } else {
                     it
                 }

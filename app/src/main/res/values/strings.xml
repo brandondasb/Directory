@@ -54,4 +54,11 @@
     <string name="location">Location</string>
     <string name="number">number</string>
     <string name="click_to_call">click to call</string>
+    <string name="business_logo">business logo</string>
+    <string name="like_button">like button</string>
+    <string name="verified_tick">verified tick</string>
+    <string name="visit_site">visit website</string>
+    <string name="check_our_instagram">check our instagram</string>
+    <string name="follow_us_on_twitter">follow us on twitter</string>
+    <string name="about_heading">About</string>
 </resources>
