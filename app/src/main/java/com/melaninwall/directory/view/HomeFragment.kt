@@ -75,10 +75,11 @@ class HomeFragment : Fragment(), ListItemListener {
     }
 
     override fun launchFragment(clickableView: View, itemData: ListingItemData) {
-        val bundle = Bundle()
-        bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), itemData)
-        arguments = bundle
         clickableView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable(StorageKey.LISTING_ITEM_DATA.toString(), itemData)
+            arguments = bundle
+
             val navController = Navigation.findNavController(it)
             navController.navigate(
                 R.id.action_homeFragment_to_listingFragment,

@@ -29,13 +29,11 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         val data = bundle?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
-        savedInstanceState?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         data as ListingItemData
         ListingFragmentPresenter(this).loadUi(data)
     }
 
     override fun displayViews(imageUrl: String) {
-
         val args = arguments?.getSerializable(StorageKey.LISTING_ITEM_DATA.toString())
         args as ListingItemData
         val viewHolder = view?.let {
@@ -61,5 +59,9 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
             viewHolder.viewPager.clipChildren
             viewHolder.viewPager.offscreenPageLimit = 1
         }
+    }
+
+    override fun showErrorWith(errorMessage: String) {
+        TODO("Not yet implemented")
     }
 }

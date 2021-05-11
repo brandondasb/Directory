@@ -8,13 +8,13 @@ class BuildListingBinder(
 ) {
     fun bind() {
         val testPattern = GetViewHolderFactory()
-        testPattern.getViews(viewHolder, dataModel).getViews(dataModel)
+        testPattern.getViews(viewHolder, dataModel).bindData(dataModel)
     }
 }
 
 class GetViewHolderFactory {
     fun getViews(viewHolder: PageViewGenerator, dataModel: ListingItemData?): PageViewGenerator {
-        viewHolder.getViews(dataModel)
+        viewHolder.bindData(dataModel)
 
         return viewHolder
     }

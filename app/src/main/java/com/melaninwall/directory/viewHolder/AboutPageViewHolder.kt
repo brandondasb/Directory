@@ -19,10 +19,9 @@ class AboutPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     private val twitterCta: View? = itemView.findViewById(R.id.listingTwitterCTA)
     private val websiteCta: View? = itemView.findViewById(R.id.listingWebisteCTA)
     private val instagramCta: View? = itemView.findViewById(R.id.listingInstagramCTA)
-
     private val numberCta: View? = itemView.findViewById(R.id.listingNumberCTA)
 
-    override fun getViews(data: ListingItemData?) {
+    override fun bindData(data: ListingItemData?) {
         address.text = data?.address
         city?.text = data?.city
         // without postcode it will hide the entire block// dodgy logic

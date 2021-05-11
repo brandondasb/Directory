@@ -1,5 +1,6 @@
 package com.melaninwall.directory.viewHolder
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,9 +17,9 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     val category: TextView = itemView.findViewById(R.id.listingCategoryTextView)
     val about: TextView? = itemView.findViewById(R.id.summaryAbout)
     val overviewOpeningHours: TextView? = itemView.findViewById(R.id.overviewOpeningHours)
-
     val deliveryAvailableChip: ChipGroup = itemView.findViewById(R.id.summarySomethingChip)
-    override fun getViews(data: ListingItemData?) {
+
+    override fun bindData(data: ListingItemData?) {
 
         if (data != null) {
             name.text = data.name
@@ -30,11 +31,12 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
                 verified.visibility = View.GONE
             }
 
-            for (service in data.services) {
-                var chip = Chip(itemView.context)
-                chip.text = service
-
-                deliveryAvailableChip.addView(chip)
+            data.services.forEach { label ->
+                if (deliveryAvailableChip.childCount < data.services.size) {
+                    /** for some reason the bind function get binder function get call twice in onBinderView ListingPagerApter class, because that it was duplicated the View I programmatically created.
+                    hence this condition **/
+                    deliveryAvailableChip.addChip(itemView.context, label)
+                }
             }
         }
 
@@ -43,6 +45,18 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             var openingHours = overviewOpeningHours?.text
             overviewOpeningHours?.text =
                 "$openingHours ${it.dayOfWeek} - ${it.startHour} : ${it.startMinute} - ${it.endHour}  :${it.endMinute} \n"
+        }
+    }
+
+    private fun ChipGroup.addChip(context: Context, label: String) {
+        Chip(context).apply {
+            id = View.generateViewId()
+            text = label
+            isClickable = true
+            isCheckable = true
+            isCheckedIconVisible = false
+            isFocusable = true
+            addView(this)
         }
     }
 }

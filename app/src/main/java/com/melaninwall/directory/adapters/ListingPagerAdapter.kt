@@ -52,6 +52,6 @@ class ListingPagerAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val pageViewGenerator = holder as PageViewGenerator
         val binder = BuildListingBinder(pageViewGenerator, data)
-        binder.bind()
+        binder.bind() //getS called twice would like to know why
     }
 }

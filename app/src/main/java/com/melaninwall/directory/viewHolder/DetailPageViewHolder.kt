@@ -10,9 +10,7 @@ class DetailPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), 
 
     val about: TextView? = itemView.findViewById(R.id.detailsAboutTextView)
 
-
-    override fun getViews(data: ListingItemData?) {
+    override fun bindData(data: ListingItemData?) {
         about?.text = data?.about
     }
-
 }
