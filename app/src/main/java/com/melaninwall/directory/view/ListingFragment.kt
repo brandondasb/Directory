@@ -58,6 +58,7 @@ class ListingFragment : NestedFragment(), ListingFragmentView {
 
             viewHolder.viewPager.clipChildren
             viewHolder.viewPager.offscreenPageLimit = 1
+            viewHolder.viewPager.setPageTransformer(ZoomOutPageTransformer())
         }
     }
 

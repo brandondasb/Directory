@@ -20,7 +20,6 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     val deliveryAvailableChip: ChipGroup = itemView.findViewById(R.id.summarySomethingChip)
 
     override fun bindData(data: ListingItemData?) {
-
         if (data != null) {
             name.text = data.name
             category.text = data.category.joinToString(" | ")
@@ -43,8 +42,17 @@ class SummaryPageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         about?.text = data?.about
         data?.openingHours?.forEach {
             var openingHours = overviewOpeningHours?.text
+
             overviewOpeningHours?.text =
-                "$openingHours ${it.dayOfWeek} - ${it.startHour} : ${it.startMinute} - ${it.endHour}  :${it.endMinute} \n"
+                "$openingHours ${it.dayOfWeek} - ${
+                    it.startHour.toString().padStart(2, '0')
+                } : ${
+                    it.startMinute.toString().padStart(2, '0')
+                } - ${
+                    it.endHour.toString().padStart(2, '0')
+                } : ${
+                    it.endMinute.toString().padStart(2, '0')
+                } \n"
         }
     }
 
